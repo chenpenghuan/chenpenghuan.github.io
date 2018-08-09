@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 
+                      {%- block search_button %}
+                        {%- if 'search' in config['plugins'] %}
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> 搜索
+                            </a>
+                        </li>
+                        {%- endif %}
+                      {%- endblock %}
+
+                      {%- block next_prev %}
+                        {%- if page and (page.next_page or page.previous_page) %}
+                            <li {% if not page.previous_page %}class="disabled"{% endif %}>
+                                <a rel="next" {% if page.previous_page %}href="{{ page.previous_page.url|url }}"{% endif %}>
+                                    <i class="fa fa-arrow-left"></i> 上一页
+                                </a>
+                            </li>
+                            <li {% if not page.next_page %}class="disabled"{% endif %}>
+                                <a rel="prev" {% if page.next_page %}href="{{ page.next_page.url|url }}"{% endif %}>
+                                    下一页 <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        {%- endif %}
+                      {%- endblock %}
+
+{%- block footer %}
+	<hr>
+{%- if config.copyright %}
+<p>{{ config.copyright }}</p>
+{%- endif %}
+            <!--<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>-->
+          {%- endblock %}
+
 {#
 The entry point for the MkDocs Theme.
  
