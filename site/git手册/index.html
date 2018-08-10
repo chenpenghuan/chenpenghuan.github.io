@@ -211,9 +211,94 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        git手册
+      </label>
+    
     <a href="./" title="git手册" class="md-nav__link md-nav__link--active">
       git手册
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="暂存" class="md-nav__link">
+    暂存
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="撤销" class="md-nav__link">
+    撤销
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="对比本地和远程的日志" class="md-nav__link">
+    对比本地和远程的日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="拉取远程分支到本地" class="md-nav__link">
+    拉取远程分支到本地
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="查看指定分支日志" class="md-nav__link">
+    查看指定分支日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="查看某个文件的版本历史" class="md-nav__link">
+    查看某个文件的版本历史
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="打tag" class="md-nav__link">
+    打tag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="描述" class="md-nav__link">
+    描述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="删除远程分支" class="md-nav__link">
+    删除远程分支
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -264,6 +349,78 @@
     
   
   
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="暂存" class="md-nav__link">
+    暂存
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="撤销" class="md-nav__link">
+    撤销
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="对比本地和远程的日志" class="md-nav__link">
+    对比本地和远程的日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="拉取远程分支到本地" class="md-nav__link">
+    拉取远程分支到本地
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="查看指定分支日志" class="md-nav__link">
+    查看指定分支日志
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="查看某个文件的版本历史" class="md-nav__link">
+    查看某个文件的版本历史
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="打tag" class="md-nav__link">
+    打tag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="描述" class="md-nav__link">
+    描述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="删除远程分支" class="md-nav__link">
+    删除远程分支
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -276,35 +433,33 @@
                 
                 
                 <h1 id="git">git手册<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
-<ol>
-<li>暂存 <br />
-    git stash save {暂存说明} <br />
-    git stash list 查看所有暂存  <br />
-    git stash apply {暂存名}    应用暂存    </li>
-<li>撤销 <br />
-    git reset —mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息 <br />
-    git reset —soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可 <br />
-    git reset  —hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，慎用！   </li>
-<li>对比本地和远程的日志 <br />
-    git log {branch} ^origin/{branch}        查看未推送的提交 <br />
-    git log origin/{branch}                  查看远程日志 <br />
-    git log {branch}                                      </li>
-<li>拉取远程分支到本地 <br />
-    git checkout -b {branchname} origin/{branchname}</li>
-<li>查看指定分支日志 <br />
-    git  show {commitid}    </li>
-<li>查看某个文件的版本历史 <br />
-    git log -p {filename}</li>
-<li>打tag <br />
-    git tag -a {tagname} -m {message} {commitid}对某次提交打tag  <br />
-    git tag                                     查看所有标签 <br />
-    git show {tagname}                          查看标签信息   </li>
-<li>描述 <br />
-    git branch —edit-description {branchname}</li>
-<li>删除远程分支 <br />
-    git branch -d {branchname} 删除本地分支 <br />
-    git push origin —delete {branchname}</li>
-</ol>
+<h2 id="_1">暂存<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>git stash save {暂存说明} <br />
+git stash list 查看所有暂存  <br />
+git stash apply {暂存名}    应用暂存    </p>
+<h2 id="_2">撤销<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>git reset —mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息 <br />
+git reset —soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可 <br />
+git reset  —hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，慎用！   </p>
+<h2 id="_3">对比本地和远程的日志<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>git log {branch} ^origin/{branch}        查看未推送的提交 <br />
+git log origin/{branch}                  查看远程日志 <br />
+git log {branch}                                      </p>
+<h2 id="_4">拉取远程分支到本地<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>git checkout -b {branchname} origin/{branchname}</p>
+<h2 id="_5">查看指定分支日志<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>git  show {commitid}    </p>
+<h2 id="_6">查看某个文件的版本历史<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>git log -p {filename}</p>
+<h2 id="tag">打tag<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
+<p>git tag -a {tagname} -m {message} {commitid}对某次提交打tag  <br />
+git tag                                     查看所有标签 <br />
+git show {tagname}                          查看标签信息   </p>
+<h2 id="_7">描述<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>git branch —edit-description {branchname}</p>
+<h2 id="_8">删除远程分支<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>git branch -d {branchname} 删除本地分支 <br />
+git push origin —delete {branchname}</p>
                 
                   
                 
@@ -346,6 +501,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2018
+          </div>
         
         powered by
         <a href="https://www.mkdocs.org">MkDocs</a>
