@@ -4,7 +4,7 @@ site_author: '陈鹏欢'
 site_url: 'https://chenpenghuan.gitee.io'
 copyright: 'Copyright © 2018'
 nav:
-- 学习: [git手册.md,mkdocs注意事项.md]
+- 学习: [git手册.md,mkdocs注意事项.md,zsh安装调试.md]
 - 关于: about.md
 theme:
   name: 'material'
