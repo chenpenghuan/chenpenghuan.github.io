@@ -1,9 +1,26 @@
 site_name: 文档
+site_description: 'A Material Design theme for MkDocs'
+site_author: '陈鹏欢'
+site_url: 'https://chenpenghuan.gitee.io'
 pages:
-    - 学习: [git手册.md,mkdocs注意事项.md]
-    - 关于: about.md
+- 学习: [git手册.md,mkdocs注意事项.md]
+- 关于: about.md
 theme:
   name: 'material'
   custom_dir: 'themes/material'
   language: 'zh'
+  palette:
+    primary: 'white'
+    accent: 'Cyan'
+  font:
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
+#  logo: 'images/logo.svg'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
 

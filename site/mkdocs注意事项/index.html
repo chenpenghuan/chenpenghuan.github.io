@@ -10,7 +10,13 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
+        <meta name="description" content="A Material Design theme for MkDocs">
       
+      
+        <link rel="canonical" href="https://chenpenghuan.gitee.io/mkdocs注意事项/">
+      
+      
+        <meta name="author" content="陈鹏欢">
       
       
         <meta name="lang:clipboard.copy" content="复制">
@@ -42,6 +48,12 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
       
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
       
     
     
@@ -50,8 +62,8 @@
     
       <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
@@ -59,7 +71,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="cyan">
   
     <svg class="md-svg">
       <defs>
@@ -80,7 +94,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="文档" class="md-header-nav__button md-logo">
+        <a href="https://chenpenghuan.gitee.io" title="文档" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -152,7 +166,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="文档" class="md-nav__button md-logo">
+    <a href="https://chenpenghuan.gitee.io" title="文档" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
@@ -320,37 +334,39 @@
               
                 
                 
-                <h1 id="mkdocs">mkdocs注意事项</h1>
-<h2 id="_1">文档目录配置</h2>
-<pre><code>site_name: 文档
+                <h1 id="mkdocs">mkdocs注意事项<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h1>
+<h2 id="_1">文档目录配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>site_name: 文档
 pages:
     - 主页: index.md
     - 工作: [md1.md,md2.md]
     - 关于: about.md
-</code></pre>
+</pre></div>
 
-<h2 id="_2">自带主题修改</h2>
+
+<h2 id="_2">自带主题修改<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>修改mkdocs自带的主题</p>
 <ol>
 <li>复制mkdocs的主题文件夹至自定义主题文件夹custom_theme下</li>
 <li>修改项目配置文件mkdocs.yml</li>
 </ol>
-<pre><code>theme:
-  name: 'mkdocs'
-  custom_dir: 'custom_theme'
-</code></pre>
+<div class="codehilite"><pre><span></span>theme:
+  name: &#39;mkdocs&#39;
+  custom_dir: &#39;custom_theme&#39;
+</pre></div>
+
 
 <ol>
 <li>修改custom_theme/main.html，比如要修改底部的“Documentation built with MkDocs”</li>
 </ol>
-<pre><code>{%- block footer %}
+<div class="codehilite"><pre><span></span>{%- block footer %}
     &lt;hr&gt;
     {%- if config.copyright %}
         &lt;p&gt;{{ config.copyright }}&lt;/p&gt;
     {%- endif %}
     &lt;!--&lt;p&gt;Documentation built with &lt;a href=&quot;https://www.mkdocs.org/&quot;&gt;MkDocs&lt;/a&gt;.&lt;/p&gt;--&gt;
 {%- endblock %}
-</code></pre>
+</pre></div>
                 
                   
                 
