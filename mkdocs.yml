@@ -1,7 +1,9 @@
 site_name: 文档
 pages:
-    - 主页: index.md
-    - 关于: [index.md,about.md]
+    - 学习: [git手册.md,mkdocs注意事项.md]
+    - 关于: about.md
 theme:
-  name: 'mkdocs'
-  custom_dir: 'custom_theme'
+  name: 'material'
+  custom_dir: 'themes/material'
+  language: 'zh'
+
