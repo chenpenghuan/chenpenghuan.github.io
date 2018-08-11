@@ -62,6 +62,8 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+      <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+    
     
   </head>
   
@@ -450,26 +452,23 @@
               
                 
                 
-                <h1 id="zsh">zsh安装与调试<a class="headerlink" href="#zsh" title="Permanent link">&para;</a></h1>
-<h2 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+                <h1 id="zsh">zsh安装与调试</h1>
+<h2 id="_1">安装</h2>
 <p>参考zsh官网https://ohmyz.sh/</p>
-<h2 id="bashzsh">从bash切换到zsh<a class="headerlink" href="#bashzsh" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>chsh -s /bin/zsh
+<h2 id="bashzsh">从bash切换到zsh</h2>
+<div class="highlight"><pre><span></span>chsh -s /bin/zsh
 </pre></div>
 
-
-<h2 id="power-line">安装power line<a class="headerlink" href="#power-line" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>pip3 install powerline-status --user
+<h2 id="power-line">安装power line</h2>
+<div class="highlight"><pre><span></span>pip3 install powerline-status --user
 </pre></div>
 
-
-<h2 id="powerline">安装PowerLine<a class="headerlink" href="#powerline" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>pip install powerline-status --user
+<h2 id="powerline">安装PowerLine</h2>
+<div class="highlight"><pre><span></span>pip install powerline-status --user
 </pre></div>
 
-
-<h2 id="powerfonts">安装PowerFonts<a class="headerlink" href="#powerfonts" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span># git clone
+<h2 id="powerfonts">安装PowerFonts</h2>
+<div class="highlight"><pre><span></span># git clone
 
 git clone https://github.com/powerline/fonts.git --depth=1
 
@@ -482,10 +481,9 @@ cd fonts
 ./install.sh
 </pre></div>
 
-
 <p>安装好字体库之后，我们来设置iTerm2的字体，具体的操作是iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text，在Font区域选中Change Font，然后找到Meslo LG字体。有L、M、S</p>
-<h2 id="_2">安装配色方案<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>cd ~/Desktop/OpenSource
+<h2 id="_2">安装配色方案</h2>
+<p><div class="highlight"><pre><span></span>cd ~/Desktop/OpenSource
 
 git clone https://github.com/altercation/solarized
 
@@ -493,12 +491,10 @@ cd solarized/iterm2-colors-solarized/
 
 open .
 </pre></div>
-
-
-<p>在打开的finder窗口中，双击Solarized Dark.itermcolors和Solarized Light.itermcolors即可安装明暗两种配色</p>
+在打开的finder窗口中，双击Solarized Dark.itermcolors和Solarized Light.itermcolors即可安装明暗两种配色</p>
 <p>再次进入iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Colors -&gt; Color Presets中根据个人喜好选择这两种配色中的一种即可</p>
-<h2 id="_3">安装主题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>cd ~/Desktop/OpenSource
+<h2 id="_3">安装主题</h2>
+<p><div class="highlight"><pre><span></span>cd ~/Desktop/OpenSource
 
 git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
 
@@ -506,38 +502,32 @@ cd oh-my-zsh-agnoster-fcamblor/
 
 ./install
 </pre></div>
-
-
-<p>完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。</p>
-<div class="codehilite"><pre><span></span>vi ~/.zshrc
+完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。</p>
+<div class="highlight"><pre><span></span>vi ~/.zshrc
 </pre></div>
 
-
-<h2 id="_4">安装高亮插件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>cd ~/.oh-my-zsh/custom/plugins/
+<h2 id="_4">安装高亮插件</h2>
+<p><div class="highlight"><pre><span></span>cd ~/.oh-my-zsh/custom/plugins/
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 vi ~/.zshrc
 </pre></div>
-
-
-<p>这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：</p>
-<div class="codehilite"><pre><span></span>plugins=(
+这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：</p>
+<div class="highlight"><pre><span></span>plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
 </pre></div>
 
-
 <p>请务必保证插件顺序，zsh-syntax-highlighting必须在最后一个。</p>
 <p>然后在文件的最后一行添加：source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh</p>
-<h2 id="zsh-autosuggestion">安装补全插件zsh-autosuggestion<a class="headerlink" href="#zsh-autosuggestion" title="Permanent link">&para;</a></h2>
+<h2 id="zsh-autosuggestion">安装补全插件zsh-autosuggestion</h2>
 <p>与高亮插件同样的安装方式</p>
-<h2 id="zsh_1">zsh远程登录文件乱码问题解决<a class="headerlink" href="#zsh_1" title="Permanent link">&para;</a></h2>
+<h2 id="zsh_1">zsh远程登录文件乱码问题解决</h2>
 <p>在~/.zshrc文件尾部添加</p>
-<div class="codehilite"><pre><span></span>export LC_ALL=en_US.UTF-8
+<div class="highlight"><pre><span></span>export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 </pre></div>
                 
@@ -636,6 +626,18 @@ export LANG=en_US.UTF-8
         
       
       <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+        <script src="../js/umlconvert.js"></script>
       
     
     

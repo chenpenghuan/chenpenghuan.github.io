@@ -62,6 +62,8 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+      <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+    
     
   </head>
   
@@ -247,6 +249,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" title="添加流程图支持" class="md-nav__link">
+    添加流程图支持
+  </a>
+  
+</li>
+      
       
       
       
@@ -321,6 +330,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" title="添加流程图支持" class="md-nav__link">
+    添加流程图支持
+  </a>
+  
+</li>
+      
       
       
       
@@ -338,32 +354,30 @@
               
                 
                 
-                <h1 id="mkdocs">mkdocs注意事项<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h1>
-<h2 id="_1">文档目录配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>site_name: 文档
+                <h1 id="mkdocs">mkdocs注意事项</h1>
+<h2 id="_1">文档目录配置</h2>
+<div class="highlight"><pre><span></span>site_name: 文档
 pages:
     - 主页: index.md
     - 工作: [md1.md,md2.md]
     - 关于: about.md
 </pre></div>
 
-
-<h2 id="_2">自带主题修改<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">自带主题修改</h2>
 <p>修改mkdocs自带的主题</p>
 <ol>
 <li>复制mkdocs的主题文件夹至自定义主题文件夹custom_theme下</li>
 <li>修改项目配置文件mkdocs.yml</li>
 </ol>
-<div class="codehilite"><pre><span></span>theme:
+<div class="highlight"><pre><span></span>theme:
   name: &#39;mkdocs&#39;
   custom_dir: &#39;custom_theme&#39;
 </pre></div>
 
-
 <ol>
 <li>修改custom_theme/main.html，比如要修改底部的“Documentation built with MkDocs”</li>
 </ol>
-<div class="codehilite"><pre><span></span>{%- block footer %}
+<div class="highlight"><pre><span></span>{%- block footer %}
     &lt;hr&gt;
     {%- if config.copyright %}
         &lt;p&gt;{{ config.copyright }}&lt;/p&gt;
@@ -371,6 +385,167 @@ pages:
     &lt;!--&lt;p&gt;Documentation built with &lt;a href=&quot;https://www.mkdocs.org/&quot;&gt;MkDocs&lt;/a&gt;.&lt;/p&gt;--&gt;
 {%- endblock %}
 </pre></div>
+
+<h2 id="_3">添加流程图支持</h2>
+<ol>
+<li>安装pymdown-extensions扩展</li>
+</ol>
+<div class="highlight"><pre><span></span>pip install pymdown-extensions
+</pre></div>
+
+<ol>
+<li>添加umlconvert.js至docs/js下，内容如下</li>
+</ol>
+<div class="highlight"><pre><span></span>(function () {
+&#39;use strict&#39;;
+
+/**
+ * Targets special code or div blocks and converts them to UML.
+ * @param {object} converter is the object that transforms the text to UML.
+ * @param {string} className is the name of the class to target.
+ * @param {object} settings is the settings for converter.
+ * @return {void}
+ */
+var uml = (function (converter, className, settings) {
+
+  var getFromCode = function getFromCode(parent) {
+    // Handles &lt;pre&gt;&lt;code&gt;
+    var text = &quot;&quot;;
+    for (var j = 0; j &lt; parent.childNodes.length; j++) {
+      var subEl = parent.childNodes[j];
+      if (subEl.tagName.toLowerCase() === &quot;code&quot;) {
+        for (var k = 0; k &lt; subEl.childNodes.length; k++) {
+          var child = subEl.childNodes[k];
+          var whitespace = /^\s*$/;
+          if (child.nodeName === &quot;#text&quot; &amp;&amp; !whitespace.test(child.nodeValue)) {
+            text = child.nodeValue;
+            break;
+          }
+        }
+      }
+    }
+    return text;
+  };
+
+  var getFromDiv = function getFromDiv(parent) {
+    // Handles &lt;div&gt;
+    return parent.textContent || parent.innerText;
+  };
+
+  // Change article to whatever element your main Markdown content lives.
+  var article = document.querySelectorAll(&quot;article&quot;);
+  var blocks = document.querySelectorAll(&quot;pre.&quot; + className + &quot;,div.&quot; + className
+
+  // Is there a settings object?
+  );var config = settings === void 0 ? {} : settings;
+
+  // Find the UML source element and get the text
+  for (var i = 0; i &lt; blocks.length; i++) {
+    var parentEl = blocks[i];
+    var el = document.createElement(&quot;div&quot;);
+    el.className = className;
+    el.style.visibility = &quot;hidden&quot;;
+    el.style.position = &quot;absolute&quot;;
+
+    var text = parentEl.tagName.toLowerCase() === &quot;pre&quot; ? getFromCode(parentEl) : getFromDiv(parentEl)
+
+    // Insert our new div at the end of our content to get general
+    // typset and page sizes as our parent might be `display:none`
+    // keeping us from getting the right sizes for our SVG.
+    // Our new div will be hidden via &quot;visibility&quot; and take no space
+    // via `poistion: absolute`. When we are all done, use the
+    // original node as a reference to insert our SVG back
+    // into the proper place, and then make our SVG visilbe again.
+    // Lastly, clean up the old node.
+    ;
+    article[0].appendChild(el);
+    var diagram = converter.parse(text);
+    diagram.drawSVG(el, config);
+    el.style.visibility = &quot;visible&quot;;
+    el.style.position = &quot;static&quot;;
+    parentEl.parentNode.insertBefore(el, parentEl);
+    parentEl.parentNode.removeChild(parentEl);
+  }
+});
+
+(function () {
+  var onReady = function onReady(fn) {
+    if (document.addEventListener) {
+      document.addEventListener(&quot;DOMContentLoaded&quot;, fn);
+    } else {
+      document.attachEvent(&quot;onreadystatechange&quot;, function () {
+        if (document.readyState === &quot;interactive&quot;) {
+          fn();
+        }
+      });
+    }
+  };
+
+  onReady(function () {
+    if (typeof flowchart !== &quot;undefined&quot;) {
+      uml(flowchart, &quot;uml-flowchart&quot;);
+    }
+
+    if (typeof Diagram !== &quot;undefined&quot;) {
+      uml(Diagram, &quot;uml-sequence-diagram&quot;, { theme: &quot;simple&quot; });
+    }
+  });
+})();
+
+}());
+</pre></div>
+
+<ol>
+<li>配置</li>
+</ol>
+<div class="highlight"><pre><span></span>extra_javascript:
+  - &#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;
+  - &#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;
+  - &#39;https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js&#39;
+  - &#39;https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js&#39;
+  - &#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js&#39;
+  - &#39;js/umlconvert.js&#39;
+markdown_extensions:
+  - pymdownx.superfences
+custom_fences:
+  name: flow
+  class: uml-flowchart
+  format: !!python/name:pymdownx.superfences.fence_code_format
+</pre></div>
+
+<p>效果展示：</p>
+<p>markdown源码</p>
+<div class="highlight"><pre><span></span>​```flow
+
+st=&gt;start: 开始
+rain?=&gt;condition: 今天有雨吗？
+takeAnUmbrella=&gt;operation: 带伞
+go=&gt;operation: 出门
+e=&gt;end: 结束
+
+st-&gt;rain?
+rain?(yes)-&gt;takeAnUmbrella-&gt;go
+rain?(no)-&gt;go-&gt;e
+
+​```
+</pre></div>
+
+<p>显示效果</p>
+<pre class="uml-flowchart"><code>
+st=&gt;start: 开始
+rain?=&gt;condition: 今天有雨吗？
+takeAnUmbrella=&gt;operation: 带伞
+go=&gt;operation: 出门
+e=&gt;end: 结束
+
+st-&gt;rain?
+rain?(yes)-&gt;takeAnUmbrella-&gt;go
+rain?(no)-&gt;go-&gt;e
+</code></pre>
+
+<blockquote>
+<p>注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成</p>
+</blockquote>
                 
                   
                 
@@ -467,6 +642,18 @@ pages:
         
       
       <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+        <script src="../js/umlconvert.js"></script>
       
     
     

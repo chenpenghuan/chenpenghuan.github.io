@@ -1,4 +1,7 @@
 site_name: 个人文档
+
+
+
 site_description: 'A Material Design theme for MkDocs'
 site_author: '陈鹏欢'
 site_url: 'https://chenpenghuan.gitee.io'
@@ -10,19 +13,30 @@ theme:
   name: 'material'
   custom_dir: 'themes/material'
   language: 'zh'
-#  palette:
-#    primary: 'white'
-#    accent: 'Cyan'
-#  font:
-#    text: 'Ubuntu'
-#    code: 'Ubuntu Mono'
-  #  logo: 'images/logo.svg'
+  #  palette:
+  #    primary: 'white'
+  #    accent: 'Cyan'
+  #  font:
+  #    text: 'Ubuntu'
+  #    code: 'Ubuntu Mono'
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js'
+  - 'js/umlconvert.js'
 markdown_extensions:
-- admonition
-- codehilite:
-    guess_lang: false
-- toc:
-    permalink: true
+  - pymdownx.superfences
+custom_fences:
+  name: flow
+  class: uml-flowchart
+  format: !!python/name:pymdownx.superfences.fence_code_format
 
+
+
+
+extra_css:
+- https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css
 
 
