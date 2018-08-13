@@ -13,12 +13,12 @@ theme:
   name: 'material'
   custom_dir: 'themes/material'
   language: 'zh'
-  #  palette:
-  #    primary: 'white'
-  #    accent: 'Cyan'
-  #  font:
-  #    text: 'Ubuntu'
-  #    code: 'Ubuntu Mono'
+  palette:
+    primary: 'white'
+    accent: 'Cyan'
+  font:
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js'
