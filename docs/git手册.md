@@ -26,9 +26,13 @@ git checkout -b {branchname} origin/{branchname}
 
 git  show {commitid}    
 
-## 查看某个文件的版本历史   
+## 查看某个文件最近n次的修改历史   
 
-git log -p {filename}
+git log -p {filename} -n
+
+## 查看版本历史图
+
+git log --graph
 
 ## 打tag   
 

@@ -267,8 +267,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" title="查看某个文件的版本历史" class="md-nav__link">
-    查看某个文件的版本历史
+  <a href="#n" title="查看某个文件最近n次的修改历史" class="md-nav__link">
+    查看某个文件最近n次的修改历史
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="查看版本历史图" class="md-nav__link">
+    查看版本历史图
   </a>
   
 </li>
@@ -402,8 +409,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" title="查看某个文件的版本历史" class="md-nav__link">
-    查看某个文件的版本历史
+  <a href="#n" title="查看某个文件最近n次的修改历史" class="md-nav__link">
+    查看某个文件最近n次的修改历史
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="查看版本历史图" class="md-nav__link">
+    查看版本历史图
   </a>
   
 </li>
@@ -463,8 +477,10 @@ git log {branch}                                      </p>
 <p>git checkout -b {branchname} origin/{branchname}</p>
 <h2 id="_5">查看指定分支日志</h2>
 <p>git  show {commitid}    </p>
-<h2 id="_6">查看某个文件的版本历史</h2>
-<p>git log -p {filename}</p>
+<h2 id="n">查看某个文件最近n次的修改历史</h2>
+<p>git log -p {filename} -n</p>
+<h2 id="_6">查看版本历史图</h2>
+<p>git log --graph</p>
 <h2 id="tag">打tag</h2>
 <p>git tag -a {tagname} -m {message} {commitid}对某次提交打tag  <br />
 git tag                                     查看所有标签 <br />
