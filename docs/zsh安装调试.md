@@ -6,18 +6,18 @@
 
 ## 从bash切换到zsh
 
-```
+```shell
 chsh -s /bin/zsh
 ```
 
 ## 安装power line
 
-```
+```shell
 pip3 install powerline-status --user
 ```
 ## 安装PowerLine
 
-```
+```shell
 pip install powerline-status --user
 ```
 ## 安装PowerFonts

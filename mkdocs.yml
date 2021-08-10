@@ -7,7 +7,7 @@ site_author: '陈鹏欢'
 site_url: 'https://chenpenghuan.gitee.io'
 copyright: 'Copyright © 2018'
 nav:
-- 学习: [git手册.md,mkdocs注意事项.md,zsh安装调试.md]
+- 学习: [git手册.md,mkdocs注意事项.md,zsh安装调试.md,k8s.md,Mac笔记.md,Springboot学习备忘.md,zsh安装调试.md]
 - 关于: about.md
 theme:
   name: 'material'
@@ -19,6 +19,10 @@ theme:
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
+  logo:
+    icon: "\uE80C"
+  feature:
+    tabs: false
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js'
