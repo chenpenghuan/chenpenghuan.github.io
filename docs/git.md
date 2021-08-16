@@ -1,4 +1,4 @@
-# git手册
+# git
 
 ## 暂存   
 
@@ -48,3 +48,7 @@ git branch —edit-description {branchname}
 
 git branch -d {branchname} 删除本地分支   
 git push origin —delete {branchname}
+
+## ssh公钥免密码
+
+ssh-add ~/.ssh/id_rsa

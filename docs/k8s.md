@@ -1,3 +1,5 @@
+# k8s
+
 ## 查看k8s的域名配置：
 
 opscli app -n quotation -p distribute-information k8s-resource -k ingress -c test

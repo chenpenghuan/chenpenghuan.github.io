@@ -1,4 +1,4 @@
-# mkdocs注意事项
+# mkdocs
 
 ## 文档目录配置
 
@@ -170,7 +170,7 @@ custom_fences:
 markdown源码
 
 ```
-​```flow
+```flow
 
 st=>start: 开始
 rain?=>condition: 今天有雨吗？

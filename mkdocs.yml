@@ -1,13 +1,14 @@
-site_name: 个人文档
+site_name: chen
 
 
 
 site_description: 'A Material Design theme for MkDocs'
-site_author: '陈鹏欢'
+site_author: 'chen'
 site_url: 'https://chenpenghuan.gitee.io'
-copyright: 'Copyright © 2018'
+copyright: 'Copyright © 2021'
 nav:
-- 学习: [git手册.md,mkdocs注意事项.md,zsh安装调试.md,k8s.md,Mac笔记.md,Springboot学习备忘.md,zsh安装调试.md]
+- 工具: [git.md,mkdocs.md,macos.md,zsh.md]
+- 开发: [k8s.md,java.md,springboot.md]
 - 关于: about.md
 theme:
   name: 'material'

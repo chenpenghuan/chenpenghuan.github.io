@@ -1,14 +1,14 @@
-# Springboot学习备忘
+# springboot
 
 ## 终端运行
 
 1. 打包时跳过单元测试 
-  `mvn install -Dmaven.test.skip=true` 
-  `cd target` 
-  `java -jar xxxx.jar` 
+    `mvn install -Dmaven.test.skip=true` 
+    `cd target` 
+    `java -jar xxxx.jar` 
 
 2. mvn直接运行
-  `mvn spring-boot:run`
+    `mvn spring-boot:run`
 
 3. 打包运行
 
@@ -46,7 +46,7 @@ mvn dependency:analyze
 ```
 ## jackson配置
 
-```
+```yaml
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -64,15 +64,11 @@ mvn dependency:analyze
       allow_single_quotes: true
 ```
 
-
-
-
-
 ## 多语言适配
 
 使用springboot内置的i18n，项目配置文件中添加
 
-```java
+```yaml
   messages:
     basename: i18n.common,i18n.bonus
     cache-duration: 1
@@ -251,4 +247,175 @@ public class RiskServiceApplication implements CommandLineRunner {
     }
 }
 ```
+
+## springboot集成springdata-es
+
+1. 集成spring-boot-starter-data-elasticsearch
+
+   ```xml-dtd
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+   </dependency>
+   ```
+
+2. yml添加配置
+
+   ```yaml
+     elasticsearch:
+       rest:
+         uris: http://search.es.hk-prod-1.adm.mmjj.info:9200
+         password: GMDZk8T910fS2v70ethI90d7
+         username: elastic
+   ```
+   
+3. 指定es的package，在启动类上添加
+   ```java
+   @EnableElasticsearchRepositories(basePackages = "com.co.core.es")
+   public class CoreApplication {
+       public static void main(String[] args) {
+           System.setProperty("es.set.netty.runtime.available.processors", "false");
+           SpringApplication.run(CoreApplication.class, args);
+       }
+   }
+   ```
+   
+3. 编写pojo
+
+   ```java
+   package com.co.core.es;
+   
+   import com.fasterxml.jackson.annotation.JsonProperty;
+   import lombok.Data;
+   import org.springframework.data.annotation.Id;
+   import org.springframework.data.elasticsearch.annotations.Document;
+   import org.springframework.data.elasticsearch.annotations.Field;
+   import org.springframework.data.elasticsearch.annotations.FieldType;
+   
+   /**
+    * @author cph
+    */
+   @Data
+   @Document(indexName = "comprehensive-search_article", type = "article",createIndex = false)
+   //@ToString
+   //@AllArgsConstructor
+   //@NoArgsConstructor
+   //@Builder
+   public class ComprehensiveSearch {
+       @Id
+       private String id;
+   
+       @Field(name = ARTICLE_TYPE, type = FieldType.Byte)
+       @JsonProperty(ARTICLE_TYPE)
+       private Integer articleType;
+   
+       @JsonProperty(SOURCE)
+       @Field(name = SOURCE, type = FieldType.Text)
+       private String source;
+   
+       @Field(name = LANGUAGE_ID, type = FieldType.Byte)
+       @JsonProperty(LANGUAGE_ID)
+       private Integer languageId;
+   
+       @Field(type = FieldType.Text, searchAnalyzer = "ik_smart", analyzer = "ik_max_word")
+       @JsonProperty(TITLE)
+       private String title;
+   
+       @Field(type = FieldType.Text, searchAnalyzer = "ik_smart", analyzer = "content_analyzer")
+       @JsonProperty(CONTENT)
+       private String content;
+   
+       @Field(name = ARTICLE_ID, type = FieldType.Long)
+       @JsonProperty(ARTICLE_ID)
+       private Long articleId;
+   
+       @Field(name = UPDATE_TIME, type = FieldType.Date)
+       @JsonProperty(UPDATE_TIME)
+       private Long updateTime;
+   
+       @Field(name = ISSUE_TIME, type = FieldType.Date)
+       @JsonProperty(ISSUE_TIME)
+       private Long issueTime;
+   
+       @Field(value = VISIT_NUM,type = FieldType.Long)
+       @JsonProperty(VISIT_NUM)
+       private Long visitNum;
+   
+       @Field(value = IS_SOURCE_HIDE,type = FieldType.Byte)
+       @JsonProperty(IS_SOURCE_HIDE)
+       private Integer isSourceHide;
+   
+   //    @Field(value = CONTENT_JSON,type = FieldType.Text)
+       private String contentJson;
+   
+   
+       public static final String ARTICLE_ID = "article_id";
+       public static final String ARTICLE_TYPE = "article_type";
+       public static final String COMMENT_NUM = "comment_num";
+       public static final String SOURCE = "source";
+       public static final String LANGUAGE_ID = "language_id";
+       public static final String TITLE = "title";
+       public static final String CONTENT = "content";
+       public static final String UPDATE_TIME = "update_time";
+       public static final String ISSUE_TIME = "issue_time";
+       public static final String VISIT_NUM = "visit_num";
+       public static final String IS_SOURCE_HIDE = "is_source_hide";
+       public static final String CONTENT_JSON = "content_json";
+   
+   }
+   
+   
+   ```
+
+4. 编写Repository
+
+   ```java
+   package com.co.core.es;
+   
+   import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+   
+   public interface ComprehensiveSearchRepository extends ElasticsearchRepository<ComprehensiveSearch,String> {
+   }
+   
+   ```
+
+5. 查询es
+
+   ```java
+       @Resource
+       private ComprehensiveSearchRepository repository;
+   
+       /**
+        * @param pageNum
+        * @param pageSize
+        * @param keyword
+        * @param onlyArticleId 是否只输出id字段
+        * @param languageId
+        * @param articleType   2快讯，3深度
+        * @return
+        */
+       @Override
+       public Page<ComprehensiveSearch> searchArticle(int pageNum, int pageSize, String keyword, boolean onlyArticleId, int languageId, int articleType) {
+           MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(keyword).field(ComprehensiveSearch.TITLE, 2F).analyzer("ik_max_word").field(ComprehensiveSearch.CONTENT, 1F).analyzer("ik_max_word");
+           if (NumberUtils.isParsable(keyword) && NumberUtils.isDigits(keyword)) {
+               multiMatchQueryBuilder.field(ComprehensiveSearch.ARTICLE_ID, 10F);
+           }
+           multiMatchQueryBuilder.type(MultiMatchQueryBuilder.Type.PHRASE).minimumShouldMatch("100%").maxExpansions(1).slop(0);
+           BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery()
+                   .must(QueryBuilders.termQuery(ComprehensiveSearch.LANGUAGE_ID, languageId))
+                   .must(QueryBuilders.termQuery(ComprehensiveSearch.IS_SOURCE_HIDE, 0))
+                   .must(QueryBuilders.termQuery(ComprehensiveSearch.ARTICLE_TYPE, articleType))
+                   .must(multiMatchQueryBuilder);
+           List<Sort.Order> orders = new ArrayList<>();
+           orders.add(new Sort.Order(Sort.Direction.DESC, ComprehensiveSearch.ARTICLE_ID));
+           Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by(orders));
+   
+           NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
+                   .withQuery(boolQueryBuilder)
+                   .withPageable(pageable)
+                   .build();
+           org.springframework.data.domain.Page<ComprehensiveSearch> page = repository.search(searchQuery);
+           return page;
+       }
+   ```
 

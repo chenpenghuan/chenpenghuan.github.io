@@ -1,4 +1,4 @@
-# Mac学习笔记
+# macos
 
 ## mac自启动设置
 
@@ -50,7 +50,7 @@ sudo launchctl load -w /Library/LaunchDaemons/com.nginx.plist
 
 ## homebrew
 
-```
+```shell
 # show a list of all your installed Homebrew packages
 brew list
 # It will pin the formula to the current version

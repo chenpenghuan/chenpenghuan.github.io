@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://chenpenghuan.gitee.io/git%E6%89%8B%E5%86%8C/">
+        <link rel="canonical" href="https://chenpenghuan.gitee.io/git/">
       
       
         <meta name="author" content="陈鹏欢">
@@ -42,7 +42,7 @@
     
     
       
-        <title>git手册 - 个人文档</title>
+        <title>git - 个人文档</title>
       
     
     
@@ -113,7 +113,7 @@
                 个人文档
               </span>
               <span class="md-header-nav__topic">
-                git手册
+                git
               </span>
             
           
@@ -190,11 +190,11 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
-      学习
+      工具
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
-        学习
+        工具
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -214,11 +214,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        git手册
+        git
       </label>
     
-    <a href="./" title="git手册" class="md-nav__link md-nav__link--active">
-      git手册
+    <a href="./" title="git" class="md-nav__link md-nav__link--active">
+      git
     </a>
     
       
@@ -301,6 +301,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ssh" title="ssh公钥免密码" class="md-nav__link">
+    ssh公钥免密码
+  </a>
+  
+</li>
+      
       
       
       
@@ -318,8 +325,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../mkdocs%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="mkdocs注意事项" class="md-nav__link">
-      mkdocs注意事项
+    <a href="../mkdocs/" title="mkdocs" class="md-nav__link">
+      mkdocs
     </a>
   </li>
 
@@ -330,8 +337,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../zsh%E5%AE%89%E8%A3%85%E8%B0%83%E8%AF%95/" title="None" class="md-nav__link">
-      None
+    <a href="../macOS/" title="macos" class="md-nav__link">
+      macos
     </a>
   </li>
 
@@ -342,44 +349,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../k8s/" title="K8s" class="md-nav__link">
-      K8s
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Mac%E7%AC%94%E8%AE%B0/" title="Mac学习笔记" class="md-nav__link">
-      Mac学习笔记
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Springboot%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98/" title="Springboot学习备忘" class="md-nav__link">
-      Springboot学习备忘
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../zsh%E5%AE%89%E8%A3%85%E8%B0%83%E8%AF%95/" title="zsh安装与调试" class="md-nav__link">
+    <a href="../zsh/" title="zsh安装与调试" class="md-nav__link">
       zsh安装与调试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../k8s/" title="k8s" class="md-nav__link">
+      k8s
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../java/" title="java基础" class="md-nav__link">
+      java基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../springboot/" title="springboot学习备忘" class="md-nav__link">
+      springboot学习备忘
     </a>
   </li>
 
@@ -491,6 +522,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ssh" title="ssh公钥免密码" class="md-nav__link">
+    ssh公钥免密码
+  </a>
+  
+</li>
+      
       
       
       
@@ -508,7 +546,7 @@
               
                 
                 
-                <h1 id="git">git手册</h1>
+                <h1 id="git">git</h1>
 <h2 id="_1">暂存</h2>
 <p>git stash save {暂存说明} <br />
 git stash list 查看所有暂存  <br />
@@ -538,6 +576,8 @@ git show {tagname}                          查看标签信息   </p>
 <h2 id="_8">删除远程分支</h2>
 <p>git branch -d {branchname} 删除本地分支 <br />
 git push origin —delete {branchname}</p>
+<h2 id="ssh">ssh公钥免密码</h2>
+<p>ssh-add ~/.ssh/id_rsa</p>
                 
                   
                 
@@ -559,13 +599,13 @@ git push origin —delete {branchname}</p>
       <nav class="md-footer-nav__inner md-grid">
         
         
-          <a href="../mkdocs%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="mkdocs注意事项" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../mkdocs/" title="mkdocs" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   前进
                 </span>
-                mkdocs注意事项
+                mkdocs
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -581,7 +621,7 @@ git push origin —delete {branchname}</p>
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright © 2018
+            Copyright © 2021
           </div>
         
         powered by

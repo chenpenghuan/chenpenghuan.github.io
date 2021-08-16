@@ -18,11 +18,11 @@ pip3 install powerline-status --user
 ## 安装PowerLine
 
 ```shell
-pip install powerline-status --user
+pip3 install powerline-status --user
 ```
 ## 安装PowerFonts
 
-```
+```shell
 # git clone
 
 git clone https://github.com/powerline/fonts.git --depth=1
@@ -40,7 +40,7 @@ cd fonts
 
 ## 安装配色方案
 
-```
+```shell
 cd ~/Desktop/OpenSource
 
 git clone https://github.com/altercation/solarized
@@ -55,7 +55,7 @@ open .
 
 ## 安装主题
 
-```
+```shell
 cd ~/Desktop/OpenSource
 
 git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
@@ -66,18 +66,18 @@ cd oh-my-zsh-agnoster-fcamblor/
 ```
 完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。
 
-```
+```shell
 vi ~/.zshrc
 ```
 
 ## 安装高亮插件
 
-```
+```shell
 cd ~/.oh-my-zsh/custom/plugins/
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
-vi ~/.zshrc
+vim ~/.zshrc
 
 ```
 这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：
@@ -102,7 +102,7 @@ plugins=(
 
 在~/.zshrc文件尾部添加
 
-```
+```shell
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
