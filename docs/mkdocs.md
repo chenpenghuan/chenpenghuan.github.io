@@ -35,8 +35,6 @@ theme:
 {%- endblock %}
 ```
 
-
-
 ## 添加流程图支持
 
 1. 安装pymdown-extensions扩展
@@ -149,7 +147,17 @@ var uml = (function (converter, className, settings) {
 
 3. 配置
 
+mkdocs 1.0版本前是
+```yaml
+markdown_extensions:
+  - pymdownx.superfences
+custom_fences:
+  name: flow
+  class: uml-flowchart
+  format: !!python/name:pymdownx.superfences.fence_code_format
 ```
+新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本
+```yaml
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js'
@@ -158,48 +166,44 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js'
   - 'js/umlconvert.js'
 markdown_extensions:
-  - pymdownx.superfences
-custom_fences:
-  name: flow
-  class: uml-flowchart
-  format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences:
+      custom_fences:
+        - name: flow
+          class: uml-flowchart
+          format: !!python/name:pymdownx.superfences.fence_div_format
+        - name: sequence
+          class: uml-sequence-diagram
+          format: !!python/name:pymdownx.superfences.fence_div_format
 ```
 
 效果展示：
 
 markdown源码
-
-```
-```flow
-
-st=>start: 开始
-rain?=>condition: 今天有雨吗？
-takeAnUmbrella=>operation: 带伞
-go=>operation: 出门
-e=>end: 结束
-
-st->rain?
-rain?(yes)->takeAnUmbrella->go
-rain?(no)->go->e
-
-​```
-```
-
+````markdown
+    ```flow
+    st=>start: 开始
+    rain?=>condition: 今天有雨吗？
+    takeAnUmbrella=>operation: 带伞
+    go=>operation: 出门
+    e=>end: 结束
+    
+    st->rain?
+    rain?(yes)->takeAnUmbrella->go
+    rain?(no)->go->e
+    ```
+````
 显示效果
 
-```flow
-
+``` flow    
 st=>start: 开始
 rain?=>condition: 今天有雨吗？
 takeAnUmbrella=>operation: 带伞
 go=>operation: 出门
 e=>end: 结束
-
+    
 st->rain?
 rain?(yes)->takeAnUmbrella->go
 rain?(no)->go->e
+```    
 
-```
-
->注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成
-
+> 注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成
