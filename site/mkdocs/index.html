@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://chenpenghuan.gitee.io/mkdocs/">
       
       
-        <meta name="author" content="陈鹏欢">
+        <meta name="author" content="chen">
       
       
         <meta name="lang:clipboard.copy" content="复制">
@@ -42,7 +42,7 @@
     
     
       
-        <title>mkdocs - 个人文档</title>
+        <title>mkdocs - chen</title>
       
     
     
@@ -68,7 +68,7 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+      <link rel="stylesheet" href="../css/mermaid.min.css">
     
     
   </head>
@@ -96,7 +96,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://chenpenghuan.gitee.io/" title="个人文档" class="md-header-nav__button md-logo">
+        <a href="https://chenpenghuan.gitee.io/" title="chen" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -110,7 +110,7 @@
           
             
               <span class="md-header-nav__topic">
-                个人文档
+                chen
               </span>
               <span class="md-header-nav__topic">
                 mkdocs
@@ -168,12 +168,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://chenpenghuan.gitee.io/" title="个人文档" class="md-nav__button md-logo">
+    <a href="https://chenpenghuan.gitee.io/" title="chen" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    个人文档
+    chen
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -281,7 +281,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../macOS/" title="macos" class="md-nav__link">
+    <a href="../macos/" title="macos" class="md-nav__link">
       macos
     </a>
   </li>
@@ -353,8 +353,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../springboot/" title="springboot学习备忘" class="md-nav__link">
-      springboot学习备忘
+    <a href="../springboot/" title="springboot" class="md-nav__link">
+      springboot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/" title="docker" class="md-nav__link">
+      docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mybatis/" title="mybatis配置" class="md-nav__link">
+      mybatis配置
     </a>
   </li>
 
@@ -589,8 +613,7 @@ custom_fences:
 </code></pre></div>
 <p>效果展示：</p>
 <p>markdown源码</p>
-<div class="highlight"><pre><span></span><code>```flow
-
+<pre><code>```flow
 st=&gt;start: 开始
 rain?=&gt;condition: 今天有雨吗？
 takeAnUmbrella=&gt;operation: 带伞
@@ -600,23 +623,35 @@ e=&gt;end: 结束
 st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
 rain?(no)-&gt;go-&gt;e
-
-​```
-</code></pre></div>
+```
+</code></pre>
 <p>显示效果</p>
-<div class="highlight"><pre><span></span><code>st=&gt;start: 开始
+<pre class="uml-flowchart"><code>st=&gt;start: 开始
 rain?=&gt;condition: 今天有雨吗？
 takeAnUmbrella=&gt;operation: 带伞
 go=&gt;operation: 出门
 e=&gt;end: 结束
-
 st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
-rain?(no)-&gt;go-&gt;e
-</code></pre></div>
+rain?(no)-&gt;go-&gt;e</code></pre>
 <blockquote>
 <p>注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成</p>
 </blockquote>
+<pre class="mermaid"><code>graph LR
+  A[Start] --&gt; B{Error?};
+  B --&gt;|Yes| C[Hmm...];
+  C --&gt; D[Debug];
+  D --&gt; B;
+  B ----&gt;|No| E[Yay!];</code></pre>
+<pre class="mermaid"><code>sequenceDiagram
+  Alice-&gt;&gt;John: Hello John, how are you?
+  loop Healthcheck
+      John-&gt;&gt;John: Fight against hypochondria
+  end
+  Note right of John: Rational thoughts!
+  John--&gt;&gt;Alice: Great!
+  John-&gt;&gt;Bob: How about you?
+  Bob--&gt;&gt;John: Jolly good!</code></pre>
                 
                   
                 
@@ -652,7 +687,7 @@ rain?(no)-&gt;go-&gt;e
           </a>
         
         
-          <a href="../macOS/" title="macos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../macos/" title="macos" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
@@ -714,7 +749,7 @@ rain?(no)-&gt;go-&gt;e
       
       <script>app.initialize({version:"1.2.2",url:{base:".."}})</script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.0/mermaid.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
       
@@ -724,7 +759,7 @@ rain?(no)-&gt;go-&gt;e
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
       
-        <script src="../js/umlconvert.js"></script>
+        <script src="../js/umlconvert.js'"></script>
       
     
     

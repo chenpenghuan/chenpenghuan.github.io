@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://chenpenghuan.gitee.io/mybatis/">
       
       
-        <meta name="author" content="陈鹏欢">
+        <meta name="author" content="chen">
       
       
         <meta name="lang:clipboard.copy" content="复制">
@@ -42,7 +42,7 @@
     
     
       
-        <title>mybatis配置 - 个人文档</title>
+        <title>mybatis配置 - chen</title>
       
     
     
@@ -68,7 +68,7 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+      <link rel="stylesheet" href="../css/mermaid.min.css">
     
     
   </head>
@@ -96,7 +96,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://chenpenghuan.gitee.io/" title="个人文档" class="md-header-nav__button md-logo">
+        <a href="https://chenpenghuan.gitee.io/" title="chen" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -110,7 +110,7 @@
           
             
               <span class="md-header-nav__topic">
-                个人文档
+                chen
               </span>
               <span class="md-header-nav__topic">
                 mybatis配置
@@ -168,12 +168,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://chenpenghuan.gitee.io/" title="个人文档" class="md-nav__button md-logo">
+    <a href="https://chenpenghuan.gitee.io/" title="chen" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    个人文档
+    chen
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -227,7 +227,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../macOS/" title="macos" class="md-nav__link">
+    <a href="../macos/" title="macos" class="md-nav__link">
       macos
     </a>
   </li>
@@ -254,10 +254,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       开发
@@ -299,9 +301,78 @@
 
 
   <li class="md-nav__item">
-    <a href="../springboot/" title="springboot学习备忘" class="md-nav__link">
-      springboot学习备忘
+    <a href="../springboot/" title="springboot" class="md-nav__link">
+      springboot
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/" title="docker" class="md-nav__link">
+      docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        mybatis配置
+      </label>
+    
+    <a href="./" title="mybatis配置" class="md-nav__link md-nav__link--active">
+      mybatis配置
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="按主键操作数据方法生成" class="md-nav__link">
+    按主键操作数据方法生成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="使用驼峰命名" class="md-nav__link">
+    使用驼峰命名
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -394,6 +465,7 @@
         <span class="nt">&lt;/table&gt;</span>
 </code></pre></div>
 <h2 id="_2">使用驼峰命名</h2>
+<p>xml配置
 <div class="highlight"><pre><span></span><code>        <span class="c">&lt;!-- targetPackage：生成的实体类所在的包 --&gt;</span>
         <span class="c">&lt;!-- targetProject：生成的实体类所在的硬盘位置 --&gt;</span>
         <span class="nt">&lt;javaModelGenerator</span> <span class="na">targetPackage=</span><span class="s">&quot;com.coinness.core.dao.db.pojo&quot;</span>
@@ -410,13 +482,13 @@
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;useActualColumnNames&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
         <span class="nt">&lt;/javaModelGenerator&gt;</span>
 </code></pre></div>
-<p>yml中配置</p>
+yml中配置
 <div class="highlight"><pre><span></span><code><span class="nt">mybatis</span><span class="p">:</span>
   <span class="nt">mapper-locations</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">classpath:/mapper/*.xml</span>  <span class="c1">#注意：一定要对应mapper映射xml文件的所在路径</span>
   <span class="nt">type-aliases-package</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.coinness.core.dao.db.mapper</span>  <span class="c1"># 注意：对应实体类的路径</span>
   <span class="nt">configuration</span><span class="p">:</span>
     <span class="nt">map-underscore-to-camel-case</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题</span>
-</code></pre></div>
+</code></pre></div></p>
                 
                   
                 
@@ -433,6 +505,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../docker/" title="docker" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                docker
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../about/" title="关于" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                关于
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -479,7 +586,7 @@
       
       <script>app.initialize({version:"1.2.2",url:{base:".."}})</script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.0/mermaid.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
       
@@ -489,7 +596,7 @@
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
       
-        <script src="../js/umlconvert.js"></script>
+        <script src="../js/umlconvert.js'"></script>
       
     
     
