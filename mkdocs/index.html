@@ -264,6 +264,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" title="发布文档" class="md-nav__link">
+    发布文档
+  </a>
+  
+</li>
+      
       
       
       
@@ -413,6 +420,13 @@
         <li class="md-nav__item">
   <a href="#_3" title="添加流程图支持" class="md-nav__link">
     添加流程图支持
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="发布文档" class="md-nav__link">
+    发布文档
   </a>
   
 </li>
@@ -573,7 +587,7 @@ var uml = (function (converter, className, settings) {
 <ol>
 <li>配置</li>
 </ol>
-<p>mkdocs 1.0版本前是
+<p>mkdocs 1.0版本前是</p>
 <div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
 <span class="nt">custom_fences</span><span class="p">:</span>
@@ -581,7 +595,7 @@ var uml = (function (converter, className, settings) {
   <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span>
   <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span>
 </code></pre></div>
-新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本(本站版本1.2.2)
+<p>新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本(本站版本1.2.2)</p>
 <div class="highlight"><pre><span></span><code><span class="nt">extra_javascript</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;</span>
   <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;</span>
@@ -598,9 +612,9 @@ var uml = (function (converter, className, settings) {
         <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sequence</span>
           <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-sequence-diagram</span>
           <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span>
-</code></pre></div></p>
+</code></pre></div>
 <p>效果展示：</p>
-<p>markdown源码
+<p>markdown源码</p>
 <div class="highlight"><pre><span></span><code><span class="sb">    ```flow</span>
 <span class="s">    st=&gt;start: 开始</span>
 <span class="s">    rain?=&gt;condition: 今天有雨吗？</span>
@@ -613,7 +627,7 @@ var uml = (function (converter, className, settings) {
 <span class="s">    rain?(no)-&gt;go-&gt;e</span>
 <span class="sb">    ```</span>
 </code></pre></div>
-显示效果</p>
+<p>显示效果</p>
 <div class="uml-flowchart">st=&gt;start: 开始
 rain?=&gt;condition: 今天有雨吗？
 takeAnUmbrella=&gt;operation: 带伞
@@ -623,9 +637,11 @@ e=&gt;end: 结束
 st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
 rain?(no)-&gt;go-&gt;e</div>
-<blockquote>
-<p>注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成</p>
-</blockquote>
+<h2 id="_4">发布文档</h2>
+<div class="highlight"><pre><span></span><code>mkdocs gh-deploy --force
+</code></pre></div>
+<p>会生成gh-pages分支，在github中设置部署分支即可</p>
+<p><img alt="" src="../assets/20210817_185324_image.png" /></p>
                 
                   
                 
