@@ -4,7 +4,7 @@ site_name: chen
 
 site_description: 'A Material Design theme for MkDocs'
 site_author: 'chen'
-site_url: 'https://chenpenghuan.gitee.io'
+site_url: 'https://chenpenghuan.github.io'
 copyright: 'Copyright © 2021'
 nav:
 - 工具: [git.md,mkdocs.md,macos.md,zsh.md]
