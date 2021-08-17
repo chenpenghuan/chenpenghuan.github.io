@@ -1,103 +1,97 @@
-//from: http://www.cmky.net/blog/tool/mkdocs.html
-//author: humboldt
-//new on : https://github.com/humboldt-xie/mkdocs-diagram
-function EachTag(arr,tag,callback){
-	var i=0,maxItem=arr.length;
-	for (; i < maxItem; i++) {
-		if(arr[i].tagName && arr[i].tagName.toLowerCase() == tag.toLowerCase()){
-			callback(arr[i])
-		}
-	}
-}
+(function () {
+'use strict';
 
-function code2Text(codeEl){
-	var text = "",j;
-	for (j = 0; j < codeEl.childNodes.length; j++) {
-		var curNode = codeEl.childNodes[j];
-		whitespace = /^\s*$/;
-		if (curNode.nodeName === "#text" && !(whitespace.test(curNode.nodeValue))) {
-			text = curNode.nodeValue;
-			break;
-		}
-	}
-	return text
-}
-function mermaidConvert(index,text,el){
-	var insertSvg = function(svgCode) {
-		el.innerHTML = svgCode;
-	};
-	mermaid.parse(text)
-	mermaid.render('mermaid-' + index.toString(), text, insertSvg);
-	return null
-}
+/**
+ * Targets special code or div blocks and converts them to UML.
+ * @param {object} converter is the object that transforms the text to UML.
+ * @param {string} className is the name of the class to target.
+ * @param {object} settings is the settings for converter.
+ * @return {void}
+ */
+var uml = (function (converter, className, settings) {
 
-function flowchartConvert(index,text,el){
-	diagram=flowchart.parse(text)	
-	diagram.drawSVG(el,{});
-	return null
-}
-function sequenceConvert(index,text,el){
-	diagram=Diagram.parse(text)	
-	diagram.drawSVG(el,{theme: 'simple'});
-	return null
-}
-var diagramType={
-	"gantt":mermaidConvert,
-	"sequenceDiagram":mermaidConvert,
-	"flowchart":mermaidConvert,
-	"graph TD":mermaidConvert,
-	"graph LR":mermaidConvert,
-	"uml-flowchart":flowchartConvert,
-	"uml-sequence-diagram":sequenceConvert
-}
-function convertUML() {
-	var pre= document.querySelectorAll("pre")
-	for (var i=0; i<pre.length; i++){
-		var codeEl= pre[i];
-		var parentEl = pre[i];
-		EachTag(parentEl.childNodes,"code",function(code){
-			codeEl=code;
-		})
-		var text=code2Text(codeEl);
-		var type=mermaid.mermaidAPI.detectType(text);
-		var conv=diagramType[type];
-		if(text.indexOf("graph")==0){
-			conv=mermaidConvert;
-		}
-		var pclass=parentEl.classList
-		for(var j=0;!conv && j<parentEl.classList.length;j++){
-			conv=diagramType[parentEl.classList[j]]
-			if(conv){
-				break;
-			}
-		}
-		if(conv){
-			el = document.createElement('div');
-			el.className = type;
-			try {
-				parentEl.parentNode.insertBefore(el, parentEl);
-				conv(i,text,el)
-				parentEl.parentNode.removeChild(parentEl);
-			}catch(err){
-				codeEl.title=err.str;
-			}
-		}
-		
-	}
-};
+  var getFromCode = function getFromCode(parent) {
+    // Handles <pre><code>
+    var text = "";
+    for (var j = 0; j < parent.childNodes.length; j++) {
+      var subEl = parent.childNodes[j];
+      if (subEl.tagName.toLowerCase() === "code") {
+        for (var k = 0; k < subEl.childNodes.length; k++) {
+          var child = subEl.childNodes[k];
+          var whitespace = /^\s*$/;
+          if (child.nodeName === "#text" && !whitespace.test(child.nodeValue)) {
+            text = child.nodeValue;
+            break;
+          }
+        }
+      }
+    }
+    return text;
+  };
 
-function onReady(fn) {
-	if (document.addEventListener) {
-		document.addEventListener('DOMContentLoaded', fn);
-	} else {
-		document.attachEvent('onreadystatechange', function() {
-			if (document.readyState === 'interactive')
-				fn();
-		});
-	}
-}
-(function (document) {
-	onReady(function(){
-		convertUML();
-	});
-})(document);
+  var getFromDiv = function getFromDiv(parent) {
+    // Handles <div>
+    return parent.textContent || parent.innerText;
+  };
+
+  // Change article to whatever element your main Markdown content lives.
+  var article = document.querySelectorAll("article");
+  var blocks = document.querySelectorAll("pre." + className + ",div." + className
+
+  // Is there a settings object?
+  );var config = settings === void 0 ? {} : settings;
+
+  // Find the UML source element and get the text
+  for (var i = 0; i < blocks.length; i++) {
+    var parentEl = blocks[i];
+    var el = document.createElement("div");
+    el.className = className;
+    el.style.visibility = "hidden";
+    el.style.position = "absolute";
+
+    var text = parentEl.tagName.toLowerCase() === "pre" ? getFromCode(parentEl) : getFromDiv(parentEl)
+
+    // Insert our new div at the end of our content to get general
+    // typset and page sizes as our parent might be `display:none`
+    // keeping us from getting the right sizes for our SVG.
+    // Our new div will be hidden via "visibility" and take no space
+    // via `poistion: absolute`. When we are all done, use the
+    // original node as a reference to insert our SVG back
+    // into the proper place, and then make our SVG visilbe again.
+    // Lastly, clean up the old node.
+    ;
+    article[0].appendChild(el);
+    var diagram = converter.parse(text);
+    diagram.drawSVG(el, config);
+    el.style.visibility = "visible";
+    el.style.position = "static";
+    parentEl.parentNode.insertBefore(el, parentEl);
+    parentEl.parentNode.removeChild(parentEl);
+  }
+});
+
+(function () {
+  var onReady = function onReady(fn) {
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", fn);
+    } else {
+      document.attachEvent("onreadystatechange", function () {
+        if (document.readyState === "interactive") {
+          fn();
+        }
+      });
+    }
+  };
+
+  onReady(function () {
+    if (typeof flowchart !== "undefined") {
+      uml(flowchart, "uml-flowchart");
+    }
+
+    if (typeof Diagram !== "undefined") {
+      uml(Diagram, "uml-sequence-diagram", { theme: "simple" });
+    }
+  });
+})();
+
+}());
