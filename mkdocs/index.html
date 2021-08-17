@@ -359,30 +359,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../docker/" title="docker" class="md-nav__link">
-      docker
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../mybatis/" title="mybatis配置" class="md-nav__link">
-      mybatis配置
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -597,24 +573,48 @@ var uml = (function (converter, className, settings) {
 <ol>
 <li>配置</li>
 </ol>
-<div class="highlight"><pre><span></span><code>extra_javascript:
-  - &#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;
-  - &#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;
-  - &#39;https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js&#39;
-  - &#39;https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js&#39;
-  - &#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js&#39;
-  - &#39;js/umlconvert.js&#39;
-markdown_extensions:
-  - pymdownx.superfences
-custom_fences:
-  name: flow
-  class: uml-flowchart
-  format: !!python/name:pymdownx.superfences.fence_code_format
+<p>mkdocs 1.0版本前是
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+<span class="nt">custom_fences</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flow</span>
+  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span>
+  <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span>
 </code></pre></div>
+新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本
+<div class="highlight"><pre><span></span><code><span class="nt">extra_javascript</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;js/umlconvert.js&#39;</span>
+<span class="nt">markdown_extensions</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">pymdownx.superfences</span><span class="p">:</span>
+      <span class="nt">custom_fences</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flow</span>
+          <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span>
+          <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span>
+        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sequence</span>
+          <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-sequence-diagram</span>
+          <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span>
+</code></pre></div></p>
 <p>效果展示：</p>
-<p>markdown源码</p>
-<pre><code>```flow
-st=&gt;start: 开始
+<p>markdown源码
+<div class="highlight"><pre><span></span><code><span class="sb">    ```flow</span>
+<span class="s">    st=&gt;start: 开始</span>
+<span class="s">    rain?=&gt;condition: 今天有雨吗？</span>
+<span class="s">    takeAnUmbrella=&gt;operation: 带伞</span>
+<span class="s">    go=&gt;operation: 出门</span>
+<span class="s">    e=&gt;end: 结束</span>
+
+<span class="s">    st-&gt;rain?</span>
+<span class="s">    rain?(yes)-&gt;takeAnUmbrella-&gt;go</span>
+<span class="s">    rain?(no)-&gt;go-&gt;e</span>
+<span class="sb">    ```</span>
+</code></pre></div>
+显示效果</p>
+<div class="uml-flowchart">st=&gt;start: 开始
 rain?=&gt;condition: 今天有雨吗？
 takeAnUmbrella=&gt;operation: 带伞
 go=&gt;operation: 出门
@@ -622,36 +622,10 @@ e=&gt;end: 结束
 
 st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
-rain?(no)-&gt;go-&gt;e
-```
-</code></pre>
-<p>显示效果</p>
-<pre class="uml-flowchart"><code>st=&gt;start: 开始
-rain?=&gt;condition: 今天有雨吗？
-takeAnUmbrella=&gt;operation: 带伞
-go=&gt;operation: 出门
-e=&gt;end: 结束
-st-&gt;rain?
-rain?(yes)-&gt;takeAnUmbrella-&gt;go
-rain?(no)-&gt;go-&gt;e</code></pre>
+rain?(no)-&gt;go-&gt;e</div>
 <blockquote>
 <p>注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成</p>
 </blockquote>
-<pre class="mermaid"><code>graph LR
-  A[Start] --&gt; B{Error?};
-  B --&gt;|Yes| C[Hmm...];
-  C --&gt; D[Debug];
-  D --&gt; B;
-  B ----&gt;|No| E[Yay!];</code></pre>
-<pre class="mermaid"><code>sequenceDiagram
-  Alice-&gt;&gt;John: Hello John, how are you?
-  loop Healthcheck
-      John-&gt;&gt;John: Fight against hypochondria
-  end
-  Note right of John: Rational thoughts!
-  John--&gt;&gt;Alice: Great!
-  John-&gt;&gt;Bob: How about you?
-  Bob--&gt;&gt;John: Jolly good!</code></pre>
                 
                   
                 
@@ -749,17 +723,15 @@ rain?(no)-&gt;go-&gt;e</code></pre>
       
       <script>app.initialize({version:"1.2.2",url:{base:".."}})</script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.0/mermaid.min.js"></script>
+        <script src="../js/raphael.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
+        <script src="../js/underscore-min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="../js/sequence-diagram-min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+        <script src="../js/flowchart.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
-      
-        <script src="../js/umlconvert.js'"></script>
+        <script src="../js/umlconvert.js"></script>
       
     
     
