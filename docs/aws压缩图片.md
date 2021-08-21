@@ -29,7 +29,7 @@ $ zip -r GatewayResize.zip .
 
 ##### 在AWS Lambda仪表板上载压缩文件
 
-![image-20210821154616916](/Users/chen/projects/chenpenghuan.github.io/docs/assets/image-20210821154616916.png)
+![image-20210821154616916](./assets/image-20210821154616916.png)
 
 ![image-20210821155706927](/Users/chen/projects/chenpenghuan.github.io/docs/assets/image-20210821155706927.png)
 
@@ -61,8 +61,6 @@ $ zip -r GatewayResize.zip .
 
 查询字符串写入get参数，key=xxx.png&size=200x200，返回code码为301，正文为图片压缩后的访问地址，下次访问即可直接访问返回的地址，不用经过网关
 
-
-
 ## aws上传时压缩图片
 
 这里用到的Python脚本如是本文代码中的CreateThumbnail.py
@@ -87,8 +85,8 @@ $ zip -r GatewayResize.zip .
 
 如果失败，有可能是python环境配置错误，或者是权限问题，请google解决
 
->本文参考：
+> 本文参考：
 >
->[使用AWS Lambda，API Gateway和S3 Storage快速调整图片大小](https://www.cnblogs.com/rxbook/p/11377872.html)
+> [使用AWS Lambda，API Gateway和S3 Storage快速调整图片大小](https://www.cnblogs.com/rxbook/p/11377872.html)
 >
->[AWS上如何实现S3桶上传图片自动缩放](https://zhuanlan.zhihu.com/p/141707867)
+> [AWS上如何实现S3桶上传图片自动缩放](https://zhuanlan.zhihu.com/p/141707867)
