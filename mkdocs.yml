@@ -5,7 +5,7 @@ site_url: 'https://chenpenghuan.github.io'
 copyright: 'Copyright © 2021'
 nav:
 - 工具: [git.md,mkdocs.md,macos.md,zsh.md]
-- 开发: [k8s.md,java.md,springboot.md]
+- 开发: [k8s.md,java.md,springboot.md,mybatis.md,docker.md]
 - 其他: [aws压缩图片.md]
 - 关于: about.md
 theme:
