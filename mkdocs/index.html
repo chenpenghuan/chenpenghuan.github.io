@@ -450,11 +450,11 @@
                 
                 <h1 id="mkdocs">mkdocs</h1>
 <h2 id="_1">文档目录配置</h2>
-<div class="highlight"><pre><span></span><code>site_name: 文档
-pages:
-    - 主页: index.md
-    - 工作: [md1.md,md2.md]
-    - 关于: about.md
+<div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">文档</span>
+<span class="nt">pages</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">主页</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index.md</span>
+    <span class="p p-Indicator">-</span> <span class="nt">工作</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">md1.md</span><span class="p p-Indicator">,</span><span class="nv">md2.md</span><span class="p p-Indicator">]</span>
+    <span class="p p-Indicator">-</span> <span class="nt">关于</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">about.md</span>
 </code></pre></div>
 <h2 id="_2">自带主题修改</h2>
 <p>修改mkdocs自带的主题</p>
@@ -463,19 +463,19 @@ pages:
 <li>修改项目配置文件mkdocs.yml</li>
 </ol>
 <div class="highlight"><pre><span></span><code>theme:
-  name: &#39;mkdocs&#39;
-  custom_dir: &#39;custom_theme&#39;
+  name: <span class="s1">&#39;mkdocs&#39;</span>
+  custom_dir: <span class="s1">&#39;custom_theme&#39;</span>
 </code></pre></div>
 <ol>
 <li>修改custom_theme/main.html，比如要修改底部的“Documentation built with MkDocs”</li>
 </ol>
-<div class="highlight"><pre><span></span><code>{%- block footer %}
+<div class="highlight"><pre><span></span><code><span class="o">{</span>%- block footer %<span class="o">}</span>
     &lt;hr&gt;
-    {%- if config.copyright %}
-        &lt;p&gt;{{ config.copyright }}&lt;/p&gt;
-    {%- endif %}
-    &lt;!--&lt;p&gt;Documentation built with &lt;a href=&quot;https://www.mkdocs.org/&quot;&gt;MkDocs&lt;/a&gt;.&lt;/p&gt;--&gt;
-{%- endblock %}
+    <span class="o">{</span>%- <span class="k">if</span> config.copyright %<span class="o">}</span>
+        &lt;p&gt;<span class="o">{{</span> config.copyright <span class="o">}}</span>&lt;/p&gt;
+    <span class="o">{</span>%- endif %<span class="o">}</span>
+    &lt;!--&lt;p&gt;Documentation built with &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://www.mkdocs.org/&quot;</span>&gt;MkDocs&lt;/a&gt;.&lt;/p&gt;--&gt;
+<span class="o">{</span>%- endblock %<span class="o">}</span>
 </code></pre></div>
 <h2 id="_3">添加流程图支持</h2>
 <ol>
