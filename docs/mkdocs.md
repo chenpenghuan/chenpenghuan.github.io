@@ -2,7 +2,7 @@
 
 ## 文档目录配置
 
-```
+```yaml
 site_name: 文档
 pages:
     - 主页: index.md
@@ -17,7 +17,7 @@ pages:
 1. 复制mkdocs的主题文件夹至自定义主题文件夹custom_theme下
 2. 修改项目配置文件mkdocs.yml
 
-```
+```shell
 theme:
   name: 'mkdocs'
   custom_dir: 'custom_theme'
@@ -25,7 +25,7 @@ theme:
 
 3. 修改custom_theme/main.html，比如要修改底部的“Documentation built with MkDocs”
 
-```
+```shell
 {%- block footer %}
 	<hr>
 	{%- if config.copyright %}
@@ -39,7 +39,7 @@ theme:
 
 1. 安装pymdown-extensions扩展
 
-```
+```shell
 pip install pymdown-extensions
 ```
 
@@ -148,6 +148,7 @@ var uml = (function (converter, className, settings) {
 3. 配置
 
 mkdocs 1.0版本前是
+
 ```yaml
 markdown_extensions:
   - pymdownx.superfences
@@ -156,7 +157,9 @@ custom_fences:
   class: uml-flowchart
   format: !!python/name:pymdownx.superfences.fence_code_format
 ```
-新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本
+
+新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本(本站版本1.2.2)
+
 ```yaml
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
@@ -179,6 +182,7 @@ markdown_extensions:
 效果展示：
 
 markdown源码
+
 ````markdown
     ```flow
     st=>start: 开始
@@ -186,24 +190,33 @@ markdown源码
     takeAnUmbrella=>operation: 带伞
     go=>operation: 出门
     e=>end: 结束
-    
+  
     st->rain?
     rain?(yes)->takeAnUmbrella->go
     rain?(no)->go->e
     ```
 ````
+
 显示效果
 
-``` flow    
+```flow
 st=>start: 开始
 rain?=>condition: 今天有雨吗？
 takeAnUmbrella=>operation: 带伞
 go=>operation: 出门
 e=>end: 结束
-    
+  
 st->rain?
 rain?(yes)->takeAnUmbrella->go
 rain?(no)->go->e
-```    
+```
 
-> 注意：可以查看页面源代码，源代码中没有流程图图片，流程图图片由js生成
+## 发布文档
+
+```shell
+mkdocs gh-deploy --force
+```
+
+会生成gh-pages分支，在github中设置部署分支即可
+
+![](assets/20210817_185324_image.png)

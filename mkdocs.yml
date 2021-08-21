@@ -1,7 +1,4 @@
 site_name: chen
-
-
-
 site_description: 'A Material Design theme for MkDocs'
 site_author: 'chen'
 site_url: 'https://chenpenghuan.github.io'
@@ -9,6 +6,7 @@ copyright: 'Copyright © 2021'
 nav:
 - 工具: [git.md,mkdocs.md,macos.md,zsh.md]
 - 开发: [k8s.md,java.md,springboot.md]
+- 其他: [aws压缩图片.md]
 - 关于: about.md
 theme:
   name: 'material'
@@ -24,8 +22,6 @@ theme:
     icon: "\uE80C"
   feature:
     tabs: false
-extra_javascript:
-
 extra_javascript:
   - js/raphael.min.js
   - js/underscore-min.js
