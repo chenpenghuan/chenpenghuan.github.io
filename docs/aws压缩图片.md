@@ -61,6 +61,12 @@ $ zip -r GatewayResize.zip .
 
 查询字符串写入get参数，key=xxx.png&size=200x200，返回code码为301，正文为图片压缩后的访问地址，下次访问即可直接访问返回的地址，不用经过网关
 
+#### 发布api到公网
+
+![image-20210821174350316](assets/image-20210821174350316.png)
+
+发布后即可得到公网地址![image-20210821174457313](assets/image-20210821174457313.png)
+
 ## aws上传时压缩图片
 
 这里用到的Python脚本如是本文代码中的CreateThumbnail.py
