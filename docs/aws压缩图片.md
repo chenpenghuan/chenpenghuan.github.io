@@ -2,6 +2,8 @@
 
 本文介绍两种方式，网关压缩图片，和上传时压缩图片
 
+[代码附件](assets/CreateThumbnail.zip)
+
 ## aws网关压缩图片
 
 使用AWS Lambda，API Gateway和S3实现简单的图像大小调整任务
