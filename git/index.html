@@ -469,8 +469,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
     </a>
   </li>
 
@@ -608,36 +620,46 @@
                 
                 <h1 id="git">git</h1>
 <h2 id="_1">暂存</h2>
-<p>git stash save {暂存说明} <br />
-git stash list 查看所有暂存  <br />
-git stash apply {暂存名}    应用暂存    </p>
+<div class="highlight"><pre><span></span><code>git stash save <span class="o">{</span>暂存说明<span class="o">}</span>   
+git stash list 查看所有暂存    
+git stash apply <span class="o">{</span>暂存名<span class="o">}</span>    应用暂存    
+</code></pre></div>
 <h2 id="_2">撤销</h2>
-<p>git reset —mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息 <br />
-git reset —soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可 <br />
-git reset  —hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，慎用！   </p>
+<div class="highlight"><pre><span></span><code>git reset —mixed：#此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息   
+git reset —soft： <span class="c1">#回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可   </span>
+git reset  —hard：#彻底回退到某个版本，本地的源码也会变为上一个版本的内容，慎用！   
+</code></pre></div>
 <h2 id="_3">对比本地和远程的日志</h2>
-<p>git log {branch} ^origin/{branch}        查看未推送的提交 <br />
-git log origin/{branch}                  查看远程日志 <br />
-git log {branch}                                      </p>
+<div class="highlight"><pre><span></span><code>git log <span class="o">{</span>branch<span class="o">}</span> ^origin/<span class="o">{</span>branch<span class="o">}</span>        <span class="c1">#查看未推送的提交   </span>
+git log origin/<span class="o">{</span>branch<span class="o">}</span>                  <span class="c1">#查看远程日志   </span>
+git log <span class="o">{</span>branch<span class="o">}</span>                                      
+</code></pre></div>
 <h2 id="_4">拉取远程分支到本地</h2>
-<p>git checkout -b {branchname} origin/{branchname}</p>
+<div class="highlight"><pre><span></span><code>git checkout -b <span class="o">{</span>branchname<span class="o">}</span> origin/<span class="o">{</span>branchname<span class="o">}</span>
+</code></pre></div>
 <h2 id="_5">查看指定分支日志</h2>
-<p>git  show {commitid}    </p>
+<div class="highlight"><pre><span></span><code>git show <span class="o">{</span>commitid<span class="o">}</span>
+</code></pre></div>
 <h2 id="n">查看某个文件最近n次的修改历史</h2>
 <p>git log -p {filename} -n</p>
 <h2 id="_6">查看版本历史图</h2>
-<p>git log --graph</p>
+<div class="highlight"><pre><span></span><code>git log --graph
+</code></pre></div>
 <h2 id="tag">打tag</h2>
-<p>git tag -a {tagname} -m {message} {commitid}对某次提交打tag  <br />
-git tag                                     查看所有标签 <br />
-git show {tagname}                          查看标签信息   </p>
+<div class="highlight"><pre><span></span><code>git tag -a <span class="o">{</span>tagname<span class="o">}</span> -m <span class="o">{</span>message<span class="o">}</span> <span class="o">{</span>commitid<span class="o">}</span><span class="c1">#对某次提交打tag    </span>
+git tag                                     <span class="c1">#查看所有标签   </span>
+git show <span class="o">{</span>tagname<span class="o">}</span>                          <span class="c1">#查看标签信息   </span>
+</code></pre></div>
 <h2 id="_7">描述</h2>
-<p>git branch —edit-description {branchname}</p>
+<div class="highlight"><pre><span></span><code>git branch —edit-description <span class="o">{</span>branchname<span class="o">}</span>
+</code></pre></div>
 <h2 id="_8">删除远程分支</h2>
-<p>git branch -d {branchname} 删除本地分支 <br />
-git push origin —delete {branchname}</p>
+<div class="highlight"><pre><span></span><code>git branch -d <span class="o">{</span>branchname<span class="o">}</span> <span class="c1">#删除本地分支  </span>
+git push origin —delete <span class="o">{</span>branchname<span class="o">}</span> <span class="c1">#删除远程分支</span>
+</code></pre></div>
 <h2 id="ssh">ssh公钥免密码</h2>
-<p>ssh-add ~/.ssh/id_rsa</p>
+<div class="highlight"><pre><span></span><code>ssh-add ~/.ssh/id_rsa
+</code></pre></div>
                 
                   
                 

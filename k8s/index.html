@@ -420,8 +420,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
     </a>
   </li>
 
@@ -510,15 +522,21 @@
                 
                 <h1 id="k8s">k8s</h1>
 <h2 id="k8s_1">查看k8s的域名配置：</h2>
-<p>opscli app -n quotation -p distribute-information k8s-resource -k ingress -c test</p>
+<div class="highlight"><pre><span></span><code>opscli app -n quotation -p distribute-information k8s-resource -k ingress -c <span class="nb">test</span>
+</code></pre></div>
 <h2 id="pod">查找pod</h2>
-<p>kubectl -n server get pod | grep core</p>
+<div class="highlight"><pre><span></span><code>kubectl -n server get pod <span class="p">|</span> grep core
+</code></pre></div>
 <h2 id="pod_1">登录pod</h2>
-<p>kubectl -n server exec -it core-5f47f66cb6-7ttbc bash</p>
+<div class="highlight"><pre><span></span><code>kubectl -n server <span class="nb">exec</span> -it core-5f47f66cb6-7ttbc bash
+</code></pre></div>
 <h2 id="pod_2">调试修改pod配置</h2>
-<p>kubectl edit -n server deployment/php</p>
-<p>kubectl delete -n  server  deployment/push  --force</p>
-<p>kubectl -n server get ingress</p>
+<div class="highlight"><pre><span></span><code>kubectl edit -n server deployment/php
+
+kubectl delete -n server deployment/push --force
+
+kubectl -n server get ingress
+</code></pre></div>
                 
                   
                 

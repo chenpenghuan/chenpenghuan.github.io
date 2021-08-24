@@ -462,8 +462,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
     </a>
   </li>
 
@@ -619,7 +631,7 @@ git clone https://github.com/powerline/fonts.git --depth<span class="o">=</span>
 </code></pre></div>
 <p>安装好字体库之后，我们来设置iTerm2的字体，具体的操作是iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Text，在Font区域选中Change Font，然后找到Meslo LG字体。有L、M、S</p>
 <h2 id="_2">安装配色方案</h2>
-<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/Desktop/OpenSource
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/Desktop/OpenSource
 
 git clone https://github.com/altercation/solarized
 
@@ -627,10 +639,10 @@ git clone https://github.com/altercation/solarized
 
 open .
 </code></pre></div>
-在打开的finder窗口中，双击Solarized Dark.itermcolors和Solarized Light.itermcolors即可安装明暗两种配色</p>
+<p>在打开的finder窗口中，双击Solarized Dark.itermcolors和Solarized Light.itermcolors即可安装明暗两种配色</p>
 <p>再次进入iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Colors -&gt; Color Presets中根据个人喜好选择这两种配色中的一种即可</p>
 <h2 id="_3">安装主题</h2>
-<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/Desktop/OpenSource
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/Desktop/OpenSource
 
 git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
 
@@ -638,17 +650,17 @@ git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
 
 ./install
 </code></pre></div>
-完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。</p>
+<p>完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。</p>
 <div class="highlight"><pre><span></span><code>vi ~/.zshrc
 </code></pre></div>
 <h2 id="_4">安装高亮插件</h2>
-<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/.oh-my-zsh/custom/plugins/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/.oh-my-zsh/custom/plugins/
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
 vim ~/.zshrc
 </code></pre></div>
-这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：</p>
+<p>这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：</p>
 <div class="highlight"><pre><span></span><code>plugins=(
   git
   zsh-syntax-highlighting

@@ -434,8 +434,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
     </a>
   </li>
 
@@ -553,10 +565,10 @@
 <div class="highlight"><pre><span></span><code>docker container restart containerid
 </code></pre></div>
 <h2 id="_6">启动镜像</h2>
-<div class="highlight"><pre><span></span><code># mysql
-docker run --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
-# php-fpm
-docker run -d --name php:7.0-fpm -p 9000:9000 php:7.0-fpm
+<div class="highlight"><pre><span></span><code><span class="c1"># mysql -d后台运行，-v挂载本地目录</span>
+docker run --name mysql5.7 -p <span class="m">3306</span>:3306 -e <span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root -d mysql:5.7
+<span class="c1"># php-fpm</span>
+docker run -d --name php:7.0-fpm -p <span class="m">9000</span>:9000 php:7.0-fpm
 </code></pre></div>
                 
                   
@@ -593,7 +605,7 @@ docker run -d --name php:7.0-fpm -p 9000:9000 php:7.0-fpm
           </a>
         
         
-          <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">

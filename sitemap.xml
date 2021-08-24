@@ -2,62 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://chenpenghuan.github.io/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/about/</loc>
-         <lastmod>2021-08-21</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://chenpenghuan.github.io/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/docker/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/git/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/java/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/k8s/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/macos/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/mkdocs/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/mybatis/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/springboot/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/zsh/</loc>
-         <lastmod>2021-08-21</lastmod>
+         <lastmod>2021-08-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/</loc>
+         <lastmod>2021-08-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/</loc>
+         <lastmod>2021-08-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

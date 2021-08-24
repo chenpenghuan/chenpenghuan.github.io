@@ -406,8 +406,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
     </a>
   </li>
 
@@ -501,7 +513,7 @@
         <span class="nt">&lt;/table&gt;</span>
 </code></pre></div>
 <h2 id="_2">使用驼峰命名</h2>
-<p>xml配置
+<p>xml配置</p>
 <div class="highlight"><pre><span></span><code>        <span class="c">&lt;!-- targetPackage：生成的实体类所在的包 --&gt;</span>
         <span class="c">&lt;!-- targetProject：生成的实体类所在的硬盘位置 --&gt;</span>
         <span class="nt">&lt;javaModelGenerator</span> <span class="na">targetPackage=</span><span class="s">&quot;com.coinness.core.dao.db.pojo&quot;</span>
@@ -518,13 +530,13 @@
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;useActualColumnNames&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
         <span class="nt">&lt;/javaModelGenerator&gt;</span>
 </code></pre></div>
-yml中配置
+<p>yml中配置</p>
 <div class="highlight"><pre><span></span><code><span class="nt">mybatis</span><span class="p">:</span>
   <span class="nt">mapper-locations</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">classpath:/mapper/*.xml</span>  <span class="c1">#注意：一定要对应mapper映射xml文件的所在路径</span>
   <span class="nt">type-aliases-package</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.coinness.core.dao.db.mapper</span>  <span class="c1"># 注意：对应实体类的路径</span>
   <span class="nt">configuration</span><span class="p">:</span>
     <span class="nt">map-underscore-to-camel-case</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题</span>
-</code></pre></div></p>
+</code></pre></div>
                 
                   
                 
