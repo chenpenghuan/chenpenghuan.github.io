@@ -331,6 +331,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" title="查找内部调用域名" class="md-nav__link">
+    查找内部调用域名
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" title="切换namespace" class="md-nav__link">
+    切换namespace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -503,6 +523,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" title="查找内部调用域名" class="md-nav__link">
+    查找内部调用域名
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#namespace" title="切换namespace" class="md-nav__link">
+    切换namespace
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -536,6 +576,15 @@
 kubectl delete -n server deployment/push --force
 
 kubectl -n server get ingress
+
+<span class="c1">#卸载release</span>
+helm uninstall -n server praise
+</code></pre></div>
+<h2 id="_1">查找内部调用域名</h2>
+<div class="highlight"><pre><span></span><code>kubectl -n quotation get ingress
+</code></pre></div>
+<h3 id="namespace">切换namespace</h3>
+<div class="highlight"><pre><span></span><code>aws eks update-kubeconfig --region ap-east-1  --name hk-test-1
 </code></pre></div>
                 
                   

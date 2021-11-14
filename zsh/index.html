@@ -643,11 +643,8 @@ open .
 <p>再次进入iTerm2 -&gt; Preferences -&gt; Profiles -&gt; Colors -&gt; Color Presets中根据个人喜好选择这两种配色中的一种即可</p>
 <h2 id="_3">安装主题</h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/Desktop/OpenSource
-
 git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
-
 <span class="nb">cd</span> oh-my-zsh-agnoster-fcamblor/
-
 ./install
 </code></pre></div>
 <p>完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。</p>
@@ -655,9 +652,7 @@ git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
 </code></pre></div>
 <h2 id="_4">安装高亮插件</h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/.oh-my-zsh/custom/plugins/
-
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
 vim ~/.zshrc
 </code></pre></div>
 <p>这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：</p>
