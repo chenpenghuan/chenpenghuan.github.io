@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://chenpenghuan.github.io/mkdocs/">
+        <link rel="canonical" href="https://chenpenghuan.github.io/tools/mkdocs/">
       
       
         <meta name="author" content="chen">
@@ -37,7 +37,7 @@
       
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-3.0.3">
     
     
@@ -46,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -66,9 +66,9 @@
         <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="../css/mermaid.min.css">
+      <link rel="stylesheet" href="../../css/mermaid.min.css">
     
     
   </head>
@@ -336,7 +336,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../k8s/" title="k8s" class="md-nav__link">
+    <a href="../../develop/k8s/" title="k8s" class="md-nav__link">
       k8s
     </a>
   </li>
@@ -348,7 +348,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../java/" title="java基础" class="md-nav__link">
+    <a href="../../develop/java/" title="java基础" class="md-nav__link">
       java基础
     </a>
   </li>
@@ -360,7 +360,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../springboot/" title="springboot" class="md-nav__link">
+    <a href="../../develop/springboot/" title="springboot" class="md-nav__link">
       springboot
     </a>
   </li>
@@ -372,7 +372,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../mybatis/" title="mybatis配置" class="md-nav__link">
+    <a href="../../develop/mybatis/" title="mybatis配置" class="md-nav__link">
       mybatis配置
     </a>
   </li>
@@ -384,7 +384,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../docker/" title="docker" class="md-nav__link">
+    <a href="../../develop/docker/" title="docker" class="md-nav__link">
       docker
     </a>
   </li>
@@ -420,7 +420,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+    <a href="../../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
       aws压缩图片
     </a>
   </li>
@@ -432,7 +432,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+    <a href="../../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
       使用gmail发送邮件验证码
     </a>
   </li>
@@ -449,7 +449,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../about/" title="关于" class="md-nav__link">
+    <a href="../../about/" title="关于" class="md-nav__link">
       关于
     </a>
   </li>
@@ -687,20 +687,21 @@ var uml = (function (converter, className, settings) {
 </code></pre></div>
 <p>效果展示：</p>
 <p>markdown源码</p>
-<div class="highlight"><pre><span></span><code><span class="sb">    ```flow</span>
-<span class="s">    st=&gt;start: 开始</span>
-<span class="s">    rain?=&gt;condition: 今天有雨吗？</span>
-<span class="s">    takeAnUmbrella=&gt;operation: 带伞</span>
-<span class="s">    go=&gt;operation: 出门</span>
-<span class="s">    e=&gt;end: 结束</span>
+<p><div class="highlight"><pre><span></span><code>    ```flow
+    st=&gt;start: 开始
+    rain?=&gt;condition: 今天有雨吗？
+    takeAnUmbrella=&gt;operation: 带伞
+    go=&gt;operation: 出门
+    e=&gt;end: 结束
 
-<span class="s">    st-&gt;rain?</span>
-<span class="s">    rain?(yes)-&gt;takeAnUmbrella-&gt;go</span>
-<span class="s">    rain?(no)-&gt;go-&gt;e</span>
-<span class="sb">    ```</span>
+    st-&gt;rain?
+    rain?(yes)-&gt;takeAnUmbrella-&gt;go
+    rain?(no)-&gt;go-&gt;e
 </code></pre></div>
-<p>显示效果</p>
-<div class="uml-flowchart">st=&gt;start: 开始
+<div class="highlight"><pre><span></span><code>显示效果
+
+```flow
+st=&gt;start: 开始
 rain?=&gt;condition: 今天有雨吗？
 takeAnUmbrella=&gt;operation: 带伞
 go=&gt;operation: 出门
@@ -708,7 +709,8 @@ e=&gt;end: 结束
 
 st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
-rain?(no)-&gt;go-&gt;e</div>
+rain?(no)-&gt;go-&gt;e
+</code></pre></div></p>
 <h2 id="_4">发布文档</h2>
 <div class="highlight"><pre><span></span><code>mkdocs gh-deploy --force
 </code></pre></div>
@@ -790,36 +792,36 @@ rain?(no)-&gt;go-&gt;e</div>
       
     </div>
     
-      <script src="../assets/javascripts/application.e72fd936.js"></script>
+      <script src="../../assets/javascripts/application.e72fd936.js"></script>
       
         
         
           
-          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
           
             
               
-                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
               
               
-                <script src="../assets/javascripts/lunr/lunr.jp.js"></script>
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
               
             
           
           
         
       
-      <script>app.initialize({version:"1.2.2",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.2.2",url:{base:"../.."}})</script>
       
-        <script src="../js/raphael.min.js"></script>
+        <script src="../../js/raphael.min.js"></script>
       
-        <script src="../js/underscore-min.js"></script>
+        <script src="../../js/underscore-min.js"></script>
       
-        <script src="../js/sequence-diagram-min.js"></script>
+        <script src="../../js/sequence-diagram-min.js"></script>
       
-        <script src="../js/flowchart.min.js"></script>
+        <script src="../../js/flowchart.min.js"></script>
       
-        <script src="../js/umlconvert.js"></script>
+        <script src="../../js/umlconvert.js"></script>
       
     
     

@@ -11,47 +11,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chenpenghuan.github.io/docker/</loc>
+         <loc>https://chenpenghuan.github.io/develop/docker/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chenpenghuan.github.io/git/</loc>
+         <loc>https://chenpenghuan.github.io/develop/java/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chenpenghuan.github.io/java/</loc>
+         <loc>https://chenpenghuan.github.io/develop/k8s/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chenpenghuan.github.io/k8s/</loc>
+         <loc>https://chenpenghuan.github.io/develop/mybatis/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chenpenghuan.github.io/macos/</loc>
-         <lastmod>2021-11-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://chenpenghuan.github.io/mkdocs/</loc>
-         <lastmod>2021-11-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://chenpenghuan.github.io/mybatis/</loc>
-         <lastmod>2021-11-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://chenpenghuan.github.io/springboot/</loc>
-         <lastmod>2021-11-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://chenpenghuan.github.io/zsh/</loc>
+         <loc>https://chenpenghuan.github.io/develop/springboot/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -62,6 +42,26 @@
     </url>
     <url>
          <loc>https://chenpenghuan.github.io/other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/</loc>
+         <lastmod>2021-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/tools/git/</loc>
+         <lastmod>2021-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/tools/macos/</loc>
+         <lastmod>2021-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/tools/mkdocs/</loc>
+         <lastmod>2021-11-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chenpenghuan.github.io/tools/zsh/</loc>
          <lastmod>2021-11-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
