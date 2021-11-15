@@ -245,6 +245,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注册" class="md-nav__link">
+      港区appleId注册
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -400,6 +412,13 @@
         <li class="md-nav__item">
   <a href="#springbootspringdata-es" title="springboot集成springdata-es" class="md-nav__link">
     springboot集成springdata-es
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" title="引用本地jar包" class="md-nav__link">
+    引用本地jar包
   </a>
   
 </li>
@@ -597,6 +616,13 @@
         <li class="md-nav__item">
   <a href="#springbootspringdata-es" title="springboot集成springdata-es" class="md-nav__link">
     springboot集成springdata-es
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar" title="引用本地jar包" class="md-nav__link">
+    引用本地jar包
   </a>
   
 </li>
@@ -999,6 +1025,40 @@ mvn dependency:analyze
         <span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">domain</span><span class="p">.</span><span class="na">Page</span><span class="o">&lt;</span><span class="n">ComprehensiveSearch</span><span class="o">&gt;</span> <span class="n">page</span> <span class="o">=</span> <span class="n">repository</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="n">searchQuery</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">page</span><span class="p">;</span>
     <span class="p">}</span>
+</code></pre></div>
+<h2 id="jar">引用本地jar包</h2>
+<ol>
+<li>加载依赖</li>
+</ol>
+<div class="highlight"><pre><span></span><code>        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>com.co<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>common<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>0.0.2-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>system<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;systemPath&gt;</span>${pom.basedir}/lib/common-0.0.2-SNAPSHOT.jar<span class="nt">&lt;/systemPath&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<ol>
+<li>配置打包</li>
+</ol>
+<div class="highlight"><pre><span></span><code>    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;finalName&gt;</span>news<span class="nt">&lt;/finalName&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;includeSystemScope&gt;</span>true<span class="nt">&lt;/includeSystemScope&gt;</span>
+                    <span class="nt">&lt;excludes&gt;</span>
+                        <span class="nt">&lt;exclude&gt;</span>
+                            <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+                            <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+                        <span class="nt">&lt;/exclude&gt;</span>
+                    <span class="nt">&lt;/excludes&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
 </code></pre></div>
                 
                   
