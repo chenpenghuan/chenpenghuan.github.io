@@ -15,11 +15,13 @@ chsh -s /bin/zsh
 ```shell
 pip3 install powerline-status --user
 ```
+
 ## 安装PowerLine
 
 ```shell
 pip3 install powerline-status --user
 ```
+
 ## 安装PowerFonts
 
 ```shell
@@ -49,6 +51,7 @@ cd solarized/iterm2-colors-solarized/
 
 open .
 ```
+
 在打开的finder窗口中，双击Solarized Dark.itermcolors和Solarized Light.itermcolors即可安装明暗两种配色
 
 再次进入iTerm2 -> Preferences -> Profiles -> Colors -> Color Presets中根据个人喜好选择这两种配色中的一种即可
@@ -57,13 +60,11 @@ open .
 
 ```shell
 cd ~/Desktop/OpenSource
-
 git clone https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor.git
-
 cd oh-my-zsh-agnoster-fcamblor/
-
 ./install
 ```
+
 完成后，执行命令打开zshrc配置文件，将ZSH_THEME后面的字段改为agnoster。
 
 ```shell
@@ -74,12 +75,10 @@ vi ~/.zshrc
 
 ```shell
 cd ~/.oh-my-zsh/custom/plugins/
-
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
 vim ~/.zshrc
-
 ```
+
 这时我们再次打开zshrc文件进行编辑。找到plugins，此时plugins中应该已经有了git，我们需要把高亮插件也加上：
 
 ```
@@ -106,3 +105,4 @@ plugins=(
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ```
+

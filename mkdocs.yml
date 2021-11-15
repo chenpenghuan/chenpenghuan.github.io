@@ -4,10 +4,13 @@ site_author: 'chen'
 site_url: 'https://chenpenghuan.github.io'
 copyright: 'Copyright © 2021'
 nav:
-- 工具: [git.md,mkdocs.md,macos.md,zsh.md]
-- 开发: [k8s.md,java.md,springboot.md,mybatis.md,docker.md]
-- 其他: [aws压缩图片.md]
+- 工具: [tools/git.md,tools/mkdocs.md,tools/macos.md,tools/zsh.md,tools/港区appleId注册.md]
+- 开发: [develop/k8s.md,develop/java.md,develop/springboot.md,develop/mybatis.md,develop/docker.md]
+- 其他: [other/aws压缩图片.md,other/使用gmail发送邮件验证码.md]
 - 关于: about.md
+plugins:
+  - search
+  - git-revision-date-localized
 theme:
   name: 'material'
   custom_dir: 'themes/material'

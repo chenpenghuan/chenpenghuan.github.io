@@ -3,33 +3,37 @@
 ## 终端运行
 
 1. 打包时跳过单元测试 
-    `mvn install -Dmaven.test.skip=true` 
-    `cd target` 
-    `java -jar xxxx.jar` 
+   
+   ```shell
+   mvn install -Dmaven.test.skip=true 
+   cd target
+    java -jar xxxx.jar
+   ```
 
 2. mvn直接运行
-    `mvn spring-boot:run`
+   
+   ```shell
+   mvn spring-boot:run
+   ```
 
 3. 打包运行
-
-  - 打包
-
-  ```
+   
+   - 打包
+   
+   ```shell
    mvn -U clean package -Dmaven.test.skip=true
-  ```
-
-  1. 运行
-
-  ```
-  java -jar xxx.jar --spring.profiles.active=dev
-  ```
-
-  
+   ```
+   
+   1. 运行
+   
+   ```shell
+   java -jar xxx.jar --spring.profiles.active=dev
+   ```
 
 ## 优化依赖
 
-```
-//查询依赖
+```shell
+#查询依赖
 mvn dependency:analyze
 ```
 
@@ -41,9 +45,11 @@ mvn dependency:analyze
 *注意：driver-class-name必须为com.mysql.jdbc.Driver*
 
 ## 缓存失效时间
+
 ```java
 @Cacheable(value = "people#${select.cache.timeout:1800}#${select.cache.refresh:600}", key = "#person.id", sync = true)
 ```
+
 ## jackson配置
 
 ```yaml
@@ -73,7 +79,9 @@ mvn dependency:analyze
     basename: i18n.common,i18n.bonus
     cache-duration: 1
 ```
+
 ## 中间件配置
+
 定义注解
 
 ```java
@@ -104,6 +112,7 @@ public @interface RequestLimit {
     boolean limit() default true;
 }
 ```
+
 实现注解
 
 ```java
@@ -217,14 +226,12 @@ public class MvcInterceptorConfig extends WebMvcConfigurationSupport {
         </dependency>
 ```
 
-
-
 2. 拉取`https://github.com/whvcse/RedisUtil`代码，写入自己的项目
 3. 添加`@Component`注解，然后在项目中@Autowired注入
 
 ## thymeleaf报@Autowired错误解决
 
-```
+```java
 org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'com.coinness.risk.MessageTests': Unsatisfied dependency expressed through field 'templateEngine'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.thymeleaf.TemplateEngine' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 ```
 
@@ -251,8 +258,8 @@ public class RiskServiceApplication implements CommandLineRunner {
 ## springboot集成springdata-es
 
 1. 集成spring-boot-starter-data-elasticsearch
-
-   ```xml-dtd
+   
+   ```xml
    <dependency>
        <groupId>org.springframework.boot</groupId>
        <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
@@ -260,7 +267,7 @@ public class RiskServiceApplication implements CommandLineRunner {
    ```
 
 2. yml添加配置
-
+   
    ```yaml
      elasticsearch:
        rest:
@@ -268,8 +275,9 @@ public class RiskServiceApplication implements CommandLineRunner {
          password: GMDZk8T910fS2v70ethI90d7
          username: elastic
    ```
-   
+
 3. 指定es的package，在启动类上添加
+   
    ```java
    @EnableElasticsearchRepositories(basePackages = "com.co.core.es")
    public class CoreApplication {
@@ -279,9 +287,9 @@ public class RiskServiceApplication implements CommandLineRunner {
        }
    }
    ```
-   
-3. 编写pojo
 
+4. 编写pojo
+   
    ```java
    package com.co.core.es;
    
@@ -347,40 +355,39 @@ public class RiskServiceApplication implements CommandLineRunner {
    
    //    @Field(value = CONTENT_JSON,type = FieldType.Text)
        private String contentJson;
-   
-   
-       public static final String ARTICLE_ID = "article_id";
-       public static final String ARTICLE_TYPE = "article_type";
-       public static final String COMMENT_NUM = "comment_num";
-       public static final String SOURCE = "source";
-       public static final String LANGUAGE_ID = "language_id";
-       public static final String TITLE = "title";
-       public static final String CONTENT = "content";
-       public static final String UPDATE_TIME = "update_time";
-       public static final String ISSUE_TIME = "issue_time";
-       public static final String VISIT_NUM = "visit_num";
-       public static final String IS_SOURCE_HIDE = "is_source_hide";
-       public static final String CONTENT_JSON = "content_json";
-   
-   }
-   
-   
    ```
 
+```java
+   public static final String ARTICLE_ID = "article_id";
+   public static final String ARTICLE_TYPE = "article_type";
+   public static final String COMMENT_NUM = "comment_num";
+   public static final String SOURCE = "source";
+   public static final String LANGUAGE_ID = "language_id";
+   public static final String TITLE = "title";
+   public static final String CONTENT = "content";
+   public static final String UPDATE_TIME = "update_time";
+   public static final String ISSUE_TIME = "issue_time";
+   public static final String VISIT_NUM = "visit_num";
+   public static final String IS_SOURCE_HIDE = "is_source_hide";
+   public static final String CONTENT_JSON = "content_json";
+```
+
+   }
+
+```java
 4. 编写Repository
 
-   ```java
-   package com.co.core.es;
-   
-   import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-   
-   public interface ComprehensiveSearchRepository extends ElasticsearchRepository<ComprehensiveSearch,String> {
-   }
-   
-   ```
+```java
+package com.co.core.es;
+
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
+public interface ComprehensiveSearchRepository extends ElasticsearchRepository<ComprehensiveSearch,String> {
+}
+```
 
 5. 查询es
-
+   
    ```java
        @Resource
        private ComprehensiveSearchRepository repository;
@@ -418,4 +425,41 @@ public class RiskServiceApplication implements CommandLineRunner {
            return page;
        }
    ```
+
+## 引用本地jar包
+
+1. 加载依赖
+
+```xml
+        <dependency>
+            <groupId>com.co</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/common-0.0.2-SNAPSHOT.jar</systemPath>
+        </dependency>
+```
+
+2. 配置打包
+
+```xml
+    <build>
+        <finalName>news</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
 

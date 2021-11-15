@@ -27,10 +27,10 @@ theme:
 
 ```shell
 {%- block footer %}
-	<hr>
-	{%- if config.copyright %}
-		<p>{{ config.copyright }}</p>
-	{%- endif %}
+    <hr>
+    {%- if config.copyright %}
+        <p>{{ config.copyright }}</p>
+    {%- endif %}
     <!--<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>-->
 {%- endblock %}
 ```
@@ -183,19 +183,19 @@ markdown_extensions:
 
 markdown源码
 
-````markdown
+```markdown
     ```flow
     st=>start: 开始
     rain?=>condition: 今天有雨吗？
     takeAnUmbrella=>operation: 带伞
     go=>operation: 出门
     e=>end: 结束
-  
+
     st->rain?
     rain?(yes)->takeAnUmbrella->go
     rain?(no)->go->e
-    ```
-````
+```
+```
 
 显示效果
 
@@ -205,7 +205,7 @@ rain?=>condition: 今天有雨吗？
 takeAnUmbrella=>operation: 带伞
 go=>operation: 出门
 e=>end: 结束
-  
+
 st->rain?
 rain?(yes)->takeAnUmbrella->go
 rain?(no)->go->e
@@ -219,4 +219,4 @@ mkdocs gh-deploy --force
 
 会生成gh-pages分支，在github中设置部署分支即可
 
-![](assets/20210817_185324_image.png)
+![](https://listener.oss-cn-beijing.aliyuncs.com/blog/20210817_185324_image.png)

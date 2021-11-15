@@ -1,6 +1,7 @@
 # mybatis配置
 
 ## 按主键操作数据方法生成
+
 ```xml
         <table tableName="app_functions"
                domainObjectName="AppFunctions"
@@ -20,8 +21,11 @@
             <columnOverride column="app_type" property="appType" javaType="java.lang.Integer"/>
         </table>
 ```
+
 ## 使用驼峰命名
+
 xml配置
+
 ```xml
         <!-- targetPackage：生成的实体类所在的包 -->
         <!-- targetProject：生成的实体类所在的硬盘位置 -->
@@ -39,7 +43,9 @@ xml配置
             <property name="useActualColumnNames" value="false" />
         </javaModelGenerator>
 ```
+
 yml中配置
+
 ```yaml
 mybatis:
   mapper-locations: classpath:/mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
@@ -47,4 +53,3 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true # 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题
 ```
-

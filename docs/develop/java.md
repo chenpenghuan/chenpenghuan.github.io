@@ -16,18 +16,18 @@
         System.out.print(list.stream().collect(Collectors.summarizingInt(value -> value)).getSum());
         //或者
         map.entrySet().stream().mapToInt(x ->x.getValue()).sum()
-        
 ```
+
 ### map求最小值
 
 ```java
-				map.entrySet().stream().sorted(
-					Comparator.comparingInt(
-						x -> x.getValue()
-					)
-				).findFirst().get().getValue()
-				//或者
-				map.entrySet().stream().max(Comparator.comparingInt(x -> x.getValue())).get().getValue()
+                map.entrySet().stream().sorted(
+                    Comparator.comparingInt(
+                        x -> x.getValue()
+                    )
+                ).findFirst().get().getValue()
+                //或者
+                map.entrySet().stream().max(Comparator.comparingInt(x -> x.getValue())).get().getValue()
 ```
 
 ### list转map
