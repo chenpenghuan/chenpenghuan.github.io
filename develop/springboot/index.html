@@ -423,6 +423,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ideacannot-resolve-symbol-xxx" title="idea报Cannot resolve symbol xxx" class="md-nav__link">
+    idea报Cannot resolve symbol xxx
+  </a>
+  
+</li>
+      
       
       
       
@@ -627,6 +634,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ideacannot-resolve-symbol-xxx" title="idea报Cannot resolve symbol xxx" class="md-nav__link">
+    idea报Cannot resolve symbol xxx
+  </a>
+  
+</li>
+      
       
       
       
@@ -651,7 +665,7 @@
 </ol>
 <div class="highlight"><pre><span></span><code>mvn install -Dmaven.test.skip<span class="o">=</span><span class="nb">true</span> 
 <span class="nb">cd</span> target
- java -jar xxxx.jar
+java -jar xxxx.jar
 </code></pre></div>
 <ol>
 <li>mvn直接运行</li>
@@ -1060,6 +1074,10 @@ mvn dependency:analyze
         <span class="nt">&lt;/plugins&gt;</span>
     <span class="nt">&lt;/build&gt;</span>
 </code></pre></div>
+<h2 id="ideacannot-resolve-symbol-xxx">idea报Cannot resolve symbol xxx</h2>
+<p>IDEA 无法识别同一个 package 里的其他类，将其显示为红色，但是 compile 没有问题。鼠标放上去后显示 “Cannot resolve symbol xxx”，重启 IDEA ，重新 sync gradle，Clean build 都没有用。</p>
+<p>多半是因为 IDEA 之前发生了错误，某些 setting 出了问题。解决方法如下：</p>
+<p>点击菜单中的 File -&gt; Invalidate Caches / Restart，然后点击对话框中的 “Invalidate and Restart”，清空 cache 并且重启。语法就会正确的高亮了。</p>
                 
                   
                 
