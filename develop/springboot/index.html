@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-3.0.3">
     
     
       
@@ -257,6 +257,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/idea%E6%BF%80%E6%B4%BB/" title="Mac idea激活" class="md-nav__link">
+      Mac idea激活
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -423,13 +435,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ideacannot-resolve-symbol-xxx" title="idea报Cannot resolve symbol xxx" class="md-nav__link">
-    idea报Cannot resolve symbol xxx
-  </a>
-  
-</li>
-      
       
       
       
@@ -461,6 +466,18 @@
   <li class="md-nav__item">
     <a href="../docker/" title="docker" class="md-nav__link">
       docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题" class="md-nav__link">
+      面试题
     </a>
   </li>
 
@@ -634,13 +651,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#ideacannot-resolve-symbol-xxx" title="idea报Cannot resolve symbol xxx" class="md-nav__link">
-    idea报Cannot resolve symbol xxx
-  </a>
-  
-</li>
-      
       
       
       
@@ -665,7 +675,7 @@
 </ol>
 <div class="highlight"><pre><span></span><code>mvn install -Dmaven.test.skip<span class="o">=</span><span class="nb">true</span> 
 <span class="nb">cd</span> target
-java -jar xxxx.jar
+ java -jar xxxx.jar
 </code></pre></div>
 <ol>
 <li>mvn直接运行</li>
@@ -701,27 +711,27 @@ mvn dependency:analyze
 <div class="highlight"><pre><span></span><code><span class="nd">@Cacheable</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;people#${select.cache.timeout:1800}#${select.cache.refresh:600}&quot;</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&quot;#person.id&quot;</span><span class="p">,</span> <span class="n">sync</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="jackson">jackson配置</h2>
-<div class="highlight"><pre><span></span><code>  <span class="nt">jackson</span><span class="p">:</span>
-    <span class="nt">date-format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yyyy-MM-dd HH:mm:ss</span>
-    <span class="nt">time-zone</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GMT+8</span>
-    <span class="nt">serialization</span><span class="p">:</span>
-      <span class="c1">#格式化输出</span>
-      <span class="nt">indent_output</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-      <span class="c1">#忽略无法转换的对象</span>
-      <span class="nt">fail_on_empty_beans</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-      <span class="c1">#忽略null</span>
-    <span class="nt">default-property-inclusion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">non_null</span>
-    <span class="nt">deserialization</span><span class="p">:</span>
-      <span class="nt">fail_on_unknown_properties</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-    <span class="nt">parser</span><span class="p">:</span>
-      <span class="nt">allow_unquoted_control_chars</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-      <span class="nt">allow_single_quotes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">jackson</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">date-format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yyyy-MM-dd HH:mm:ss</span><span class="w"></span>
+<span class="w">    </span><span class="nt">time-zone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GMT+8</span><span class="w"></span>
+<span class="w">    </span><span class="nt">serialization</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#格式化输出</span><span class="w"></span>
+<span class="w">      </span><span class="nt">indent_output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#忽略无法转换的对象</span><span class="w"></span>
+<span class="w">      </span><span class="nt">fail_on_empty_beans</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">      </span><span class="c1">#忽略null</span><span class="w"></span>
+<span class="w">    </span><span class="nt">default-property-inclusion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">non_null</span><span class="w"></span>
+<span class="w">    </span><span class="nt">deserialization</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">fail_on_unknown_properties</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">    </span><span class="nt">parser</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">allow_unquoted_control_chars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">allow_single_quotes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_5">多语言适配</h2>
 <p>使用springboot内置的i18n，项目配置文件中添加</p>
-<div class="highlight"><pre><span></span><code>  <span class="nt">messages</span><span class="p">:</span>
-    <span class="nt">basename</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">i18n.common,i18n.bonus</span>
-    <span class="nt">cache-duration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">messages</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">basename</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i18n.common,i18n.bonus</span><span class="w"></span>
+<span class="w">    </span><span class="nt">cache-duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_6">中间件配置</h2>
 <p>定义注解</p>
@@ -892,11 +902,11 @@ mvn dependency:analyze
 <ol>
 <li>yml添加配置</li>
 </ol>
-<div class="highlight"><pre><span></span><code>  <span class="nt">elasticsearch</span><span class="p">:</span>
-    <span class="nt">rest</span><span class="p">:</span>
-      <span class="nt">uris</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://search.es.hk-prod-1.adm.mmjj.info:9200</span>
-      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GMDZk8T910fS2v70ethI90d7</span>
-      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">elastic</span>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">rest</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uris</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://search.es.hk-prod-1.adm.mmjj.info:9200</span><span class="w"></span>
+<span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GMDZk8T910fS2v70ethI90d7</span><span class="w"></span>
+<span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">elastic</span><span class="w"></span>
 </code></pre></div>
 <ol>
 <li>指定es的package，在启动类上添加</li>
@@ -1074,10 +1084,6 @@ mvn dependency:analyze
         <span class="nt">&lt;/plugins&gt;</span>
     <span class="nt">&lt;/build&gt;</span>
 </code></pre></div>
-<h2 id="ideacannot-resolve-symbol-xxx">idea报Cannot resolve symbol xxx</h2>
-<p>IDEA 无法识别同一个 package 里的其他类，将其显示为红色，但是 compile 没有问题。鼠标放上去后显示 “Cannot resolve symbol xxx”，重启 IDEA ，重新 sync gradle，Clean build 都没有用。</p>
-<p>多半是因为 IDEA 之前发生了错误，某些 setting 出了问题。解决方法如下：</p>
-<p>点击菜单中的 File -&gt; Invalidate Caches / Restart，然后点击对话框中的 “Invalidate and Restart”，清空 cache 并且重启。语法就会正确的高亮了。</p>
                 
                   
                 
@@ -1173,7 +1179,7 @@ mvn dependency:analyze
           
         
       
-      <script>app.initialize({version:"1.2.2",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.2.3",url:{base:"../.."}})</script>
       
         <script src="../../js/raphael.min.js"></script>
       

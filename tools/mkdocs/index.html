@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-3.0.3">
     
     
       
@@ -318,6 +318,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../idea%E6%BF%80%E6%B4%BB/" title="Mac idea激活" class="md-nav__link">
+      Mac idea激活
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -398,6 +410,18 @@
   <li class="md-nav__item">
     <a href="../../develop/docker/" title="docker" class="md-nav__link">
       docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题" class="md-nav__link">
+      面试题
     </a>
   </li>
 
@@ -534,11 +558,11 @@
                 
                 <h1 id="mkdocs">mkdocs</h1>
 <h2 id="_1">文档目录配置</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">文档</span>
-<span class="nt">pages</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">主页</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index.md</span>
-    <span class="p p-Indicator">-</span> <span class="nt">工作</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">md1.md</span><span class="p p-Indicator">,</span><span class="nv">md2.md</span><span class="p p-Indicator">]</span>
-    <span class="p p-Indicator">-</span> <span class="nt">关于</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">about.md</span>
+<div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">文档</span><span class="w"></span>
+<span class="nt">pages</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">主页</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">工作</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">md1.md</span><span class="p p-Indicator">,</span><span class="nv">md2.md</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">关于</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">about.md</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_2">自带主题修改</h2>
 <p>修改mkdocs自带的主题</p>
@@ -672,30 +696,30 @@ var uml = (function (converter, className, settings) {
 <li>配置</li>
 </ol>
 <p>mkdocs 1.0版本前是</p>
-<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
-<span class="nt">custom_fences</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flow</span>
-  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span>
-  <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w"></span>
+<span class="nt">custom_fences</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flow</span><span class="w"></span>
+<span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span><span class="w"></span>
+<span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.superfences.fence_code_format</span><span class="w"></span>
 </code></pre></div>
 <p>新版本上面的配置会报错Cannot read property 'key' of null，下面的配置适用于新版本(本站版本1.2.2)</p>
-<div class="highlight"><pre><span></span><code><span class="nt">extra_javascript</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js&#39;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js&#39;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js&#39;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&#39;js/umlconvert.js&#39;</span>
-<span class="nt">markdown_extensions</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">pymdownx.superfences</span><span class="p">:</span>
-      <span class="nt">custom_fences</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flow</span>
-          <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span>
-          <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span>
-        <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sequence</span>
-          <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">uml-sequence-diagram</span>
-          <span class="nt">format</span><span class="p">:</span> <span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span>
+<div class="highlight"><pre><span></span><code><span class="nt">extra_javascript</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;js/umlconvert.js&#39;</span><span class="w"></span>
+<span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.superfences</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">custom_fences</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flow</span><span class="w"></span>
+<span class="w">          </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uml-flowchart</span><span class="w"></span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sequence</span><span class="w"></span>
+<span class="w">          </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uml-sequence-diagram</span><span class="w"></span>
+<span class="w">          </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="kt">!!python/name:pymdownx.superfences.fence_div_format</span><span class="w"></span>
 </code></pre></div>
 <p>效果展示：</p>
 <p>markdown源码</p>
@@ -727,7 +751,7 @@ rain?(no)-&gt;go-&gt;e
 <div class="highlight"><pre><span></span><code>mkdocs gh-deploy --force
 </code></pre></div>
 <p>会生成gh-pages分支，在github中设置部署分支即可</p>
-<p><img alt="" src="https://listener.oss-cn-beijing.aliyuncs.com/blog/20210817_185324_image.png" /></p>
+<p><img alt="" src="https://chenpenghuan.github.io/files/20210817_185324_image.png" /></p>
                 
                   
                 
@@ -823,7 +847,7 @@ rain?(no)-&gt;go-&gt;e
           
         
       
-      <script>app.initialize({version:"1.2.2",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.2.3",url:{base:"../.."}})</script>
       
         <script src="../../js/raphael.min.js"></script>
       

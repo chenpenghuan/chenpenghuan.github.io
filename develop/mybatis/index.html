@@ -38,7 +38,7 @@
         <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-3.0.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-3.0.3">
     
     
       
@@ -257,6 +257,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/idea%E6%BF%80%E6%B4%BB/" title="Mac idea激活" class="md-nav__link">
+      Mac idea激活
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -384,6 +396,18 @@
   <li class="md-nav__item">
     <a href="../docker/" title="docker" class="md-nav__link">
       docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E9%9D%A2%E8%AF%95%E9%A2%98/" title="面试题" class="md-nav__link">
+      面试题
     </a>
   </li>
 
@@ -526,28 +550,28 @@
 </code></pre></div>
 <h2 id="_2">使用驼峰命名</h2>
 <p>xml配置</p>
-<div class="highlight"><pre><span></span><code>        <span class="c">&lt;!-- targetPackage：生成的实体类所在的包 --&gt;</span>
-        <span class="c">&lt;!-- targetProject：生成的实体类所在的硬盘位置 --&gt;</span>
+<div class="highlight"><pre><span></span><code>        <span class="cm">&lt;!-- targetPackage：生成的实体类所在的包 --&gt;</span>
+        <span class="cm">&lt;!-- targetProject：生成的实体类所在的硬盘位置 --&gt;</span>
         <span class="nt">&lt;javaModelGenerator</span> <span class="na">targetPackage=</span><span class="s">&quot;com.coinness.core.dao.db.pojo&quot;</span>
                             <span class="na">targetProject=</span><span class="s">&quot;./src/main/java&quot;</span><span class="nt">&gt;</span>
-            <span class="c">&lt;!-- 是否允许子包 --&gt;</span>
+            <span class="cm">&lt;!-- 是否允许子包 --&gt;</span>
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;enableSubPackages&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-            <span class="c">&lt;!-- 是否对modal添加构造函数 --&gt;</span>
+            <span class="cm">&lt;!-- 是否对modal添加构造函数 --&gt;</span>
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;constructorBased&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-            <span class="c">&lt;!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 --&gt;</span>
+            <span class="cm">&lt;!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 --&gt;</span>
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;trimStrings&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-            <span class="c">&lt;!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 --&gt;</span>
+            <span class="cm">&lt;!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 --&gt;</span>
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;immutable&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-            <span class="c">&lt;!-- 不使用字段名 --&gt;</span>
+            <span class="cm">&lt;!-- 不使用字段名 --&gt;</span>
             <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;useActualColumnNames&quot;</span> <span class="na">value=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
         <span class="nt">&lt;/javaModelGenerator&gt;</span>
 </code></pre></div>
 <p>yml中配置</p>
-<div class="highlight"><pre><span></span><code><span class="nt">mybatis</span><span class="p">:</span>
-  <span class="nt">mapper-locations</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">classpath:/mapper/*.xml</span>  <span class="c1">#注意：一定要对应mapper映射xml文件的所在路径</span>
-  <span class="nt">type-aliases-package</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.coinness.core.dao.db.mapper</span>  <span class="c1"># 注意：对应实体类的路径</span>
-  <span class="nt">configuration</span><span class="p">:</span>
-    <span class="nt">map-underscore-to-camel-case</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题</span>
+<div class="highlight"><pre><span></span><code><span class="nt">mybatis</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mapper-locations</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classpath:/mapper/*.xml</span><span class="w">  </span><span class="c1">#注意：一定要对应mapper映射xml文件的所在路径</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type-aliases-package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">com.coinness.core.dao.db.mapper</span><span class="w">  </span><span class="c1"># 注意：对应实体类的路径</span><span class="w"></span>
+<span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">map-underscore-to-camel-case</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题</span><span class="w"></span>
 </code></pre></div>
                 
                   
@@ -644,7 +668,7 @@
           
         
       
-      <script>app.initialize({version:"1.2.2",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.2.3",url:{base:"../.."}})</script>
       
         <script src="../../js/raphael.min.js"></script>
       
