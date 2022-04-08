@@ -6,7 +6,7 @@
 
 ## 激活步骤：
 
-1. 下载fineagent.jar，放到你的主目录下，如/Users/someone/fineagent.jar![jetbrains.zip](https://chenpenghuan.github.io/files//img/Jetbrains.zip)
+1. 下载[jetbrains.zip](https://chenpenghuan.github.io/files//img/Jetbrains.zip)并解压得到fineagent.jar，放到你的主目录下，如/Users/someone/fineagent.jar[](https://chenpenghuan.github.io/files//img/Jetbrains.zip)
 2. 编辑idea软件`/Applications/IntelliJ\ IDEA.app/Contents/bin/idea.vmoptions`文件，末尾加入如下代码
 
 ```
