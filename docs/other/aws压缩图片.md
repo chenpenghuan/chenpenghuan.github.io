@@ -2,7 +2,7 @@
 
 本文介绍两种方式，网关压缩图片，和上传时压缩图片
 
-[代码附件](https://listener.oss-cn-beijing.aliyuncs.com/blog/CreateThumbnail.zip)
+[代码附件](https://chenpenghuan.github.io/files/CreateThumbnail.zip)
 
 ## aws网关压缩图片
 
@@ -31,9 +31,9 @@ $ zip -r GatewayResize.zip .
 
 ##### 在AWS Lambda仪表板上载压缩文件
 
-![image-20210821154616916](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821154616916.png)
+![image-20210821154616916](https://chenpenghuan.github.io/files/image-20210821154616916.png)
 
-![image-20210821155706927](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821155706927.png)
+![image-20210821155706927](https://chenpenghuan.github.io/files/image-20210821155706927.png)
 
 ##### 设置处理程序地址
 
@@ -43,31 +43,31 @@ $ zip -r GatewayResize.zip .
 
 本文脚本使用到的配置BUCKET_DOMAIN和BUCKET_NAME（这里的BUCKET_NAME应该不必写死，本文代码库中上传时压缩脚本CreateThumbnail.py中有获取方式，只是大多生产环境只使用一个bucket并使用自己的域名，因此本文使用固定bucket）
 
-![image-20210821155749285](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821155749285.png)
+![image-20210821155749285](https://chenpenghuan.github.io/files/image-20210821155749285.png)
 
 #### 网关配置
 
 控制台搜索api gateway并点击进入
 
-![loading-ag-850](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821154916379.png)
+![loading-ag-850](https://chenpenghuan.github.io/files/image-20210821154916379.png)
 
 创建api
 
-![image-20210821155315308](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821155315308.png)
+![image-20210821155315308](https://chenpenghuan.github.io/files/image-20210821155315308.png)
 
-![API网关配置](https://listener.oss-cn-beijing.aliyuncs.com/blog/api-gateway-configuration.png)
+![API网关配置](https://chenpenghuan.github.io/files/api-gateway-configuration.png)
 
 #### 网关测试
 
-![image-20210821160500352](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821160500352.png)
+![image-20210821160500352](https://chenpenghuan.github.io/files/image-20210821160500352.png)
 
 查询字符串写入get参数，key=xxx.png&size=200x200，返回code码为301，正文为图片压缩后的访问地址，下次访问即可直接访问返回的地址，不用经过网关
 
 #### 发布api到公网
 
-![image-20210821174350316](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821174350316.png)
+![image-20210821174350316](https://chenpenghuan.github.io/files/image-20210821174350316.png)
 
-发布后即可得到公网地址![image-20210821174457313](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821174457313.png)
+发布后即可得到公网地址![image-20210821174457313](https://chenpenghuan.github.io/files/image-20210821174457313.png)
 
 ## aws上传时压缩图片
 
@@ -81,13 +81,13 @@ $ zip -r GatewayResize.zip .
 
 点击添加触发器
 
-![image-20210821162147899](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821162147899.png)
+![image-20210821162147899](https://chenpenghuan.github.io/files/image-20210821162147899.png)
 
-![image-20210821162447130](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821162447130.png)
+![image-20210821162447130](https://chenpenghuan.github.io/files/image-20210821162447130.png)
 
 #### 测试触发器
 
-![image-20210821162728532](https://listener.oss-cn-beijing.aliyuncs.com/blog/image-20210821162728532.png)
+![image-20210821162728532](https://chenpenghuan.github.io/files/image-20210821162728532.png)
 
 将json中的example-bucket换成目标bucket，将test/key换成s3中存在的文件路径，点击测试，
 

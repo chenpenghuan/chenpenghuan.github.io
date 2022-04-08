@@ -219,4 +219,4 @@ mkdocs gh-deploy --force
 
 会生成gh-pages分支，在github中设置部署分支即可
 
-![](https://listener.oss-cn-beijing.aliyuncs.com/blog/20210817_185324_image.png)
+![](https://chenpenghuan.github.io/files/20210817_185324_image.png)

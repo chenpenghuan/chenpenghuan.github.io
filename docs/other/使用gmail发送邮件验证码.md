@@ -6,7 +6,7 @@
 
 ## 设置二步验证
 
-![2021-08-25-10-26-00-image](https://listener.oss-cn-beijing.aliyuncs.com/blog/2021-08-25-10-26-00-image.png)
+![2021-08-25-10-26-00-image](https://chenpenghuan.github.io/files/2021-08-25-10-26-00-image.png)
 
 ## 设置专用密码
 
