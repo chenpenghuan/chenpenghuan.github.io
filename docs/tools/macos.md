@@ -58,3 +58,41 @@ brew list
 # It will pin the formula to the current version
 brew pin <formula>
 ```
+
+## maven报错 
+`The JAVA_HOME environment variable is not defined correctly` 
+
+解决办法：
+
+```shell
+# On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.
+export JAVA_HOME=$(/usr/libexec/java_home)
+# Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.
+export JAVA_HOME=$(/usr/libexec/java_home)
+```
+
+## 飞塔vpn开源替代方案
+
+安装openfortivpn
+
+```shell
+brew install openfortivpn
+```
+
+编辑config文件`/usr/local/etc/openfortivpn/openfortivpn/config`
+
+```shell
+host = xxx
+username = xxx
+password = xxx
+trusted-cert = xxx
+```
+
+登录vpn
+
+```shell
+sudo openfortivpn
+```
+
+
+
