@@ -53,3 +53,41 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true # 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题
 ```
+
+## mybatis-plus@Select查询list，all elements are null的问题
+
+需要在mapper接口中指定resultMap，代码如下
+
+```java
+package com.xxx.xxx.provider.dao.mapper;
+ */
+public interface XXXMappper extends BaseMapper<XXX> {
+
+    @Select("select * from xxx WHERE f_deleted=1")
+    @ResultMap("BaseResultMap")
+    List<LiveGroup> getGroupDeleted();
+}
+```
+
+
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.xxx.provider.dao.mapper.XXXMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xxx.xxx.provider.dao.entity.XXX">
+        <id column="f_id" property="id" />
+        <result column="f_deleted" property="deleted" />
+        <result column="f_recommend" property="recommend" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        f_id, f_deleted, f_recommend
+    </sql>
+
+</mapper>
+```
+
