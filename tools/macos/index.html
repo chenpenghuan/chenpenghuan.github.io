@@ -303,6 +303,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#maven" title="maven报错" class="md-nav__link">
+    maven报错
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn" title="飞塔vpn开源替代方案" class="md-nav__link">
+    飞塔vpn开源替代方案
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charles" title="charles抓包配置" class="md-nav__link">
+    charles抓包配置
+  </a>
+  
+</li>
+      
       
       
       
@@ -579,6 +600,27 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#maven" title="maven报错" class="md-nav__link">
+    maven报错
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn" title="飞塔vpn开源替代方案" class="md-nav__link">
+    飞塔vpn开源替代方案
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charles" title="charles抓包配置" class="md-nav__link">
+    charles抓包配置
+  </a>
+  
+</li>
+      
       
       
       
@@ -641,6 +683,37 @@ brew list
 <span class="c1"># It will pin the formula to the current version</span>
 brew pin &lt;formula&gt;
 </code></pre></div>
+<h2 id="maven">maven报错</h2>
+<p><code>The JAVA_HOME environment variable is not defined correctly</code> </p>
+<p>解决办法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.</span>
+<span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
+<span class="c1"># Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.</span>
+<span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
+</code></pre></div>
+<h2 id="vpn">飞塔vpn开源替代方案</h2>
+<p>安装openfortivpn</p>
+<div class="highlight"><pre><span></span><code>brew install openfortivpn
+</code></pre></div>
+<p>编辑config文件<code>/usr/local/etc/openfortivpn/openfortivpn/config</code></p>
+<div class="highlight"><pre><span></span><code><span class="nv">host</span> <span class="o">=</span> xxx
+<span class="nv">username</span> <span class="o">=</span> xxx
+<span class="nv">password</span> <span class="o">=</span> xxx
+trusted-cert <span class="o">=</span> xxx
+</code></pre></div>
+<p>登录vpn</p>
+<div class="highlight"><pre><span></span><code>sudo openfortivpn
+</code></pre></div>
+<h2 id="charles">charles抓包配置</h2>
+<ol>
+<li>安装charles</li>
+<li>电脑上安装证书<code>help&gt;SSL Proxying&gt;Install Charles root Certificate</code></li>
+<li>手机上安装证书 <code>help&gt;SSL Proxying&gt;install charles ...................browser</code></li>
+<li>设置抓包域名点击proxy&gt;SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用*号代替</li>
+</ol>
+<blockquote>
+<p>ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—&gt;通用—&gt;  关于本机—&gt;证书信任设置，信任该证书后安装便可抓https请求了。</p>
+</blockquote>
                 
                   
                 

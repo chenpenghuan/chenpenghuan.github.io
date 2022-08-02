@@ -389,6 +389,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#idealombok" title="idea中lombok报错" class="md-nav__link">
+    idea中lombok报错
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -588,6 +595,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#idealombok" title="idea中lombok报错" class="md-nav__link">
+    idea中lombok报错
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -653,6 +667,15 @@
 </code></pre></div>
 <h3 id="listobjectobjectlist">list\&lt;object>取object某个属性的list</h3>
 <div class="highlight"><pre><span></span><code>        <span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">hitLogIdList</span> <span class="o">=</span> <span class="n">appealLogList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">AppealLog</span><span class="p">::</span><span class="n">getHitLogId</span><span class="p">).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</code></pre></div>
+<h3 id="idealombok">idea中lombok报错</h3>
+<p>lombok报错</p>
+<div class="highlight"><pre><span></span><code>java: 不兼容的类型: 无法推断java.util.ArrayList&lt;&gt;的类型参数
+    原因: 不存在类型变量E的实例, 以使java.util.ArrayList&lt;E&gt;与lombok.val一致
+</code></pre></div>
+<p>解决办法：</p>
+<p><img alt="lombok编译错误解决" src="https://chenpenghuan.github.io/files//img/20220802165524.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="n">Djps</span><span class="p">.</span><span class="na">track</span><span class="p">.</span><span class="na">ap</span><span class="p">.</span><span class="na">dependencies</span><span class="o">=</span><span class="kc">false</span>
 </code></pre></div>
                 
                   

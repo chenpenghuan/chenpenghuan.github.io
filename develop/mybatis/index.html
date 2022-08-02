@@ -377,6 +377,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mybatis-plusselectlistall-elements-are-null" title="mybatis-plus@Select查询list，all elements are null的问题" class="md-nav__link">
+    mybatis-plus@Select查询list，all elements are null的问题
+  </a>
+  
+</li>
+      
       
       
       
@@ -511,6 +518,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mybatis-plusselectlistall-elements-are-null" title="mybatis-plus@Select查询list，all elements are null的问题" class="md-nav__link">
+    mybatis-plus@Select查询list，all elements are null的问题
+  </a>
+  
+</li>
+      
       
       
       
@@ -572,6 +586,35 @@
 <span class="w">  </span><span class="nt">type-aliases-package</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">com.coinness.core.dao.db.mapper</span><span class="w">  </span><span class="c1"># 注意：对应实体类的路径</span><span class="w"></span>
 <span class="w">  </span><span class="nt">configuration</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="nt">map-underscore-to-camel-case</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 查询语句自动转驼峰，解决定义@Select查出数据字段为null的问题</span><span class="w"></span>
+</code></pre></div>
+<h2 id="mybatis-plusselectlistall-elements-are-null">mybatis-plus@Select查询list，all elements are null的问题</h2>
+<p>需要在mapper接口中指定resultMap，代码如下</p>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nn">com.xxx.xxx.provider.dao.mapper</span><span class="p">;</span>
+ <span class="o">*/</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">XXXMappper</span> <span class="kd">extends</span> <span class="n">BaseMapper</span><span class="o">&lt;</span><span class="n">XXX</span><span class="o">&gt;</span> <span class="p">{</span>
+
+    <span class="nd">@Select</span><span class="p">(</span><span class="s">&quot;select * from xxx WHERE f_deleted=1&quot;</span><span class="p">)</span>
+    <span class="nd">@ResultMap</span><span class="p">(</span><span class="s">&quot;BaseResultMap&quot;</span><span class="p">)</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">LiveGroup</span><span class="o">&gt;</span> <span class="nf">getGroupDeleted</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&quot;com.xxx.xxx.provider.dao.mapper.XXXMapper&quot;</span><span class="nt">&gt;</span>
+
+    <span class="cm">&lt;!-- 通用查询映射结果 --&gt;</span>
+    <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&quot;BaseResultMap&quot;</span> <span class="na">type=</span><span class="s">&quot;com.xxx.xxx.provider.dao.entity.XXX&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;id</span> <span class="na">column=</span><span class="s">&quot;f_id&quot;</span> <span class="na">property=</span><span class="s">&quot;id&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&quot;f_deleted&quot;</span> <span class="na">property=</span><span class="s">&quot;deleted&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&quot;f_recommend&quot;</span> <span class="na">property=</span><span class="s">&quot;recommend&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/resultMap&gt;</span>
+
+    <span class="cm">&lt;!-- 通用查询结果列 --&gt;</span>
+    <span class="nt">&lt;sql</span> <span class="na">id=</span><span class="s">&quot;Base_Column_List&quot;</span><span class="nt">&gt;</span>
+        f_id, f_deleted, f_recommend
+    <span class="nt">&lt;/sql&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
 </code></pre></div>
                 
                   
