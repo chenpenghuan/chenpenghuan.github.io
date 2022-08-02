@@ -244,28 +244,35 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="文档目录配置" class="md-nav__link">
+  <a href="#_1" title="环境配置" class="md-nav__link">
+    环境配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="文档目录配置" class="md-nav__link">
     文档目录配置
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="自带主题修改" class="md-nav__link">
+  <a href="#_3" title="自带主题修改" class="md-nav__link">
     自带主题修改
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="添加流程图支持" class="md-nav__link">
+  <a href="#_4" title="添加流程图支持" class="md-nav__link">
     添加流程图支持
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="发布文档" class="md-nav__link">
+  <a href="#_5" title="发布文档" class="md-nav__link">
     发布文档
   </a>
   
@@ -512,28 +519,35 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="文档目录配置" class="md-nav__link">
+  <a href="#_1" title="环境配置" class="md-nav__link">
+    环境配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="文档目录配置" class="md-nav__link">
     文档目录配置
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="自带主题修改" class="md-nav__link">
+  <a href="#_3" title="自带主题修改" class="md-nav__link">
     自带主题修改
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="添加流程图支持" class="md-nav__link">
+  <a href="#_4" title="添加流程图支持" class="md-nav__link">
     添加流程图支持
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="发布文档" class="md-nav__link">
+  <a href="#_5" title="发布文档" class="md-nav__link">
     发布文档
   </a>
   
@@ -557,14 +571,19 @@
                 
                 
                 <h1 id="mkdocs">mkdocs</h1>
-<h2 id="_1">文档目录配置</h2>
+<h2 id="_1">环境配置</h2>
+<ol>
+<li>本地安装<code>pip install ``-``r requirements.txt</code></li>
+<li>使用venv<code>source venv/bin/activate</code></li>
+</ol>
+<h2 id="_2">文档目录配置</h2>
 <div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">文档</span><span class="w"></span>
 <span class="nt">pages</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">主页</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span><span class="w"></span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">工作</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">md1.md</span><span class="p p-Indicator">,</span><span class="nv">md2.md</span><span class="p p-Indicator">]</span><span class="w"></span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">关于</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">about.md</span><span class="w"></span>
 </code></pre></div>
-<h2 id="_2">自带主题修改</h2>
+<h2 id="_3">自带主题修改</h2>
 <p>修改mkdocs自带的主题</p>
 <ol>
 <li>复制mkdocs的主题文件夹至自定义主题文件夹custom_theme下</li>
@@ -585,7 +604,7 @@
     &lt;!--&lt;p&gt;Documentation built with &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://www.mkdocs.org/&quot;</span>&gt;MkDocs&lt;/a&gt;.&lt;/p&gt;--&gt;
 <span class="o">{</span>%- endblock %<span class="o">}</span>
 </code></pre></div>
-<h2 id="_3">添加流程图支持</h2>
+<h2 id="_4">添加流程图支持</h2>
 <ol>
 <li>安装pymdown-extensions扩展</li>
 </ol>
@@ -747,7 +766,7 @@ st-&gt;rain?
 rain?(yes)-&gt;takeAnUmbrella-&gt;go
 rain?(no)-&gt;go-&gt;e
 </code></pre></div></p>
-<h2 id="_4">发布文档</h2>
+<h2 id="_5">发布文档</h2>
 <div class="highlight"><pre><span></span><code>mkdocs gh-deploy --force
 </code></pre></div>
 <p>会生成gh-pages分支，在github中设置部署分支即可</p>
