@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://chenpenghuan.github.io/develop/mkdocs/</loc>
+         <lastmod>2022-08-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://chenpenghuan.github.io/develop/mybatis/</loc>
          <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
