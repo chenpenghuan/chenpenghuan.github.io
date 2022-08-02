@@ -61,3 +61,21 @@
 ```java
         List<Long> hitLogIdList = appealLogList.stream().map(AppealLog::getHitLogId).collect(Collectors.toList());
 ```
+
+### idea中lombok报错
+
+lombok报错
+
+```
+java: 不兼容的类型: 无法推断java.util.ArrayList<>的类型参数
+    原因: 不存在类型变量E的实例, 以使java.util.ArrayList<E>与lombok.val一致
+```
+
+解决办法：
+
+![lombok编译错误解决](https://chenpenghuan.github.io/files//img/20220802165524.png)
+
+```java
+-Djps.track.ap.dependencies=false
+```
+
