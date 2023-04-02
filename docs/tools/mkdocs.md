@@ -4,6 +4,7 @@
 
 1. 本地安装`pip install ``-``r requirements.txt`
 2. 使用venv `source venv/bin/activate`
+3. 退出环境 `deactivate`
 
 ## 文档目录配置
 
