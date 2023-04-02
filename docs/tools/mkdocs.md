@@ -1,5 +1,10 @@
 # mkdocs
 
+## 环境配置
+
+1. 本地安装`pip install ``-``r requirements.txt`
+2. 使用venv `source venv/bin/activate`
+
 ## 文档目录配置
 
 ```yaml
