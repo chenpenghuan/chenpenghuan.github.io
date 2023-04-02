@@ -2,9 +2,13 @@
 
 ## 环境配置
 
-1. 本地安装`pip install ``-``r requirements.txt`
-2. 使用venv `source venv/bin/activate`
-3. 退出环境 `deactivate`
+1. 安装virtualenv `pip install virtualenv`，在当前项目目录下创建python虚拟环境 `virtualenv -p /usr/bin/python3 venv`
+2. 激活venv `source venv/bin/activate`
+3. 安装依赖`pip install ``-``r requirements.txt`
+4. 使用venv `source venv/bin/activate`
+5. 退出even `deactivate`
+
+>
 
 ## 文档目录配置
 
