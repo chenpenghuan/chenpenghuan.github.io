@@ -13,7 +13,7 @@
         <meta name="description" content="A Material Design theme for MkDocs">
       
       
-        <link rel="canonical" href="https://chenpenghuan.github.io/develop/mysql%E4%BC%98%E5%8C%96/">
+        <link rel="canonical" href="https://chenpenghuan.github.io/develop/mkdocs/">
       
       
         <meta name="author" content="chen">
@@ -42,7 +42,7 @@
     
     
       
-        <title>mysql优化 - chen</title>
+        <title>mkdocs发布 - chen</title>
       
     
     
@@ -87,7 +87,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#mysql" tabindex="1" class="md-skip">
+      <a href="#mkdocs" tabindex="1" class="md-skip">
         跳转至
       </a>
     
@@ -113,7 +113,7 @@
                 chen
               </span>
               <span class="md-header-nav__topic">
-                mysql优化
+                mkdocs发布
               </span>
             
           
@@ -447,50 +447,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#null" title="尽量不使用null" class="md-nav__link">
-    尽量不使用null
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" title="尽量使用整数而不是字符串" class="md-nav__link">
-    尽量使用整数而不是字符串
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" title="字符串尽量使用前缀索引" class="md-nav__link">
-    字符串尽量使用前缀索引
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" title="查询不要使用*" class="md-nav__link">
-    查询不要使用*
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" title="表分区" class="md-nav__link">
-    表分区
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -502,17 +458,11 @@
               
                 
                 
-                <h1 id="mysql">mysql优化</h1>
-<h2 id="null">尽量不使用null</h2>
-<p>查询时需要判断null，导致查询变慢</p>
-<h2 id="_1">尽量使用整数而不是字符串</h2>
-<p>整数比字符串索引要快，在CPU上，整数比较一个周期搞定，而字符串需要循环比较单个字符</p>
-<h2 id="_2">字符串尽量使用前缀索引</h2>
-<p>索引量小，查询快</p>
-<h2 id="_3">查询不要使用*</h2>
-<p>尽量使用索引中已有的字段，避免回表</p>
-<h2 id="_4">表分区</h2>
-<p>分区存储，自动路由</p>
+                <h1 id="mkdocs">mkdocs发布</h1>
+<ol>
+<li>本地安装<code>pip install ``-``r requirements.txt</code></li>
+<li>使用venv<code>source venv/bin/activate</code></li>
+</ol>
                 
                   
                 

@@ -278,6 +278,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#github" title="github图床" class="md-nav__link">
+    github图床
+  </a>
+  
+</li>
+      
       
       
       
@@ -553,6 +560,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#github" title="github图床" class="md-nav__link">
+    github图床
+  </a>
+  
+</li>
+      
       
       
       
@@ -573,9 +587,13 @@
                 <h1 id="mkdocs">mkdocs</h1>
 <h2 id="_1">环境配置</h2>
 <ol>
-<li>本地安装<code>pip install -r requirements.txt</code></li>
-<li>使用venv<code>source venv/bin/activate</code></li>
+<li>安装virtualenv <code>pip install virtualenv</code>，在当前项目目录下创建python虚拟环境 <code>virtualenv -p /usr/bin/python3 venv</code></li>
+<li>激活venv <code>source venv/bin/activate</code></li>
+<li>安装依赖<code>pip install ``-``r requirements.txt</code></li>
+<li>使用venv <code>source venv/bin/activate</code></li>
+<li>退出even <code>deactivate</code></li>
 </ol>
+<blockquote></blockquote>
 <h2 id="_2">文档目录配置</h2>
 <div class="highlight"><pre><span></span><code><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">文档</span><span class="w"></span>
 <span class="nt">pages</span><span class="p">:</span><span class="w"></span>
@@ -771,6 +789,14 @@ rain?(no)-&gt;go-&gt;e
 </code></pre></div>
 <p>会生成gh-pages分支，在github中设置部署分支即可</p>
 <p><img alt="" src="https://chenpenghuan.github.io/files/20210817_185324_image.png" /></p>
+<h2 id="github">github图床</h2>
+<ol>
+<li>登录github创建repo</li>
+<li>填写仓库资料，确保repo权限为public</li>
+<li>创建上传token，Settings -&gt; Developer settings -&gt; Personal access tokens，勾选repo</li>
+<li>安装picgo，配置图床</li>
+</ol>
+<p><img alt="图床配置" src="http://chenpenghuan.github.io/files/20230416153510.png" /></p>
                 
                   
                 
