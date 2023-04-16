@@ -205,7 +205,7 @@ markdown源码
     rain?(yes)->takeAnUmbrella->go
     rain?(no)->go->e
 ```
-```
+```markdown
 
 显示效果
 
@@ -230,3 +230,12 @@ mkdocs gh-deploy --force
 会生成gh-pages分支，在github中设置部署分支即可
 
 ![](https://chenpenghuan.github.io/files/20210817_185324_image.png)
+
+## github图床
+
+1. 登录github创建repo
+2. 填写仓库资料，确保repo权限为public
+3. 创建上传token，Settings -> Developer settings -> Personal access tokens，勾选repo
+4. 安装picgo，配置图床
+
+![图床配置](http://chenpenghuan.github.io/files/20230416153510.png)
