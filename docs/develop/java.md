@@ -1,5 +1,9 @@
 # java基础
 
+## jdk安装
+
+下载链接 `https://www.injdk.cn/`
+
 ## url特殊字符处理
 
 ```java
