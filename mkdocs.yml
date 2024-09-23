@@ -7,7 +7,7 @@ nav:
 - 工具: [tools/git.md,tools/mkdocs.md,tools/macos.md,tools/zsh.md,tools/港区appleId注册.md,tools/idea激活.md]
 - 开发:
     [develop/k8s.md,develop/java.md,develop/springboot.md,develop/mybatis.md,develop/docker.md,develop/面试题.md]
-- 其他: [other/aws压缩图片.md,other/使用gmail发送邮件验证码.md]
+- 其他: [other/aws压缩图片.md,other/使用gmail发送邮件验证码.md,other/工具推荐.md]
 - 关于: about.md
 plugins:
   - search
