@@ -483,7 +483,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" title="本机安装程序" class="md-nav__link">
+  <a href="#_5" title="网络抓包" class="md-nav__link">
+    网络抓包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="鼠须管输入法配置" class="md-nav__link">
+    鼠须管输入法配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="本机安装程序" class="md-nav__link">
     本机安装程序
   </a>
   
@@ -573,7 +587,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" title="本机安装程序" class="md-nav__link">
+  <a href="#_5" title="网络抓包" class="md-nav__link">
+    网络抓包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="鼠须管输入法配置" class="md-nav__link">
+    鼠须管输入法配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="本机安装程序" class="md-nav__link">
     本机安装程序
   </a>
   
@@ -610,8 +638,188 @@ sudo codesign --sign - --force --deep /Applications/Sublime<span class="se">\ </
 <h2 id="_4">视频播放器</h2>
 <p>iina开源免费，直接brew安装即可</p>
 <h2 id="markdown">markdown笔记</h2>
-<p>typora和fsnotes</p>
-<h2 id="_5">本机安装程序</h2>
+<p>typora、fsnotes、markedit、zed都很好用</p>
+<h2 id="_5">网络抓包</h2>
+<p>proxypin 开源，界面简洁，基础功能足够使用</p>
+<h2 id="_6">鼠须管输入法配置</h2>
+<p>采用薄荷拼音<code>https://www.mintimate.cc/zh/guide/</code></p>
+<p>功能配置
+<div class="highlight"><pre><span></span><code><span class="c1"># default.custom.yaml</span><span class="w"></span>
+<span class="nt">patch</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">schema_list</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rime_mint</span><span class="w">            </span><span class="c1"># 薄荷拼音</span><span class="w"></span>
+</code></pre></div></p>
+<p>外观配置</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># squirrel.custom.yaml</span><span class="w"></span>
+<span class="nt">patch</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">style</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># 预设选项。如果皮肤没写，则使用这些属性；如果皮肤写了，使用皮肤的。</span><span class="w"></span>
+<span class="w">    </span><span class="nt">text_orientation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">horizontal</span><span class="w">  </span><span class="c1"># horizontal | vertical</span><span class="w"></span>
+<span class="w">    </span><span class="nt">candidate_list_layout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stacked</span><span class="w"> </span><span class="c1"># stacked | linear  候选项排列方向（如果你想调整为横屏，可以调整这个）</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># 字体的具体名称去 字体册.app 查看。可用 Homebrew 安装霞鹜文楷（LXGW）和显示中文最全的 HanaMin 字体。</span><span class="w"></span>
+<span class="w">    </span><span class="nt">font_face</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;LXGW</span><span class="nv"> </span><span class="s">Bright</span><span class="nv"> </span><span class="s">GB,</span><span class="nv"> </span><span class="s">Apple</span><span class="nv"> </span><span class="s">Color</span><span class="nv"> </span><span class="s">Emoji,</span><span class="nv"> </span><span class="s">PingFang</span><span class="nv"> </span><span class="s">SC,</span><span class="nv"> </span><span class="s">HanaMinA&quot;</span><span class="w"> </span><span class="c1"># 候选词字</span><span class="w"></span>
+<span class="w">    </span><span class="nt">comment_font_face</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Apple</span><span class="nv"> </span><span class="s">Chancery,</span><span class="nv"> </span><span class="s">Georgia&quot;</span><span class="w"> </span><span class="c1"># 拼音等提示文字字体</span><span class="w"></span>
+<span class="w">    </span><span class="nt">label_font_face</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Helvetica</span><span class="nv"> </span><span class="s">Neue&quot;</span><span class="w"> </span><span class="c1"># 候选词编号字体</span><span class="w"></span>
+<span class="w">    </span><span class="nt">font_point</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span><span class="w"> </span><span class="c1"># 字体大小</span><span class="w"></span>
+<span class="w">    </span><span class="nt">comment_font_point</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span><span class="w"> </span><span class="c1"># 拼音等提示文字字体大小</span><span class="w"></span>
+<span class="w">    </span><span class="nt">label_font_point</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w"> </span><span class="c1"># 候选词编号字体大小</span><span class="w"></span>
+<span class="w">    </span><span class="nt">candidate_format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;%c</span><span class="se">\u2004</span><span class="s">%@&quot;</span><span class="w"> </span><span class="c1"># 候选格式</span><span class="w"></span>
+<span class="w">    </span><span class="nt">inline_preedit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 内嵌预编辑</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1"># 输入法界面布局</span><span class="w"></span>
+<span class="w">    </span><span class="nt">corner_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_corner_radius</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">base_offset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-0.2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">border_height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span><span class="w"></span>
+<span class="w">    </span><span class="nt">border_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span><span class="w"></span>
+<span class="w">    </span><span class="nt">border_color_width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">line_spacing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">color_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">display_p3</span><span class="w"></span>
+<span class="w">    </span><span class="nt">translucency</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 背景半透明总开关，不需要关掉即可</span><span class="w"></span>
+<span class="w">    </span><span class="nt">color_scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ForbiddenCity</span><span class="w"> </span><span class="c1"># 亮色颜色方案</span><span class="w"></span>
+<span class="w">    </span><span class="nt">color_scheme_dark</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NightMountain</span><span class="w"> </span><span class="c1"># 暗色颜色方案</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1"># 特定App默认中/英文输入</span><span class="w"></span>
+<span class="w">  </span><span class="nt">app_options</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">com.apple.Spotlight</span><span class="p">:</span><span class="w">   </span><span class="c1"># 聚焦搜索</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">     </span><span class="c1"># true默认英文,false默认中文</span><span class="w"></span>
+<span class="w">    </span><span class="nt">com.apple.Terminal</span><span class="p">:</span><span class="w">    </span><span class="c1"># 终端</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">com.microsoft.VSCode</span><span class="p">:</span><span class="w">  </span><span class="c1"># Visual Studio Code</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_punct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># 中文状态输出英文标点(半角)</span><span class="w"></span>
+<span class="w">    </span><span class="nt">com.googlecode.iterm2</span><span class="p">:</span><span class="w"> </span><span class="c1"># iTerm2</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_punct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">md.obsidian</span><span class="p">:</span><span class="w">           </span><span class="c1"># Obsidian</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_punct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">com.alfredapp.Alfred</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># 启用中文输入模式</span><span class="w"></span>
+<span class="w">      </span><span class="nt">ascii_punct</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">    </span><span class="c1"># 中文状态下使用半角英文标点</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">preset_color_schemes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">Bamboo</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;雪中竹林&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Yiming</span><span class="nv"> </span><span class="s">&lt;yiming.ma.cv@outlook.com&gt;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x35404A&quot;</span><span class="w"> </span><span class="c1"># 鹤灰</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x748B6E&quot;</span><span class="w"> </span><span class="c1"># 瓦松绿</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x84A71B&quot;</span><span class="w"> </span><span class="c1"># 竹绿</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x333436&quot;</span><span class="w"> </span><span class="c1"># 长石灰</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x728091&quot;</span><span class="w"> </span><span class="c1"># 银灰</span><span class="w"></span>
+<span class="w">      </span><span class="nt">comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x6E7680&quot;</span><span class="w"> </span><span class="c1"># 雁灰</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">ForbiddenCity</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;雪中故宫&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Yiming</span><span class="nv"> </span><span class="s">&lt;yiming.ma.cv@outlook.com&gt;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x728091&quot;</span><span class="w"> </span><span class="c1"># 银灰</span><span class="w"></span>
+<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x826E12&quot;</span><span class="w"> </span><span class="c1"># 玉鈫蓝</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x172686&quot;</span><span class="w"> </span><span class="c1"># 赭石</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x172686&quot;</span><span class="w"> </span><span class="c1"># 赭石</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF9FEFF&quot;</span><span class="w"> </span><span class="c1"># 雪白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x172686&quot;</span><span class="w"> </span><span class="c1"># 赭石</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x172686&quot;</span><span class="w"> </span><span class="c1"># 赭石</span><span class="w"></span>
+<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x826E12&quot;</span><span class="w"> </span><span class="c1"># 玉鈫蓝</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x826E12&quot;</span><span class="w"> </span><span class="c1"># 玉鈫蓝</span><span class="w"></span>
+<span class="w">      </span><span class="nt">comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x826E12&quot;</span><span class="w"> </span><span class="c1"># 玉鈫蓝</span><span class="w"></span>
+
+<span class="w">    </span><span class="nt">NightMountain</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;夜间山林&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Yiming</span><span class="nv"> </span><span class="s">&lt;yiming.ma.cv@outlook.com&gt;&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x241113&quot;</span><span class="w"> </span><span class="c1"># 暗蓝紫</span><span class="w"></span>
+<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x402A4E&quot;</span><span class="w"> </span><span class="c1"># 龙睛鱼紫</span><span class="w"></span>
+<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xC9DEB9&quot;</span><span class="w"> </span><span class="c1"># 竹篁绿</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF2F7EE&quot;</span><span class="w"> </span><span class="c1"># 月白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x241113&quot;</span><span class="w"> </span><span class="c1"># 暗蓝紫</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF2F7EE&quot;</span><span class="w"> </span><span class="c1"># 月白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_back_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0x241113&quot;</span><span class="w"> </span><span class="c1"># 暗蓝紫</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_candidate_label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF2F7EE&quot;</span><span class="w"> </span><span class="c1"># 月白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">hilited_comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xF2F7EE&quot;</span><span class="w"> </span><span class="c1"># 月白</span><span class="w"></span>
+<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xC2C357&quot;</span><span class="w"> </span><span class="c1"># 石绿</span><span class="w"></span>
+<span class="w">      </span><span class="nt">label_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xC2C357&quot;</span><span class="w"> </span><span class="c1"># 石绿</span><span class="w"></span>
+<span class="w">      </span><span class="nt">comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0xC2C357&quot;</span><span class="w"> </span><span class="c1"># 石绿</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">macOSLight</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;macOS</span><span class="nv"> </span><span class="s">Light&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lufs</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">&lt;i@isteed.cc&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
+<span class="w">    </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
+<span class="w">    </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD8000000</span><span class="w"></span>
+<span class="w">    </span><span class="nt">comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x3F000000</span><span class="w"></span>
+<span class="w">    </span><span class="nt">label_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x7F7F7F</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD05925</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x808080</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_label_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
+<span class="w">    </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x3F000000</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD8000000</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">macOSDark</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;macOS</span><span class="nv"> </span><span class="s">Dark&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Lufs</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">&lt;i@isteed.cc&gt;&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x1E1F24</span><span class="w"></span>
+<span class="w">    </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x1E1F24</span><span class="w"></span>
+<span class="w">    </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xE8E8E8</span><span class="w"></span>
+<span class="w">    </span><span class="nt">comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x3F000000</span><span class="w"></span>
+<span class="w">    </span><span class="nt">label_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x7C7C7C</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xDA6203</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_comment_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x808080</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_candidate_label_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFE7D6</span><span class="w"></span>
+<span class="w">    </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x3F000000</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD8000000</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1"># 各个设置项的简要作用说明</span><span class="w"></span>
+<span class="w">  </span><span class="c1"># 以下出现的颜色均为 16 进制色值，(A)BGR顺序</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## alpha: 透明度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## back_color: 候选条背景色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## base_offset: 候选框与输入框的垂直偏移量</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## border_color: 边框颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## border_color_width: 输入条边框宽度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## border_height: 窗口上下高度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## border_width: 窗口左右宽度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## candidate_format: 候选格式</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## candidate_spacing: 候选字间隔</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## candidate_text_color: 预选项文字颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## color_space: 颜色空间</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## comment_font_face: 拼音等提示文字字体</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## comment_font_point: 拼音等提示文字字号</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## comment_text_color: 拼音等提示文字颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## corner_radius: 候选条圆角</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## font_face: 候选词字体</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## font_point: 候选字词大小</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilite_padding: 候选字背景色色块高度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_back_color: 第一候选项背景背景色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_candidate_back_color: 候选文字背景色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_candidate_label_color: 第一候选项编号颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_candidate_text_color: 第一候选项文字颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_comment_text_color: 注解文字高亮颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_corner_radius: 高亮圆角</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_label_color: 已选字的数字颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## hilited_text_color: 高亮拼音颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## horizontal: 是否水平排列（鼠须管 0.15 以后已弃用）</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## inline_preedit: 是否单行显示</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## label_color: 预选栏编号颜色</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## label_font_face: 候选词编号字体</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## label_font_point: 候选编号大小</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## label_format: 候选编号格式</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## line_spacing: 行间距</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## margin_x: 字左右边距</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## margin_y: 字上下边距</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## min_height: 最小高度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## min_width: 最小宽度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## round_corner: 候选字背景色块圆角幅度</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## spacing: 间距</span><span class="w"></span>
+<span class="w">  </span><span class="c1">## text_color: 高亮选中词颜色</span><span class="w"></span>
+</code></pre></div>
+<h2 id="_7">本机安装程序</h2>
 <p>adrive
 douyin
 handshaker
@@ -638,7 +846,8 @@ datagrip
 handbrake
 maczip
 sequel-ace
-wechat</p>
+wechat
+proxypin</p>
                 
                   
                 
