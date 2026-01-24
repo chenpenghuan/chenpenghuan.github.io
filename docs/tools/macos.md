@@ -1,5 +1,141 @@
 # macos
 
+## app
+```
+adrive
+applite
+bilibili
+charles
+clash-verge-rev
+douyin
+drawio
+font-maple-mono
+font-maple-mono-nf
+font-maple-mono-nf-cn
+fsnotes
+google-chrome
+handbrake-app
+iina
+imageoptim
+iterm2
+jordanbaird-ice
+keka
+logseq
+losslesscut
+markedit
+onyx
+qq
+rectangle
+sequel-ace
+snipaste
+sourcetree
+squirrel-app
+switchhosts
+tencent-lemon
+tencent-meeting
+thunder
+wechat
+zed
+```
+
+## 截图
+
+### flameshot
+直接github下载或者homebrew安装
+
+### snowshot
+直接github下载或者homebrew安装
+
+## sublime text 4200
+```shell
+cd "/Applications/Sublime Text.app/Contents/MacOS/" || exit
+md5 -q sublime_text | grep -i "B07FDB3A228A46DF1CC178FE60B64D3B" || exit
+echo 01060C90: E0 03 1F AA C0 03 5F D6 | xxd -r - sublime_text
+echo 00FEAD18: 1F 20 03 D5             | xxd -r - sublime_text
+echo 00FEAD2C: 1F 20 03 D5             | xxd -r - sublime_text
+echo 01061F28: C0 03 5F D6             | xxd -r - sublime_text
+echo 01060908: C0 03 5F D6             | xxd -r - sublime_text
+echo 00FE5780: C0 03 5F D6             | xxd -r - sublime_text
+
+codesign --force --deep --sign - "/Applications/Sublime Text.app"
+
+```
+
+## 鼠须管配置
+```yaml
+# squirrel.custom.yaml
+patch:
+  # --- 1. 核心视觉逻辑 ---
+  "style/color_scheme": macos_light           # 指定系统【浅色模式】下的皮肤方案
+  "style/color_scheme_dark": macos_dark      # 指定系统【深色模式】下的皮肤方案（0.15+版本自动切换）
+  "style/candidate_list_layout": linear      # 现代线性布局：相比 horizontal，间距控制更自然
+  "style/font_face": "SF Pro, PingFang SC"   # 字体：SF Pro 渲染数字英文字符，平方渲染汉字，最强原生感
+  "style/font_point": 24                     # 候选词字号大小
+  "style/label_font_point": 15               # 序号字号大小：略小于候选词，视觉重心更突出
+
+  # --- 2. 原生质感微调 ---
+  "style/corner_radius": 10                  # 整个输入框的外圆角半径
+  "style/hilited_corner_radius": 6           # 选中项（蓝色胶囊）的内圆角半径
+  "style/hilited_padding": 4                 # 选中项文字与高亮背景块之间的留白（呼吸感关键）
+  "style/border_height": 6                   # 输入框上下内边距
+  "style/border_width": 10                   # 输入框左右内边距
+  "style/line_spacing": 6                    # 多行候选时的行间距（linear布局下影响不大）
+  "style/spacing": 12                        # 编码区（拼音）与候选词区之间的间距
+
+  # --- 3. 皮肤方案具体定义 ---
+  preset_color_schemes:
+    # 浅色原生方案
+    macos_light:
+      name: "原生浅色"
+      back_color: 0xF2F2F2                   # 背景色：BGR格式的浅灰色
+      text_color: 0x424242                   # 输入码（拼音）颜色：深灰，区分于候选词
+      candidate_text_color: 0x000000         # 候选项文字颜色：纯黑
+      hilited_text_color: 0xFFFFFF           # 选中项文字颜色：纯白
+      hilited_back_color: 0xD77800           # 选中项背景色：苹果标志性蓝色
+      border_color: 0xFFFFFF                 # 边框颜色：白色边框在浅色下更有质感
+
+    # 深色原生方案
+    macos_dark:
+      name: "原生深色"
+      back_color: 0x2D2D2D                   # 背景色：深灰色
+      text_color: 0x999999                   # 输入码（拼音）颜色：淡灰
+      candidate_text_color: 0xFFFFFF         # 候选项文字颜色：纯白
+      hilited_text_color: 0xFFFFFF           # 选中项文字颜色：纯白
+      hilited_back_color: 0xD77800           # 选中项背景色：苹果蓝
+      border_color: 0x000000                 # 边框颜色：纯黑，与深色模式融为一体
+```
+
+```yaml
+# rime_ice.schema.yaml
+__include: octagram   #启用语法模型
+# 语法模型
+octagram:
+  __patch:
+    grammar:
+      language: wanxiang-lts-zh-hans
+      collocation_max_length: 6
+      collocation_min_length: 3
+      collocation_penalty: -10
+      non_collocation_penalty: -20
+      weak_collocation_penalty: -45
+      rear_penalty: -12
+    translator/contextual_suggestions: false
+    translator/max_homophones: 5
+    translator/max_homographs: 5
+```
+
+## 开发工具
+操作系统,最稳定版本推荐,选择逻辑
+macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。
+macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新系统特有的黑屏和卡顿。
+
+## 屏蔽更新
+锁定最大系统版本
+```bash
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate \
+    TargetReleaseVersion -int 15
+```
+
 ## mac自启动设置
 
 以nginx为例
@@ -102,4 +238,3 @@ sudo openfortivpn
 4. 设置抓包域名点击proxy>SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用*号代替
 
 > ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—>通用—>  关于本机—>证书信任设置，信任该证书后安装便可抓https请求了。
-
