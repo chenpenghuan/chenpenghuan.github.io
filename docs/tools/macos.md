@@ -245,3 +245,9 @@ sudo openfortivpn
 4. 设置抓包域名点击proxy>SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用*号代替
 
 > ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—>通用—>  关于本机—>证书信任设置，信任该证书后安装便可抓https请求了。
+
+## next-ai-draw.io
+### next-ai-draw.io ai配置
+![next-ai-draw.io](/assets/images/next-draw-io-ai.png)
+### next-ai-draw.io 代理配置
+![next-ai-draw.io](/assets/images/next-draw-io-proxy.png)
