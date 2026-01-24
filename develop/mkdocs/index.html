@@ -42,7 +42,7 @@
     
     
       
-        <title>mkdocs发布 - chen</title>
+        <title>mkdocs - chen</title>
       
     
     
@@ -113,7 +113,7 @@
                 chen
               </span>
               <span class="md-header-nav__topic">
-                mkdocs发布
+                mkdocs
               </span>
             
           
@@ -471,6 +471,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="环境搭建" class="md-nav__link">
+    环境搭建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="本地预览" class="md-nav__link">
+    本地预览
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="静态发布" class="md-nav__link">
+    静态发布
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -482,12 +512,18 @@
               
                 
                 
-                <h1 id="mkdocs">mkdocs发布</h1>
+                <h1 id="mkdocs">mkdocs</h1>
+<h2 id="_1">环境搭建</h2>
 <ol>
 <li>创建venv <code>python3 -m venv venv</code></li>
 <li>使用venv <code>source venv/bin/activate</code></li>
 <li>本地安装requirements <code>pip install -r requirements.txt</code></li>
+<li>退出环境 <code>deactivate</code></li>
 </ol>
+<h2 id="_2">本地预览</h2>
+<p><code>mkdocs serve</code></p>
+<h2 id="_3">静态发布</h2>
+<p><code>mkdocs gh-deploy</code></p>
                 
                   
                 
