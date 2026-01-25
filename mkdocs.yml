@@ -26,8 +26,7 @@ nav:
   - 其他:
       [
         other/aws压缩图片.md,
-        other/使用gmail发送邮件验证码.md,
-        other/工具推荐.md,
+        other/使用gmail发送邮件验证码.md
       ]
   - 关于: about.md
 plugins:
