@@ -47,6 +47,7 @@ zed
 直接github下载或者homebrew安装
 
 ## sublime text 4200
+### 注册
 ```shell
 cd "/Applications/Sublime Text.app/Contents/MacOS/" || exit
 md5 -q sublime_text | grep -i "B07FDB3A228A46DF1CC178FE60B64D3B" || exit
@@ -60,6 +61,9 @@ echo 00FE5780: C0 03 5F D6             | xxd -r - sublime_text
 codesign --force --deep --sign - "/Applications/Sublime Text.app"
 
 ```
+### 插件
+pretty json
+rest client
 
 ## 鼠须管配置
 ```yaml
