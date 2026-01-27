@@ -66,6 +66,13 @@ git branch —edit-description {branchname}
 git branch -d {branchname} #删除本地分支  
 git push origin —delete {branchname} #删除远程分支
 ```
+## 忽略某个文件的更新不提交
+
+文件是大家的，但我本地改了不想提
+
+```shell
+git update-index --assume-unchanged <你的文件路径>
+```
 
 ## ssh公钥免密码
 
