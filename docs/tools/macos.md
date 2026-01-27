@@ -173,7 +173,7 @@ sudo vim /Library/LaunchDaemons/com.nginx.plist加入
 
 ### 2.修改权限
 
-sudo chmod 644 /Library/LaunchDaemons/com.nginx.plist
+`sudo chmod 644 /Library/LaunchDaemons/com.nginx.plist`
 
 ### 3.注册为系统服务
 
