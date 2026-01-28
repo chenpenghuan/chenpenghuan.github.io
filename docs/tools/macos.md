@@ -77,12 +77,17 @@ rest client
 {
     "editor.fontSize": 16,
     "rest-client.enableTelemetry": false,
+    "rest-client.previewOption": "exchange",
     "rest-client.environmentVariables": {
         "$shared": {},
         "dev":{
             "host":"http://127.0.0.1:8080"
         }
-    }
+    },
+    "diffEditor.renderSideBySide": false,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "markdown-editor.imageSaveFolder": "${projectRoot}/docs/assets/images"
 }
 ```
 
