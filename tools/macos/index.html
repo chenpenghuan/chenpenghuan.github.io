@@ -317,6 +317,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vscodium" title="vscodium" class="md-nav__link">
+    vscodium
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" title="鼠须管配置" class="md-nav__link">
     鼠须管配置
   </a>
@@ -475,8 +482,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注册" class="md-nav__link">
-      港区appleId注册
+    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注" class="md-nav__link">
+      港区appleId注
     </a>
   </li>
 
@@ -649,18 +656,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../other/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" title="工具推荐" class="md-nav__link">
-      工具推荐
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -756,6 +751,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vscodium" title="vscodium" class="md-nav__link">
+    vscodium
+  </a>
   
 </li>
       
@@ -964,6 +966,18 @@ codesign --force --deep --sign - <span class="s2">&quot;/Applications/Sublime Te
 <h3 id="_3">插件</h3>
 <p>pretty json
 rest client</p>
+<h2 id="vscodium">vscodium</h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;editor.fontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;rest-client.enableTelemetry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;rest-client.environmentVariables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;$shared&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;dev&quot;</span><span class="p">:{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="s2">&quot;http://127.0.0.1:8080&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <h2 id="_4">鼠须管配置</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># squirrel.custom.yaml</span><span class="w"></span>
 <span class="nt">patch</span><span class="p">:</span><span class="w"></span>
@@ -1028,10 +1042,10 @@ rest client</p>
 macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。
 macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新系统特有的黑屏和卡顿。</p>
 <h2 id="_6">屏蔽更新</h2>
-<p>锁定最大系统版本
+<p>锁定最大系统版本</p>
 <div class="highlight"><pre><span></span><code>sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate <span class="se">\</span>
     TargetReleaseVersion -int <span class="m">15</span>
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="mac">mac自启动设置</h2>
 <p>以nginx为例</p>
 <h3 id="1">1.编辑启动配置文件</h3>
@@ -1058,22 +1072,22 @@ macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新
 <span class="nt">&lt;/plist&gt;</span>
 </code></pre></div>
 <h3 id="2">2.修改权限</h3>
-<p>sudo chmod 644 /Library/LaunchDaemons/com.nginx.plist</p>
+<p><code>sudo chmod 644 /Library/LaunchDaemons/com.nginx.plist</code></p>
 <h3 id="3">3.注册为系统服务</h3>
-<p>sudo launchctl load -w /Library/LaunchDaemons/com.nginx.plist </p>
-<p>卸载为sudo launchctl unload -w /Library/LaunchDaemons/com.nginx.plist </p>
+<p>sudo launchctl load -w /Library/LaunchDaemons/com.nginx.plist</p>
+<p>卸载为sudo launchctl unload -w /Library/LaunchDaemons/com.nginx.plist</p>
 <h2 id="_7">软件询问是否接入网络的解决办法</h2>
-<p>对于Mac下程序始终询问是否接入网络问题的解决办法   </p>
+<p>对于Mac下程序始终询问是否接入网络问题的解决办法</p>
 <ol>
-<li>关闭程序；   </li>
-<li>修改防火墙，把相关程序从防火墙的白名单中删除；  </li>
-<li>删除~/Library/Preferences/com.该程序名.plist文件。 <br />
+<li>关闭程序；</li>
+<li>修改防火墙，把相关程序从防火墙的白名单中删除；</li>
+<li>删除~/Library/Preferences/com.该程序名.plist文件。
    到次即可，重启程序后会新建相关文件并自动修改防火墙中相关内容，该问题已解决。</li>
 </ol>
 <h2 id="homebrew">homebrew</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># show a list of all your installed Homebrew packages</span>
+<div class="highlight"><pre><span></span><code># show a list of all your installed Homebrew packages
 brew list
-<span class="c1"># It will pin the formula to the current version</span>
+# It will pin the formula to the current version
 brew pin &lt;formula&gt;
 </code></pre></div>
 <h3 id="_8">换源</h3>
@@ -1083,22 +1097,22 @@ export HOMEBREW_BOTTLE_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles
 export HOMEBREW_API_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;
 </code></pre></div>
 <h2 id="maven">maven报错</h2>
-<p><code>The JAVA_HOME environment variable is not defined correctly</code> </p>
+<p><code>The JAVA_HOME environment variable is not defined correctly</code></p>
 <p>解决办法：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.</span>
-<span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
-<span class="c1"># Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.</span>
-<span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
+<div class="highlight"><pre><span></span><code># On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.
+export JAVA_HOME=$(/usr/libexec/java_home)
+# Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.
+export JAVA_HOME=$(/usr/libexec/java_home)
 </code></pre></div>
 <h2 id="vpn">飞塔vpn开源替代方案</h2>
 <p>安装openfortivpn</p>
 <div class="highlight"><pre><span></span><code>brew install openfortivpn
 </code></pre></div>
 <p>编辑config文件<code>/usr/local/etc/openfortivpn/openfortivpn/config</code></p>
-<div class="highlight"><pre><span></span><code><span class="nv">host</span> <span class="o">=</span> xxx
-<span class="nv">username</span> <span class="o">=</span> xxx
-<span class="nv">password</span> <span class="o">=</span> xxx
-trusted-cert <span class="o">=</span> xxx
+<div class="highlight"><pre><span></span><code>host = xxx
+username = xxx
+password = xxx
+trusted-cert = xxx
 </code></pre></div>
 <p>登录vpn</p>
 <div class="highlight"><pre><span></span><code>sudo openfortivpn
@@ -1111,7 +1125,7 @@ trusted-cert <span class="o">=</span> xxx
 <li>设置抓包域名点击proxy&gt;SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用*号代替</li>
 </ol>
 <blockquote>
-<p>ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—&gt;通用—&gt;  关于本机—&gt;证书信任设置，信任该证书后安装便可抓https请求了。</p>
+<p>ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—&gt;通用—&gt; 关于本机—&gt;证书信任设置，信任该证书后安装便可抓https请求了。</p>
 </blockquote>
 <h2 id="next-ai-drawio">next-ai-draw.io</h2>
 <h3 id="next-ai-drawio-ai">next-ai-draw.io ai配置</h3>

@@ -302,6 +302,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_9" title="忽略某个文件的更新不提交" class="md-nav__link">
+    忽略某个文件的更新不提交
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ssh" title="ssh公钥免密码" class="md-nav__link">
     ssh公钥免密码
   </a>
@@ -361,8 +368,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注册" class="md-nav__link">
-      港区appleId注册
+    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注" class="md-nav__link">
+      港区appleId注
     </a>
   </li>
 
@@ -535,18 +542,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../other/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" title="工具推荐" class="md-nav__link">
-      工具推荐
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -655,6 +650,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_9" title="忽略某个文件的更新不提交" class="md-nav__link">
+    忽略某个文件的更新不提交
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ssh" title="ssh公钥免密码" class="md-nav__link">
     ssh公钥免密码
   </a>
@@ -716,6 +718,10 @@ git show <span class="o">{</span>tagname<span class="o">}</span>                
 <h2 id="_8">删除远程分支</h2>
 <div class="highlight"><pre><span></span><code>git branch -d <span class="o">{</span>branchname<span class="o">}</span> <span class="c1">#删除本地分支  </span>
 git push origin —delete <span class="o">{</span>branchname<span class="o">}</span> <span class="c1">#删除远程分支</span>
+</code></pre></div>
+<h2 id="_9">忽略某个文件的更新不提交</h2>
+<p>文件是大家的，但我本地改了不想提</p>
+<div class="highlight"><pre><span></span><code>git update-index --assume-unchanged &lt;你的文件路径&gt;
 </code></pre></div>
 <h2 id="ssh">ssh公钥免密码</h2>
 <div class="highlight"><pre><span></span><code>ssh-add ~/.ssh/id_rsa
