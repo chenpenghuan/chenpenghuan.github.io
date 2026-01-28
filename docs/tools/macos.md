@@ -68,7 +68,7 @@ codesign --force --deep --sign - "/Applications/Sublime Text.app"
 
 ### 插件
 
-pretty json  
+pretty json
 rest client
 
 ## vscodium
@@ -152,8 +152,8 @@ octagram:
 
 ## 开发工具
 
-操作系统,最稳定版本推荐,选择逻辑  
-macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。  
+操作系统,最稳定版本推荐,选择逻辑
+macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。
 macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新系统特有的黑屏和卡顿。
 
 ## 屏蔽更新
@@ -210,10 +210,10 @@ sudo launchctl load -w /Library/LaunchDaemons/com.nginx.plist
 
 对于Mac下程序始终询问是否接入网络问题的解决办法
 
-1.  关闭程序；
-2.  修改防火墙，把相关程序从防火墙的白名单中删除；
-3.  删除~/Library/Preferences/com.该程序名.plist文件。  
-    到次即可，重启程序后会新建相关文件并自动修改防火墙中相关内容，该问题已解决。
+1. 关闭程序；
+2. 修改防火墙，把相关程序从防火墙的白名单中删除；
+3. 删除~/Library/Preferences/com.该程序名.plist文件。
+   到次即可，重启程序后会新建相关文件并自动修改防火墙中相关内容，该问题已解决。
 
 ## homebrew
 
@@ -271,10 +271,10 @@ sudo openfortivpn
 
 ## charles抓包配置
 
-1.  安装charles
-2.  电脑上安装证书`help>SSL Proxying>Install Charles root Certificate`
-3.  手机上安装证书 `help>SSL Proxying>install charles ...................browser`
-4.  设置抓包域名点击proxy>SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用\*号代替
+1. 安装charles
+2. 电脑上安装证书`help>SSL Proxying>Install Charles root Certificate`
+3. 手机上安装证书 `help>SSL Proxying>install charles ...................browser`
+4. 设置抓包域名点击proxy>SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用\*号代替
 
 > ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—>通用—> 关于本机—>证书信任设置，信任该证书后安装便可抓https请求了。
 
