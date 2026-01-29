@@ -92,7 +92,7 @@ rest client
 ```
 
 ## 鼠须管配置
-
+### 雾凇拼音
 ```yaml
 # squirrel.custom.yaml
 patch:
@@ -153,6 +153,87 @@ octagram:
     translator/contextual_suggestions: false
     translator/max_homophones: 5
     translator/max_homographs: 5
+```
+
+### 薄荷拼音
+```yaml
+# squirrel.custom.yaml
+patch:
+  # --- 1. 核心视觉逻辑 ---
+  "style/color_scheme": macos_light
+  "style/color_scheme_dark": macos_dark
+  "style/candidate_list_layout": linear
+  "style/font_face": "SF Pro, PingFang SC"
+  "style/font_point": 24
+  "style/label_font_point": 15
+  "style/translucency": true                 # 开启毛玻璃效果
+
+  # --- 2. 原生质感微调 ---
+  "style/corner_radius": 10
+  "style/hilited_corner_radius": 6
+  "style/hilited_padding": 4
+  "style/border_height": 6
+  "style/border_width": 10
+  "style/spacing": 12
+
+  # --- 3. 皮肤方案具体定义 ---
+  preset_color_schemes:
+    macos_light:
+      name: "原生浅色"
+      back_color: 0xF2F2F2
+      text_color: 0x424242
+      candidate_text_color: 0x000000
+      hilited_text_color: 0xFFFFFF
+      hilited_back_color: 0xD77800
+      border_color: 0xFFFFFF
+
+    macos_dark:
+      name: "原生深色"
+      back_color: 0x2D2D2D
+      text_color: 0x999999
+      candidate_text_color: 0xFFFFFF
+      hilited_text_color: 0xFFFFFF
+      hilited_back_color: 0xD77800
+      border_color: 0x000000
+```
+
+```yaml
+# rime_mint.custom.yaml
+patch:
+  # --- 1. 语言模型 (Octagram) ---
+  # 请确保目录下有对应名称的 .gram 文件和 grammar.yaml
+  "grammar/language": wanxiang-lts-zh-hans
+  "grammar/collocation_max_length": 6
+  "grammar/collocation_min_length": 3
+
+  # --- 2. 语义权重微调 (参考雾凇权重) ---
+  "grammar/collocation_penalty": -10
+  "grammar/non_collocation_penalty": -20
+  "grammar/weak_collocation_penalty": -45
+  "grammar/rear_penalty": -12
+
+  # --- 3. 灵敏度与造词优化 (让你打 1-2 次就能记住) ---
+  "translator/initial_quality": 1000        # 提升用户词典基础分
+  "translator/user_dict_seed": 500          # 提高新词初始权重
+  "translator/user_dict_threshold": 1       # 降低记忆门槛
+  "translator/enable_encoder": true         # 开启自动造词
+  "translator/encode_commit_history": true  # 记录上屏历史以造词
+  "translator/max_phrase_length": 10        # 允许记住更长的词组
+  "translator/contextual_suggestions": true # 开启上下文建议
+
+  # --- 4. 辅助功能 ---
+  "translator/max_homophones": 7
+  "translator/max_homographs": 7
+  "engine/filters/@before 0": simplifier@octagram_grammar  # 强制加载插件
+  
+  # 快捷键：Shift+Delete 手动处决错词
+  "key_binder/bindings/@before 0": { when: has_menu, accept: "Shift+Delete", toggle: deletion }
+```
+
+```yaml
+# grammar.yaml
+grammar:
+  engine: viterbi
 ```
 
 ## 开发工具
