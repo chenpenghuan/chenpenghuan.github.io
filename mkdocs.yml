@@ -19,8 +19,6 @@ nav:
         develop/java.md,
         develop/springboot.md,
         develop/mybatis.md,
-        develop/docker.md,
-        develop/面试题.md,
       ]
   - 其他: [other/aws压缩图片.md, other/使用gmail发送邮件验证码.md]
   - 关于: about.md
