@@ -11,7 +11,6 @@ nav:
         tools/macos.md,
         tools/zsh.md,
         tools/港区appleId注册.md,
-        tools/idea激活.md,
         tools/ai.md,
       ]
   - 开发:
@@ -23,11 +22,7 @@ nav:
         develop/docker.md,
         develop/面试题.md,
       ]
-  - 其他:
-      [
-        other/aws压缩图片.md,
-        other/使用gmail发送邮件验证码.md
-      ]
+  - 其他: [other/aws压缩图片.md, other/使用gmail发送邮件验证码.md]
   - 关于: about.md
 plugins:
   - search
