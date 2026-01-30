@@ -137,7 +137,7 @@ patch:
 ```
 
 ```yaml
-# rime_ice.schema.yaml
+# rime_ice.custom.yaml
 __include: octagram   #启用语法模型
 # 语法模型
 octagram:
