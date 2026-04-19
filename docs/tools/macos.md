@@ -92,6 +92,32 @@ rest client
 ```
 
 ## 鼠须管配置
+
+### 只保留鼠须管输入法
+```bash
+# 读取配置
+cp ~/Library/Preferences/com.apple.HIToolbox.plist ~/Desktop/HIToolbox_backup.plist
+# 按索引删除配置项
+sudo plutil -remove AppleEnabledInputSources.1 ~/Library/Preferences/com.apple.HIToolbox.plist
+# 上锁
+sudo chflags uchg ~/Library/Preferences/com.apple.HIToolbox.plist
+```
+最终配置文件内容
+```bash
+# defaults read com.apple.HIToolbox AppleEnabledInputSources
+(
+        {
+        "Bundle ID" = "com.apple.inputmethod.SCIM";
+        "Input Mode" = "com.apple.inputmethod.SCIM.ITABC";
+        InputSourceKind = "Input Mode";
+    },
+        {
+        "Bundle ID" = "com.apple.CharacterPaletteIM";
+        InputSourceKind = "Non Keyboard Input Method";
+    }
+)
+```
+
 ### 雾凇拼音
 ```yaml
 # squirrel.custom.yaml
