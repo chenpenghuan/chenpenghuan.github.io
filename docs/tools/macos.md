@@ -41,6 +41,12 @@ zed
 
 ## 截图
 
+### qq截图
+复制截图插件安装并执行
+```
+defaults write "FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
+```
+
 ### flameshot
 
 直接github下载或者homebrew安装
