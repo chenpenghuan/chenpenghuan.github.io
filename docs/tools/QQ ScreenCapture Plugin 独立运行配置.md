@@ -104,9 +104,19 @@ defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3"
 
 启动日志中出现 `run without QQ` 即为正常。
 
-### 直接使用
+### 分发给他人使用
+
+收到 app 后，对方需执行以下两条命令：
+
+```bash
+# 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
 xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
+
+# 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出
 defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
+```
+
+然后在「系统设置 → 隐私与安全性」中手动授权**屏幕录制**和**麦克风**权限。
 
 ---
 
