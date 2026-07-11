@@ -44,6 +44,14 @@ wechat
 zed
 ```
 
+## alfred
+
+[ip-address.alfredworkflow](/assets/files/ip-address.alfredworkflow)
+
+[sourcetree.alfredworkflow](/assets/files/sourcetree.alfredworkflow)
+
+[TerminalFinder.alfredworkflow](/assets/files/TerminalFinder.alfredworkflow)
+
 ## 截图
 
 ### qq截图
