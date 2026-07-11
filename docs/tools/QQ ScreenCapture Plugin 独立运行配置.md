@@ -24,10 +24,8 @@ cp -r "/Applications/QQ ScreenCapture plugin.app" ~/Desktop/
 ```bash
 sudo plutil -insert NSMicrophoneUsageDescription \
   -string "需要麦克风权限以在录屏时录制音频" \
-  "/Applications/QQ ScreenCapture plugin.app/Contents/Info.plist"
+  ~/Desktop/QQ\ ScreenCapture\ plugin.app/Contents/Info.plist
 ```
-
-> 复制到桌面是在这步之前完成的，所以桌面副本已经包含此 key（从 `/Applications` 复制过来时已有）。
 
 ### 第三步：重签名（去掉 App Sandbox）
 
@@ -69,6 +67,7 @@ cat > /tmp/entitlements_nosandbox.plist << 'EOF'
 EOF
 
 # 3. 签主 bundle
+```
 codesign --force --sign - \
   --entitlements /tmp/entitlements_nosandbox.plist \
   ~/Desktop/QQ\ ScreenCapture\ plugin.app
@@ -119,6 +118,15 @@ defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3"
 然后在「系统设置 → 隐私与安全性」中手动授权**屏幕录制**和**麦克风**权限。
 
 ---
+
+### 可选
+删除ocr按钮，因为ocr需要qq框架不可用
+`QQ\ ScreenCapture\ plugin.app/Contents/Frameworks/JietuFramework.framework/Resources/ThemeResources/QQ-theme/themeConfigue.json`
+```
+# 修改W和H，直接改为0
+#"JTToolbarFunctionButtonTypeOCR_frame" : {"X" : 410, "Y" : 10, "W" : 24, "H" : 24},
+"JTToolbarFunctionButtonTypeOCR_frame" : {"X" : 410, "Y" : 10, "W" : 0, "H" : 0},
+```
 
 ## 原因总结
 

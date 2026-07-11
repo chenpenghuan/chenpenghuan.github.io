@@ -42,9 +42,13 @@ zed
 ## 截图
 
 ### qq截图
-复制截图插件安装并执行
+[QQ截图20260710_6.9.98-51102.dmg](/assets/files/QQ截图20260710_6.9.98-51102.dmg)
 ```
-defaults write "FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
+# 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
+xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
+
+# 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出
+defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
 ```
 
 ### flameshot
