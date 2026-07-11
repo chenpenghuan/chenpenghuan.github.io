@@ -1,0 +1,732 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="A Material Design theme for MkDocs">
+      
+      
+        <link rel="canonical" href="https://chenpenghuan.github.io/tools/QQ%20ScreenCapture%20Plugin%20%E7%8B%AC%E7%AB%8B%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/">
+      
+      
+        <meta name="author" content="chen">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>QQ ScreenCapture Plugin 独立运行配置指南 - chen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../css/mermaid.min.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="cyan">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#qq-screencapture-plugin" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://chenpenghuan.github.io/" title="chen" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                chen
+              </span>
+              <span class="md-header-nav__topic">
+                QQ ScreenCapture Plugin 独立运行配置指南
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://chenpenghuan.github.io/" title="chen" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    chen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      工具
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        工具
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/" title="git" class="md-nav__link">
+      git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mkdocs/" title="mkdocs" class="md-nav__link">
+      mkdocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../macos/" title="macos" class="md-nav__link">
+      macos
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../zsh/" title="zsh安装与调试" class="md-nav__link">
+      zsh安装与调试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注册" class="md-nav__link">
+      港区appleId注册
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ai/" title="ai工具" class="md-nav__link">
+      ai工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/k8s/" title="k8s" class="md-nav__link">
+      k8s
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/java/" title="java" class="md-nav__link">
+      java
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/springboot/" title="springboot" class="md-nav__link">
+      springboot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/mybatis/" title="mybatis配置" class="md-nav__link">
+      mybatis配置
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      其他
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        其他
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
+      aws压缩图片
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
+      使用gmail发送邮件验证码
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="关于" class="md-nav__link">
+      关于
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="问题背景" class="md-nav__link">
+    问题背景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="操作步骤" class="md-nav__link">
+    操作步骤
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app" title="第一步：复制 app 到桌面" class="md-nav__link">
+    第一步：复制 app 到桌面
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="第二步：添加麦克风权限描述" class="md-nav__link">
+    第二步：添加麦克风权限描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-sandbox" title="第三步：重签名（去掉 App Sandbox）" class="md-nav__link">
+    第三步：重签名（去掉 App Sandbox）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="第五步：配置独立运行模式" class="md-nav__link">
+    第五步：配置独立运行模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="第六步：系统隐私权限" class="md-nav__link">
+    第六步：系统隐私权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="第七步：启动" class="md-nav__link">
+    第七步：启动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="分发给他人使用" class="md-nav__link">
+    分发给他人使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="可选" class="md-nav__link">
+    可选
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="原因总结" class="md-nav__link">
+    原因总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="qq-screencapture-plugin">QQ ScreenCapture Plugin 独立运行配置指南</h1>
+<h2 id="_1">问题背景</h2>
+<p><code>QQ ScreenCapture plugin.app</code> 是 QQ 的截图录屏插件，默认作为 QQ 的子进程运行。直接双击启动时有两个问题：</p>
+<ol>
+<li>录制开始时因缺少 <code>NSMicrophoneUsageDescription</code> 被 TCC 强制 SIGKILL</li>
+<li>检测不到 QQ 主进程后触发 <code>checkQQExist</code> 逻辑，3 次检测失败后自动退出</li>
+</ol>
+<hr />
+<h2 id="_2">操作步骤</h2>
+<h3 id="app">第一步：复制 app 到桌面</h3>
+<p><code>/Applications</code> 目录受 SIP 保护，无法直接修改签名，需先复制出来。</p>
+<div class="highlight"><pre><span></span><code>cp -r <span class="s2">&quot;/Applications/QQ ScreenCapture plugin.app&quot;</span> ~/Desktop/
+</code></pre></div>
+<h3 id="_3">第二步：添加麦克风权限描述</h3>
+<div class="highlight"><pre><span></span><code>sudo plutil -insert NSMicrophoneUsageDescription <span class="se">\</span>
+  -string <span class="s2">&quot;需要麦克风权限以在录屏时录制音频&quot;</span> <span class="se">\</span>
+  ~/Desktop/QQ<span class="se">\ </span>ScreenCapture<span class="se">\ </span>plugin.app/Contents/Info.plist
+</code></pre></div>
+<h3 id="app-sandbox">第三步：重签名（去掉 App Sandbox）</h3>
+<p>原签名包含 <code>com.apple.security.app-sandbox = true</code>，ad-hoc 重签名时必须显式设为 <code>false</code>，否则 macOS 会在 dyld 初始化阶段直接 SIGKILL。</p>
+<p>分两步签，先签 Frameworks，再签主 bundle：</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># 1. 签所有 framework 二进制</span>
+<span class="k">for</span> fw <span class="k">in</span> ~/Desktop/QQ<span class="se">\ </span>ScreenCapture<span class="se">\ </span>plugin.app/Contents/Frameworks/*.framework<span class="p">;</span> <span class="k">do</span>
+    <span class="nv">name</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&quot;</span><span class="nv">$fw</span><span class="s2">&quot;</span> .framework<span class="k">)</span>
+    codesign --force --sign - <span class="s2">&quot;</span><span class="nv">$fw</span><span class="s2">/Versions/A/</span><span class="nv">$name</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+
+<span class="c1"># 2. 创建 entitlements 文件（sandbox = false）</span>
+cat &gt; /tmp/entitlements_nosandbox.plist <span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="s">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+<span class="s">&lt;plist version=&quot;1.0&quot;&gt;</span>
+<span class="s">&lt;dict&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.app-sandbox&lt;/key&gt;</span>
+<span class="s">    &lt;false/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.cs.allow-jit&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.device.audio-input&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.device.camera&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.files.downloads.read-write&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.files.user-selected.read-write&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.network.client&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">    &lt;key&gt;com.apple.security.network.server&lt;/key&gt;</span>
+<span class="s">    &lt;true/&gt;</span>
+<span class="s">&lt;/dict&gt;</span>
+<span class="s">&lt;/plist&gt;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 3. 签主 bundle</span>
+</code></pre></div>
+codesign --force --sign - \
+  --entitlements /tmp/entitlements_nosandbox.plist \
+  ~/Desktop/QQ\ ScreenCapture\ plugin.app
+<div class="highlight"><pre><span></span><code>### 第四步：去除隔离标记
+
+```bash
+xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
+</code></pre></div></p>
+<h3 id="_4">第五步：配置独立运行模式</h3>
+<p>去掉 sandbox 后，app 读取的是 <code>~/Library/Preferences/</code> 而非沙盒容器，需要重新写入 runalone 配置：</p>
+<div class="highlight"><pre><span></span><code>defaults write <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3&quot;</span> <span class="se">\</span>
+  settingkeyrunalone -bool YES
+</code></pre></div>
+<h3 id="_5">第六步：系统隐私权限</h3>
+<p>在「系统设置 → 隐私与安全性」中确认以下权限已授权给该 app：</p>
+<ul>
+<li>屏幕录制</li>
+<li>麦克风</li>
+</ul>
+<h3 id="_6">第七步：启动</h3>
+<div class="highlight"><pre><span></span><code>~/Desktop/QQ<span class="se">\ </span>ScreenCapture<span class="se">\ </span>plugin.app/Contents/MacOS/QQ<span class="se">\ </span>ScreenCapture<span class="se">\ </span>plugin
+</code></pre></div>
+<p>启动日志中出现 <code>run without QQ</code> 即为正常。</p>
+<h3 id="_7">分发给他人使用</h3>
+<p>收到 app 后，对方需执行以下两条命令：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app</span>
+xattr -cr ~/Desktop/QQ<span class="se">\ </span>ScreenCapture<span class="se">\ </span>plugin.app
+
+<span class="c1"># 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出</span>
+defaults write <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3&quot;</span> settingkeyrunalone -bool YES
+</code></pre></div>
+<p>然后在「系统设置 → 隐私与安全性」中手动授权<strong>屏幕录制</strong>和<strong>麦克风</strong>权限。</p>
+<hr />
+<h3 id="_8">可选</h3>
+<p>删除ocr按钮，因为ocr需要qq框架不可用
+<code>QQ\ ScreenCapture\ plugin.app/Contents/Frameworks/JietuFramework.framework/Resources/ThemeResources/QQ-theme/themeConfigue.json</code>
+<div class="highlight"><pre><span></span><code># 修改W和H，直接改为0
+#&quot;JTToolbarFunctionButtonTypeOCR_frame&quot; : {&quot;X&quot; : 410, &quot;Y&quot; : 10, &quot;W&quot; : 24, &quot;H&quot; : 24},
+&quot;JTToolbarFunctionButtonTypeOCR_frame&quot; : {&quot;X&quot; : 410, &quot;Y&quot; : 10, &quot;W&quot; : 0, &quot;H&quot; : 0},
+</code></pre></div></p>
+<h2 id="_9">原因总结</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>根因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双击闪退（录制瞬间）</td>
+<td>Info.plist 缺少 <code>NSMicrophoneUsageDescription</code>，TCC 强制 kill</td>
+</tr>
+<tr>
+<td>修改 plist 后启动不了</td>
+<td>修改破坏了代码签名，需要重签名</td>
+</tr>
+<tr>
+<td>重签名后仍闪退</td>
+<td>ad-hoc 签名 + App Sandbox 在 macOS 15+ 启动时被拒绝</td>
+</tr>
+<tr>
+<td>启动后自动退出</td>
+<td><code>checkQQExist</code> 检测不到 QQ 主进程，<code>settingkeyrunalone</code> 未写入正确路径</td>
+</tr>
+<tr>
+<td>终端启动正常但双击不行</td>
+<td>终端继承 iTerm2 的 TCC 权限上下文，双击以独立 app 身份严格校验</td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2021
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.e72fd936.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.2.3",url:{base:"../.."}})</script>
+      
+        <script src="../../js/raphael.min.js"></script>
+      
+        <script src="../../js/underscore-min.js"></script>
+      
+        <script src="../../js/sequence-diagram-min.js"></script>
+      
+        <script src="../../js/flowchart.min.js"></script>
+      
+        <script src="../../js/umlconvert.js"></script>
+      
+    
+    
+      
+    
+  </body>
+</html>
