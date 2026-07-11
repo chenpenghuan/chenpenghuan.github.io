@@ -90,6 +90,15 @@ sequenceDiagram
 ```
 ````
 
+效果：
+```mermaid
+sequenceDiagram
+    participant 用户
+    participant 服务器
+    用户->>服务器: 发送请求
+    服务器-->>用户: 返回响应
+```
+
 ### 思维导图
 
 ````markdown
