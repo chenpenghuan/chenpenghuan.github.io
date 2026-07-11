@@ -1,44 +1,28 @@
-
-
-
-
-<!DOCTYPE html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
-        <meta name="description" content="A Material Design theme for MkDocs">
-      
-      
-        <link rel="canonical" href="https://chenpenghuan.github.io/tools/macos/">
+        <meta name="description" content="chen's notes">
       
       
         <meta name="author" content="chen">
       
       
-        <meta name="lang:clipboard.copy" content="复制">
+        <link rel="canonical" href="https://chenpenghuan.github.io/tools/macos/">
       
-        <meta name="lang:clipboard.copied" content="已复制">
       
-        <meta name="lang:search.language" content="jp">
+        <link rel="prev" href="../mkdocs/">
       
-        <meta name="lang:search.pipeline.stopwords" content="True">
       
-        <meta name="lang:search.pipeline.trimmer" content="True">
+        <link rel="next" href="../zsh/">
       
-        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
       
-        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+        
       
-        <meta name="lang:search.result.other" content="# 个符合条件的结果">
       
-        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
-      
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-3.0.3">
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -46,247 +30,591 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
       
         
         
-        <meta name="theme-color" content="">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
-    
-      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
       
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono">
-        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
-      
-    
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
-    
-      <link rel="stylesheet" href="../../css/mermaid.min.css">
+
     
     
-  </head>
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
   
     
     
-    <body dir="ltr" data-md-color-primary="white" data-md-color-accent="cyan">
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#macos" tabindex="1" class="md-skip">
-        跳转至
-      </a>
-    
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://chenpenghuan.github.io/" title="chen" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#macos" class="md-skip">
+          跳转至
         </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="chen" class="md-header__button md-logo" aria-label="chen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            chen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
-              <span class="md-header-nav__topic">
-                chen
-              </span>
-              <span class="md-header-nav__topic">
-                macos
-              </span>
+              macos
             
-          
+          </span>
         </div>
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan" aria-label="切换到深色模式" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan" aria-label="切换到浅色模式" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
-<div class="md-search" data-md-component="search" role="dialog">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            键入以开始搜索
+            正在初始化搜索引擎
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
   </div>
 </div>
-          
-        
-      </div>
       
-    </div>
+    
+    
   </nav>
+  
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
+      
       
         
-      
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../git/" class="md-tabs__link">
+          
+  
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  关于
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://chenpenghuan.github.io/" title="chen" class="md-nav__button md-logo">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="chen" class="md-nav__button md-logo" aria-label="chen" data-md-component="logo">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"></path></svg>
+
     </a>
     chen
   </label>
   
-  <ul class="md-nav__list" data-md-scrollfix>
+  <ul class="md-nav__list" data-md-scrollfix="">
     
       
       
-      
-
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
   
 
+    
+  </span>
+  
+  
 
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      </a>
+    </li>
+  
+
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      
+      
+  
+  
     
-    <label class="md-nav__link" for="nav-1">
-      工具
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mkdocs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    macos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-1">
-        工具
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../git/" title="git" class="md-nav__link">
-      git
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../mkdocs/" title="mkdocs" class="md-nav__link">
-      mkdocs
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        macos
-      </label>
-    
-    <a href="./" title="macos" class="md-nav__link md-nav__link--active">
-      macos
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#app" title="app" class="md-nav__link">
-    app
+  <a href="#app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" title="截图" class="md-nav__link">
-    截图
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        截图
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="截图">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#qq" title="qq截图" class="md-nav__link">
-    qq截图
+  <a href="#qq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qq截图
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flameshot" title="flameshot" class="md-nav__link">
-    flameshot
+  <a href="#flameshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flameshot
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#snowshot" title="snowshot" class="md-nav__link">
-    snowshot
+  <a href="#snowshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snowshot
+      
+    </span>
   </a>
   
 </li>
@@ -297,23 +625,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sublime-text-4200" title="sublime text 4200" class="md-nav__link">
-    sublime text 4200
+  <a href="#sublime-text-4200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sublime text 4200
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="sublime text 4200">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="注册" class="md-nav__link">
-    注册
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注册
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" title="插件" class="md-nav__link">
-    插件
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件
+      
+    </span>
   </a>
   
 </li>
@@ -324,37 +664,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vscodium" title="vscodium" class="md-nav__link">
-    vscodium
+  <a href="#vscodium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vscodium
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="鼠须管配置" class="md-nav__link">
-    鼠须管配置
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        鼠须管配置
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="鼠须管配置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" title="只保留鼠须管输入法" class="md-nav__link">
-    只保留鼠须管输入法
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        只保留鼠须管输入法
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="雾凇拼音" class="md-nav__link">
-    雾凇拼音
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        雾凇拼音
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" title="薄荷拼音" class="md-nav__link">
-    薄荷拼音
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        薄荷拼音
+      
+    </span>
   </a>
   
 </li>
@@ -365,44 +725,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" title="开发工具" class="md-nav__link">
-    开发工具
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工具
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" title="屏蔽更新" class="md-nav__link">
-    屏蔽更新
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        屏蔽更新
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mac" title="mac自启动设置" class="md-nav__link">
-    mac自启动设置
+  <a href="#mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mac自启动设置
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="mac自启动设置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" title="1.编辑启动配置文件" class="md-nav__link">
-    1.编辑启动配置文件
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.编辑启动配置文件
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" title="2.修改权限" class="md-nav__link">
-    2.修改权限
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.修改权限
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3" title="3.注册为系统服务" class="md-nav__link">
-    3.注册为系统服务
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.注册为系统服务
+      
+    </span>
   </a>
   
 </li>
@@ -413,23 +797,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" title="软件询问是否接入网络的解决办法" class="md-nav__link">
-    软件询问是否接入网络的解决办法
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        软件询问是否接入网络的解决办法
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#homebrew" title="homebrew" class="md-nav__link">
-    homebrew
+  <a href="#homebrew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        homebrew
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="homebrew">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" title="换源" class="md-nav__link">
-    换源
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        换源
+      
+    </span>
   </a>
   
 </li>
@@ -440,44 +836,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maven" title="maven报错" class="md-nav__link">
-    maven报错
+  <a href="#maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        maven报错
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vpn" title="飞塔vpn开源替代方案" class="md-nav__link">
-    飞塔vpn开源替代方案
+  <a href="#vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        飞塔vpn开源替代方案
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#charles" title="charles抓包配置" class="md-nav__link">
-    charles抓包配置
+  <a href="#charles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        charles抓包配置
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-ai-drawio" title="next-ai-draw.io" class="md-nav__link">
-    next-ai-draw.io
+  <a href="#next-ai-drawio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="next-ai-draw.io">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#next-ai-drawio-ai" title="next-ai-draw.io ai配置" class="md-nav__link">
-    next-ai-draw.io ai配置
+  <a href="#next-ai-drawio-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io ai配置
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#next-ai-drawio_1" title="next-ai-draw.io 代理配置" class="md-nav__link">
-    next-ai-draw.io 代理配置
+  <a href="#next-ai-drawio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io 代理配置
+      
+    </span>
   </a>
   
 </li>
@@ -486,189 +906,300 @@
     </nav>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
 </nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../zsh/" title="zsh安装与调试" class="md-nav__link">
-      zsh安装与调试
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" title="港区appleId注册" class="md-nav__link">
-      港区appleId注册
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../ai/" title="ai工具" class="md-nav__link">
-      ai工具
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
       
-      
-      
+    </li>
+  
 
-
-  <li class="md-nav__item md-nav__item--nested">
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zsh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
-    
-    <label class="md-nav__link" for="nav-2">
-      开发
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
-        开发
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/k8s/" title="k8s" class="md-nav__link">
-      k8s
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/java/" title="java" class="md-nav__link">
-      java
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/springboot/" title="springboot" class="md-nav__link">
-      springboot
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/mybatis/" title="mybatis配置" class="md-nav__link">
-      mybatis配置
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+  
+    zsh安装与调试
+  
 
     
-      
-      
-      
+  </span>
+  
+  
 
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B8%AF%E5%8C%BAappleId%E6%B3%A8%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+  
+    港区appleId注册
+  
+
     
-    <label class="md-nav__link" for="nav-3">
-      其他
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        其他
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
         
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ai工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QQ%20ScreenCapture%20Plugin%20%E7%8B%AC%E7%AB%8B%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/" class="md-nav__link">
         
-          
-          
-          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQ ScreenCapture
+  
 
+    
+  </span>
+  
+  
 
-  <li class="md-nav__item">
-    <a href="../../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="aws压缩图片" class="md-nav__link">
-      aws压缩图片
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" title="使用gmail发送邮件验证码" class="md-nav__link">
-      使用gmail发送邮件验证码
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
 
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
       
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
 
+    
+  </span>
+  
+  
 
-  <li class="md-nav__item">
-    <a href="../../about/" title="关于" class="md-nav__link">
-      关于
-    </a>
-  </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/aws%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    aws压缩图片
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E4%BD%BF%E7%94%A8gmail%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E9%AA%8C%E8%AF%81%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用gmail发送邮件验证码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关于
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -678,51 +1209,77 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">目录</label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#app" title="app" class="md-nav__link">
-    app
+  <a href="#app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" title="截图" class="md-nav__link">
-    截图
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        截图
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="截图">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#qq" title="qq截图" class="md-nav__link">
-    qq截图
+  <a href="#qq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qq截图
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flameshot" title="flameshot" class="md-nav__link">
-    flameshot
+  <a href="#flameshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flameshot
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#snowshot" title="snowshot" class="md-nav__link">
-    snowshot
+  <a href="#snowshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snowshot
+      
+    </span>
   </a>
   
 </li>
@@ -733,23 +1290,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sublime-text-4200" title="sublime text 4200" class="md-nav__link">
-    sublime text 4200
+  <a href="#sublime-text-4200" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sublime text 4200
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="sublime text 4200">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="注册" class="md-nav__link">
-    注册
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注册
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" title="插件" class="md-nav__link">
-    插件
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        插件
+      
+    </span>
   </a>
   
 </li>
@@ -760,37 +1329,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vscodium" title="vscodium" class="md-nav__link">
-    vscodium
+  <a href="#vscodium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vscodium
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="鼠须管配置" class="md-nav__link">
-    鼠须管配置
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        鼠须管配置
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="鼠须管配置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" title="只保留鼠须管输入法" class="md-nav__link">
-    只保留鼠须管输入法
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        只保留鼠须管输入法
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="雾凇拼音" class="md-nav__link">
-    雾凇拼音
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        雾凇拼音
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" title="薄荷拼音" class="md-nav__link">
-    薄荷拼音
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        薄荷拼音
+      
+    </span>
   </a>
   
 </li>
@@ -801,44 +1390,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" title="开发工具" class="md-nav__link">
-    开发工具
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工具
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" title="屏蔽更新" class="md-nav__link">
-    屏蔽更新
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        屏蔽更新
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mac" title="mac自启动设置" class="md-nav__link">
-    mac自启动设置
+  <a href="#mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mac自启动设置
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="mac自启动设置">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1" title="1.编辑启动配置文件" class="md-nav__link">
-    1.编辑启动配置文件
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.编辑启动配置文件
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2" title="2.修改权限" class="md-nav__link">
-    2.修改权限
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.修改权限
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3" title="3.注册为系统服务" class="md-nav__link">
-    3.注册为系统服务
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.注册为系统服务
+      
+    </span>
   </a>
   
 </li>
@@ -849,23 +1462,35 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" title="软件询问是否接入网络的解决办法" class="md-nav__link">
-    软件询问是否接入网络的解决办法
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        软件询问是否接入网络的解决办法
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#homebrew" title="homebrew" class="md-nav__link">
-    homebrew
+  <a href="#homebrew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        homebrew
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="homebrew">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_11" title="换源" class="md-nav__link">
-    换源
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        换源
+      
+    </span>
   </a>
   
 </li>
@@ -876,44 +1501,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#maven" title="maven报错" class="md-nav__link">
-    maven报错
+  <a href="#maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        maven报错
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vpn" title="飞塔vpn开源替代方案" class="md-nav__link">
-    飞塔vpn开源替代方案
+  <a href="#vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        飞塔vpn开源替代方案
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#charles" title="charles抓包配置" class="md-nav__link">
-    charles抓包配置
+  <a href="#charles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        charles抓包配置
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-ai-drawio" title="next-ai-draw.io" class="md-nav__link">
-    next-ai-draw.io
+  <a href="#next-ai-drawio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io
+      
+    </span>
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="next-ai-draw.io">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#next-ai-drawio-ai" title="next-ai-draw.io ai配置" class="md-nav__link">
-    next-ai-draw.io ai配置
+  <a href="#next-ai-drawio-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io ai配置
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#next-ai-drawio_1" title="next-ai-draw.io 代理配置" class="md-nav__link">
-    next-ai-draw.io 代理配置
+  <a href="#next-ai-drawio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        next-ai-draw.io 代理配置
+      
+    </span>
   </a>
   
 </li>
@@ -922,10 +1571,6 @@
     </nav>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -935,291 +1580,313 @@
               </div>
             
           
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
+          
+            <div class="md-content" data-md-component="content">
               
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="macos">macos</h1>
-<h2 id="app">app</h2>
-<div class="highlight"><pre><span></span><code>adrive
-applite
-bilibili
-charles
-clash-verge-rev
-douyin
-drawio
-font-maple-mono
-font-maple-mono-nf
-font-maple-mono-nf-cn
-fsnotes
-google-chrome
-handbrake-app
-iina
-imageoptim
-iterm2
-jordanbaird-ice
-keka
-logseq
-losslesscut
-markedit
-onyx
-qq
-rectangle
-sequel-ace
-snipaste
-sourcetree
-squirrel-app
-switchhosts
-tencent-lemon
-tencent-meeting
-thunder
-wechat
-zed
-</code></pre></div>
-<h2 id="_1">截图</h2>
-<h3 id="qq">qq截图</h3>
-<p><a href="/assets/files/QQ截图20260710_6.9.98-51102.dmg">QQ截图20260710_6.9.98-51102.dmg</a>
-<div class="highlight"><pre><span></span><code># 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
-xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
+                  
 
-# 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出
-defaults write &quot;$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3&quot; settingkeyrunalone -bool YES
-</code></pre></div></p>
-<h3 id="flameshot">flameshot</h3>
-<p>直接github下载或者homebrew安装</p>
-<h3 id="snowshot">snowshot</h3>
-<p>直接github下载或者homebrew安装</p>
-<h2 id="sublime-text-4200">sublime text 4200</h2>
-<h3 id="_2">注册</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="s2">&quot;/Applications/Sublime Text.app/Contents/MacOS/&quot;</span> <span class="o">||</span> <span class="nb">exit</span>
-md5 -q sublime_text <span class="p">|</span> grep -i <span class="s2">&quot;B07FDB3A228A46DF1CC178FE60B64D3B&quot;</span> <span class="o">||</span> <span class="nb">exit</span>
-<span class="nb">echo</span> 01060C90: E0 <span class="m">03</span> 1F AA C0 <span class="m">03</span> 5F D6 <span class="p">|</span> xxd -r - sublime_text
-<span class="nb">echo</span> 00FEAD18: 1F <span class="m">20</span> <span class="m">03</span> D5             <span class="p">|</span> xxd -r - sublime_text
-<span class="nb">echo</span> 00FEAD2C: 1F <span class="m">20</span> <span class="m">03</span> D5             <span class="p">|</span> xxd -r - sublime_text
-<span class="nb">echo</span> 01061F28: C0 <span class="m">03</span> 5F D6             <span class="p">|</span> xxd -r - sublime_text
-<span class="nb">echo</span> <span class="m">01060908</span>: C0 <span class="m">03</span> 5F D6             <span class="p">|</span> xxd -r - sublime_text
-<span class="nb">echo</span> 00FE5780: C0 <span class="m">03</span> 5F D6             <span class="p">|</span> xxd -r - sublime_text
+  <nav class="md-tags">
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:macos" class="md-tag">macOS</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:工具" class="md-tag">工具</a>
+      
+    
+  </nav>
 
-codesign --force --deep --sign - <span class="s2">&quot;/Applications/Sublime Text.app&quot;</span>
+
+
+<h1 id="macos">macos<a class="headerlink" href="#macos" title="Permanent link">¶</a></h1>
+<h2 id="app">app<a class="headerlink" href="#app" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>adrive
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>applite
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bilibili
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>charles
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>clash-verge-rev
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>douyin
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>drawio
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>font-maple-mono
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>font-maple-mono-nf
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>font-maple-mono-nf-cn
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>fsnotes
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>google-chrome
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>handbrake-app
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>iina
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>imageoptim
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>iterm2
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>jordanbaird-ice
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>keka
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>logseq
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>losslesscut
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>markedit
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>onyx
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>qq
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>rectangle
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>sequel-ace
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>snipaste
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>sourcetree
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>squirrel-app
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>switchhosts
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>tencent-lemon
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>tencent-meeting
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>thunder
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>wechat
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>zed
 </code></pre></div>
-<h3 id="_3">插件</h3>
+<h2 id="_1">截图<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<h3 id="qq">qq截图<a class="headerlink" href="#qq" title="Permanent link">¶</a></h3>
+<p><a href="../../assets/files/QQ%E6%88%AA%E5%9B%BE20260710_6.9.98-51102.dmg">QQ截图20260710_6.9.98-51102.dmg</a>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
+</code></pre></div><p></p>
+<h3 id="flameshot">flameshot<a class="headerlink" href="#flameshot" title="Permanent link">¶</a></h3>
+<p>直接github下载或者homebrew安装</p>
+<h3 id="snowshot">snowshot<a class="headerlink" href="#snowshot" title="Permanent link">¶</a></h3>
+<p>直接github下载或者homebrew安装</p>
+<h2 id="sublime-text-4200">sublime text 4200<a class="headerlink" href="#sublime-text-4200" title="Permanent link">¶</a></h2>
+<h3 id="_2">注册<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="s2">"/Applications/Sublime Text.app/Contents/MacOS/"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>md5<span class="w"> </span>-q<span class="w"> </span>sublime_text<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"B07FDB3A228A46DF1CC178FE60B64D3B"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">echo</span><span class="w"> </span>01060C90:<span class="w"> </span>E0<span class="w"> </span><span class="m">03</span><span class="w"> </span>1F<span class="w"> </span>AA<span class="w"> </span>C0<span class="w"> </span><span class="m">03</span><span class="w"> </span>5F<span class="w"> </span>D6<span class="w"> </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">echo</span><span class="w"> </span>00FEAD18:<span class="w"> </span>1F<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">03</span><span class="w"> </span>D5<span class="w">             </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">echo</span><span class="w"> </span>00FEAD2C:<span class="w"> </span>1F<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">03</span><span class="w"> </span>D5<span class="w">             </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">echo</span><span class="w"> </span>01061F28:<span class="w"> </span>C0<span class="w"> </span><span class="m">03</span><span class="w"> </span>5F<span class="w"> </span>D6<span class="w">             </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">echo</span><span class="w"> </span><span class="m">01060908</span>:<span class="w"> </span>C0<span class="w"> </span><span class="m">03</span><span class="w"> </span>5F<span class="w"> </span>D6<span class="w">             </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">echo</span><span class="w"> </span>00FE5780:<span class="w"> </span>C0<span class="w"> </span><span class="m">03</span><span class="w"> </span>5F<span class="w"> </span>D6<span class="w">             </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-r<span class="w"> </span>-<span class="w"> </span>sublime_text
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>codesign<span class="w"> </span>--force<span class="w"> </span>--deep<span class="w"> </span>--sign<span class="w"> </span>-<span class="w"> </span><span class="s2">"/Applications/Sublime Text.app"</span>
+</code></pre></div>
+<h3 id="_3">插件<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>pretty json
 rest client</p>
-<h2 id="vscodium">vscodium</h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;editor.fontSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;rest-client.enableTelemetry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;rest-client.previewOption&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;exchange&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;rest-client.environmentVariables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;$shared&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;dev&quot;</span><span class="p">:{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="s2">&quot;http://127.0.0.1:8080&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;diffEditor.renderSideBySide&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;git.confirmSync&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;git.autofetch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;markdown-editor.imageSaveFolder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${projectRoot}/docs/assets/images&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<h2 id="vscodium">vscodium<a class="headerlink" href="#vscodium" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">"editor.fontSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"rest-client.enableTelemetry"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"rest-client.previewOption"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exchange"</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">"rest-client.environmentVariables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">"$shared"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="nt">"dev"</span><span class="p">:{</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="nt">"host"</span><span class="p">:</span><span class="s2">"http://127.0.0.1:8080"</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">"diffEditor.renderSideBySide"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">"git.confirmSync"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">"git.autofetch"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">"markdown-editor.imageSaveFolder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${projectRoot}/docs/assets/images"</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="_4">鼠须管配置</h2>
-<h3 id="_5">只保留鼠须管输入法</h3>
-<p><div class="highlight"><pre><span></span><code><span class="c1"># 读取配置</span>
-cp ~/Library/Preferences/com.apple.HIToolbox.plist ~/Desktop/HIToolbox_backup.plist
-<span class="c1"># 按索引删除配置项</span>
-sudo plutil -remove AppleEnabledInputSources.1 ~/Library/Preferences/com.apple.HIToolbox.plist
-<span class="c1"># 上锁</span>
-sudo chflags uchg ~/Library/Preferences/com.apple.HIToolbox.plist
+<h2 id="_4">鼠须管配置<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<h3 id="_5">只保留鼠须管输入法<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 读取配置</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cp<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist<span class="w"> </span>~/Desktop/HIToolbox_backup.plist
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 按索引删除配置项</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>plutil<span class="w"> </span>-remove<span class="w"> </span>AppleEnabledInputSources.1<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 上锁</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>sudo<span class="w"> </span>chflags<span class="w"> </span>uchg<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist
 </code></pre></div>
 最终配置文件内容
-<div class="highlight"><pre><span></span><code><span class="c1"># defaults read com.apple.HIToolbox AppleEnabledInputSources</span>
-<span class="o">(</span>
-        <span class="o">{</span>
-        <span class="s2">&quot;Bundle ID&quot;</span> <span class="o">=</span> <span class="s2">&quot;com.apple.inputmethod.SCIM&quot;</span><span class="p">;</span>
-        <span class="s2">&quot;Input Mode&quot;</span> <span class="o">=</span> <span class="s2">&quot;com.apple.inputmethod.SCIM.ITABC&quot;</span><span class="p">;</span>
-        <span class="nv">InputSourceKind</span> <span class="o">=</span> <span class="s2">&quot;Input Mode&quot;</span><span class="p">;</span>
-    <span class="o">}</span>,
-        <span class="o">{</span>
-        <span class="s2">&quot;Bundle ID&quot;</span> <span class="o">=</span> <span class="s2">&quot;com.apple.CharacterPaletteIM&quot;</span><span class="p">;</span>
-        <span class="nv">InputSourceKind</span> <span class="o">=</span> <span class="s2">&quot;Non Keyboard Input Method&quot;</span><span class="p">;</span>
-    <span class="o">}</span>
-<span class="o">)</span>
-</code></pre></div></p>
-<h3 id="_6">雾凇拼音</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># squirrel.custom.yaml</span><span class="w"></span>
-<span class="nt">patch</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># --- 1. 核心视觉逻辑 ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/color_scheme&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_light</span><span class="w">           </span><span class="c1"># 指定系统【浅色模式】下的皮肤方案</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/color_scheme_dark&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_dark</span><span class="w">      </span><span class="c1"># 指定系统【深色模式】下的皮肤方案（0.15+版本自动切换）</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/candidate_list_layout&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span><span class="w">      </span><span class="c1"># 现代线性布局：相比 horizontal，间距控制更自然</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/font_face&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;SF</span><span class="nv"> </span><span class="s">Pro,</span><span class="nv"> </span><span class="s">PingFang</span><span class="nv"> </span><span class="s">SC&quot;</span><span class="w">   </span><span class="c1"># 字体：SF Pro 渲染数字英文字符，平方渲染汉字，最强原生感</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/font_point&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span><span class="w">                     </span><span class="c1"># 候选词字号大小</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/label_font_point&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">               </span><span class="c1"># 序号字号大小：略小于候选词，视觉重心更突出</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 2. 原生质感微调 ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/corner_radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                  </span><span class="c1"># 整个输入框的外圆角半径</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/hilited_corner_radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">           </span><span class="c1"># 选中项（蓝色胶囊）的内圆角半径</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/hilited_padding&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">                 </span><span class="c1"># 选中项文字与高亮背景块之间的留白（呼吸感关键）</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/border_height&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                   </span><span class="c1"># 输入框上下内边距</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/border_width&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                   </span><span class="c1"># 输入框左右内边距</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/line_spacing&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                    </span><span class="c1"># 多行候选时的行间距（linear布局下影响不大）</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/spacing&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w">                        </span><span class="c1"># 编码区（拼音）与候选词区之间的间距</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 3. 皮肤方案具体定义 ---</span><span class="w"></span>
-<span class="w">  </span><span class="nt">preset_color_schemes</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># 浅色原生方案</span><span class="w"></span>
-<span class="w">    </span><span class="nt">macos_light</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;原生浅色&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xF2F2F2</span><span class="w">                   </span><span class="c1"># 背景色：BGR格式的浅灰色</span><span class="w"></span>
-<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x424242</span><span class="w">                   </span><span class="c1"># 输入码（拼音）颜色：深灰，区分于候选词</span><span class="w"></span>
-<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w">         </span><span class="c1"># 候选项文字颜色：纯黑</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">           </span><span class="c1"># 选中项文字颜色：纯白</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w">           </span><span class="c1"># 选中项背景色：苹果标志性蓝色</span><span class="w"></span>
-<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">                 </span><span class="c1"># 边框颜色：白色边框在浅色下更有质感</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1"># 深色原生方案</span><span class="w"></span>
-<span class="w">    </span><span class="nt">macos_dark</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;原生深色&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x2D2D2D</span><span class="w">                   </span><span class="c1"># 背景色：深灰色</span><span class="w"></span>
-<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x999999</span><span class="w">                   </span><span class="c1"># 输入码（拼音）颜色：淡灰</span><span class="w"></span>
-<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">         </span><span class="c1"># 候选项文字颜色：纯白</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">           </span><span class="c1"># 选中项文字颜色：纯白</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w">           </span><span class="c1"># 选中项背景色：苹果蓝</span><span class="w"></span>
-<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w">                 </span><span class="c1"># 边框颜色：纯黑，与深色模式融为一体</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># defaults read com.apple.HIToolbox AppleEnabledInputSources</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">(</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="o">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="s2">"Bundle ID"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"com.apple.inputmethod.SCIM"</span><span class="p">;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="s2">"Input Mode"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"com.apple.inputmethod.SCIM.ITABC"</span><span class="p">;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="nv">InputSourceKind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Input Mode"</span><span class="p">;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="o">{</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="s2">"Bundle ID"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"com.apple.CharacterPaletteIM"</span><span class="p">;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="nv">InputSourceKind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Non Keyboard Input Method"</span><span class="p">;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="o">)</span>
+</code></pre></div><p></p>
+<h3 id="_6">雾凇拼音<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># squirrel.custom.yaml</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="c1"># --- 1. 核心视觉逻辑 ---</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="s">"style/color_scheme"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_light</span><span class="w">           </span><span class="c1"># 指定系统【浅色模式】下的皮肤方案</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="s">"style/color_scheme_dark"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_dark</span><span class="w">      </span><span class="c1"># 指定系统【深色模式】下的皮肤方案（0.15+版本自动切换）</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="s">"style/candidate_list_layout"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span><span class="w">      </span><span class="c1"># 现代线性布局：相比 horizontal，间距控制更自然</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="s">"style/font_face"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"SF</span><span class="nv"> </span><span class="s">Pro,</span><span class="nv"> </span><span class="s">PingFang</span><span class="nv"> </span><span class="s">SC"</span><span class="w">   </span><span class="c1"># 字体：SF Pro 渲染数字英文字符，平方渲染汉字，最强原生感</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="s">"style/font_point"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span><span class="w">                     </span><span class="c1"># 候选词字号大小</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="s">"style/label_font_point"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">               </span><span class="c1"># 序号字号大小：略小于候选词，视觉重心更突出</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="c1"># --- 2. 原生质感微调 ---</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span><span class="s">"style/corner_radius"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                  </span><span class="c1"># 整个输入框的外圆角半径</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="s">"style/hilited_corner_radius"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">           </span><span class="c1"># 选中项（蓝色胶囊）的内圆角半径</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">  </span><span class="s">"style/hilited_padding"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">                 </span><span class="c1"># 选中项文字与高亮背景块之间的留白（呼吸感关键）</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">  </span><span class="s">"style/border_height"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                   </span><span class="c1"># 输入框上下内边距</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">  </span><span class="s">"style/border_width"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                   </span><span class="c1"># 输入框左右内边距</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span><span class="s">"style/line_spacing"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                    </span><span class="c1"># 多行候选时的行间距（linear布局下影响不大）</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">  </span><span class="s">"style/spacing"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w">                        </span><span class="c1"># 编码区（拼音）与候选词区之间的间距</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">  </span><span class="c1"># --- 3. 皮肤方案具体定义 ---</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">  </span><span class="nt">preset_color_schemes</span><span class="p">:</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="c1"># 浅色原生方案</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">    </span><span class="nt">macos_light</span><span class="p">:</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"原生浅色"</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xF2F2F2</span><span class="w">                   </span><span class="c1"># 背景色：BGR格式的浅灰色</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x424242</span><span class="w">                   </span><span class="c1"># 输入码（拼音）颜色：深灰，区分于候选词</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w">         </span><span class="c1"># 候选项文字颜色：纯黑</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">           </span><span class="c1"># 选中项文字颜色：纯白</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w">           </span><span class="c1"># 选中项背景色：苹果标志性蓝色</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">                 </span><span class="c1"># 边框颜色：白色边框在浅色下更有质感</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">    </span><span class="c1"># 深色原生方案</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="w">    </span><span class="nt">macos_dark</span><span class="p">:</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"原生深色"</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x2D2D2D</span><span class="w">                   </span><span class="c1"># 背景色：深灰色</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x999999</span><span class="w">                   </span><span class="c1"># 输入码（拼音）颜色：淡灰</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">         </span><span class="c1"># 候选项文字颜色：纯白</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w">           </span><span class="c1"># 选中项文字颜色：纯白</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w">           </span><span class="c1"># 选中项背景色：苹果蓝</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w">                 </span><span class="c1"># 边框颜色：纯黑，与深色模式融为一体</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># rime_ice.custom.yaml</span><span class="w"></span>
-<span class="nt">__include</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">octagram</span><span class="w">   </span><span class="c1">#启用语法模型</span><span class="w"></span>
-<span class="c1"># 语法模型</span><span class="w"></span>
-<span class="nt">octagram</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">__patch</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">grammar</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang-lts-zh-hans</span><span class="w"></span>
-<span class="w">      </span><span class="nt">collocation_max_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
-<span class="w">      </span><span class="nt">collocation_min_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
-<span class="w">      </span><span class="nt">collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-10</span><span class="w"></span>
-<span class="w">      </span><span class="nt">non_collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-20</span><span class="w"></span>
-<span class="w">      </span><span class="nt">weak_collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-45</span><span class="w"></span>
-<span class="w">      </span><span class="nt">rear_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-12</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translator/contextual_suggestions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translator/max_homophones</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w"></span>
-<span class="w">    </span><span class="nt">translator/max_homographs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># rime_ice.custom.yaml</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">__include</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">octagram</span><span class="w">   </span><span class="c1">#启用语法模型</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># 语法模型</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">octagram</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">__patch</span><span class="p">:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="nt">grammar</span><span class="p">:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">      </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang-lts-zh-hans</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">      </span><span class="nt">collocation_max_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">      </span><span class="nt">collocation_min_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">      </span><span class="nt">collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-10</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">      </span><span class="nt">non_collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-20</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">      </span><span class="nt">weak_collocation_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-45</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">      </span><span class="nt">rear_penalty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-12</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="nt">translator/contextual_suggestions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nt">translator/max_homophones</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="nt">translator/max_homographs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
 </code></pre></div>
-<h3 id="_7">薄荷拼音</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># squirrel.custom.yaml</span><span class="w"></span>
-<span class="nt">patch</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># --- 1. 核心视觉逻辑 ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/color_scheme&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_light</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/color_scheme_dark&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_dark</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/candidate_list_layout&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/font_face&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;SF</span><span class="nv"> </span><span class="s">Pro,</span><span class="nv"> </span><span class="s">PingFang</span><span class="nv"> </span><span class="s">SC&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/font_point&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/label_font_point&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/translucency&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># 开启毛玻璃效果</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 2. 原生质感微调 ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/corner_radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/hilited_corner_radius&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/hilited_padding&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/border_height&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/border_width&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;style/spacing&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 3. 皮肤方案具体定义 ---</span><span class="w"></span>
-<span class="w">  </span><span class="nt">preset_color_schemes</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">macos_light</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;原生浅色&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xF2F2F2</span><span class="w"></span>
-<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x424242</span><span class="w"></span>
-<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w"></span>
-<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
-
-<span class="w">    </span><span class="nt">macos_dark</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;原生深色&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x2D2D2D</span><span class="w"></span>
-<span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x999999</span><span class="w"></span>
-<span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span><span class="w"></span>
-<span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span><span class="w"></span>
-<span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span><span class="w"></span>
+<h3 id="_7">薄荷拼音<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># squirrel.custom.yaml</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="c1"># --- 1. 核心视觉逻辑 ---</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="s">"style/color_scheme"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_light</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="s">"style/color_scheme_dark"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macos_dark</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="s">"style/candidate_list_layout"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="s">"style/font_face"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"SF</span><span class="nv"> </span><span class="s">Pro,</span><span class="nv"> </span><span class="s">PingFang</span><span class="nv"> </span><span class="s">SC"</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="s">"style/font_point"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="s">"style/label_font_point"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="s">"style/translucency"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># 开启毛玻璃效果</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="c1"># --- 2. 原生质感微调 ---</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="s">"style/corner_radius"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="s">"style/hilited_corner_radius"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="s">"style/hilited_padding"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span><span class="s">"style/border_height"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">  </span><span class="s">"style/border_width"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="s">"style/spacing"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">  </span><span class="c1"># --- 3. 皮肤方案具体定义 ---</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">  </span><span class="nt">preset_color_schemes</span><span class="p">:</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="nt">macos_light</span><span class="p">:</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"原生浅色"</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xF2F2F2</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x424242</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="nt">macos_dark</span><span class="p">:</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"原生深色"</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">      </span><span class="nt">back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x2D2D2D</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">      </span><span class="nt">text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x999999</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">      </span><span class="nt">candidate_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">      </span><span class="nt">hilited_text_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xFFFFFF</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">      </span><span class="nt">hilited_back_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0xD77800</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">      </span><span class="nt">border_color</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0x000000</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># rime_mint.custom.yaml</span><span class="w"></span>
-<span class="nt">patch</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># --- 1. 语言模型 (Octagram) ---</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># 请确保目录下有对应名称的 .gram 文件和 grammar.yaml</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/language&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang-lts-zh-hans</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/collocation_max_length&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/collocation_min_length&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 2. 语义权重微调 (参考雾凇权重) ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/collocation_penalty&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-10</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/non_collocation_penalty&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-20</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/weak_collocation_penalty&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-45</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;grammar/rear_penalty&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-12</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 3. 灵敏度与造词优化 (让你打 1-2 次就能记住) ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/initial_quality&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w">        </span><span class="c1"># 提升用户词典基础分</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/user_dict_seed&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span><span class="w">          </span><span class="c1"># 提高新词初始权重</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/user_dict_threshold&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">       </span><span class="c1"># 降低记忆门槛</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/enable_encoder&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">         </span><span class="c1"># 开启自动造词</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/encode_commit_history&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># 记录上屏历史以造词</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/max_phrase_length&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">        </span><span class="c1"># 允许记住更长的词组</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/contextual_suggestions&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 开启上下文建议</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># --- 4. 辅助功能 ---</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/max_homophones&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;translator/max_homographs&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;engine/filters/@before</span><span class="nv"> </span><span class="s">0&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simplifier@octagram_grammar</span><span class="w">  </span><span class="c1"># 强制加载插件</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1"># 快捷键：Shift+Delete 手动处决错词</span><span class="w"></span>
-<span class="w">  </span><span class="s">&quot;key_binder/bindings/@before</span><span class="nv"> </span><span class="s">0&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> when</span><span class="p">:</span><span class="w"> </span><span class="nv">has_menu</span><span class="p p-Indicator">,</span><span class="nt"> accept</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Shift+Delete&quot;</span><span class="p p-Indicator">,</span><span class="nt"> toggle</span><span class="p">:</span><span class="w"> </span><span class="nv">deletion</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># rime_mint.custom.yaml</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">patch</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="c1"># --- 1. 语言模型 (Octagram) ---</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="c1"># 请确保目录下有对应名称的 .gram 文件和 grammar.yaml</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="s">"grammar/language"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wanxiang-lts-zh-hans</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="s">"grammar/collocation_max_length"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="s">"grammar/collocation_min_length"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="c1"># --- 2. 语义权重微调 (参考雾凇权重) ---</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span><span class="s">"grammar/collocation_penalty"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-10</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">  </span><span class="s">"grammar/non_collocation_penalty"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-20</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">  </span><span class="s">"grammar/weak_collocation_penalty"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-45</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="s">"grammar/rear_penalty"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-12</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span><span class="c1"># --- 3. 灵敏度与造词优化 (让你打 1-2 次就能记住) ---</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">  </span><span class="s">"translator/initial_quality"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span><span class="w">        </span><span class="c1"># 提升用户词典基础分</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">  </span><span class="s">"translator/user_dict_seed"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span><span class="w">          </span><span class="c1"># 提高新词初始权重</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">  </span><span class="s">"translator/user_dict_threshold"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">       </span><span class="c1"># 降低记忆门槛</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">  </span><span class="s">"translator/enable_encoder"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">         </span><span class="c1"># 开启自动造词</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">  </span><span class="s">"translator/encode_commit_history"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># 记录上屏历史以造词</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">  </span><span class="s">"translator/max_phrase_length"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">        </span><span class="c1"># 允许记住更长的词组</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">  </span><span class="s">"translator/contextual_suggestions"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># 开启上下文建议</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">  </span><span class="c1"># --- 4. 辅助功能 ---</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">  </span><span class="s">"translator/max_homophones"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">  </span><span class="s">"translator/max_homographs"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">  </span><span class="s">"engine/filters/@before</span><span class="nv"> </span><span class="s">0"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simplifier@octagram_grammar</span><span class="w">  </span><span class="c1"># 强制加载插件</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">  </span><span class="c1"># 快捷键：Shift+Delete 手动处决错词</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">  </span><span class="s">"key_binder/bindings/@before</span><span class="nv"> </span><span class="s">0"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> when</span><span class="p">:</span><span class="w"> </span><span class="nv">has_menu</span><span class="p p-Indicator">,</span><span class="nt"> accept</span><span class="p">:</span><span class="w"> </span><span class="s">"Shift+Delete"</span><span class="p p-Indicator">,</span><span class="nt"> toggle</span><span class="p">:</span><span class="w"> </span><span class="nv">deletion</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># grammar.yaml</span><span class="w"></span>
-<span class="nt">grammar</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">viterbi</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># grammar.yaml</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">grammar</span><span class="p">:</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">engine</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">viterbi</span>
 </code></pre></div>
-<h2 id="_8">开发工具</h2>
+<h2 id="_8">开发工具<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
 <p>操作系统,最稳定版本推荐,选择逻辑
 macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。
 macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新系统特有的黑屏和卡顿。</p>
-<h2 id="_9">屏蔽更新</h2>
+<h2 id="_9">屏蔽更新<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
 <p>锁定最大系统版本</p>
-<div class="highlight"><pre><span></span><code>sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate <span class="se">\</span>
-    TargetReleaseVersion -int <span class="m">15</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>defaults<span class="w"> </span>write<span class="w"> </span>/Library/Preferences/com.apple.SoftwareUpdate<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>TargetReleaseVersion<span class="w"> </span>-int<span class="w"> </span><span class="m">15</span>
 </code></pre></div>
-<h2 id="mac">mac自启动设置</h2>
+<h2 id="mac">mac自启动设置<a class="headerlink" href="#mac" title="Permanent link">¶</a></h2>
 <p>以nginx为例</p>
-<h3 id="1">1.编辑启动配置文件</h3>
+<h3 id="1">1.编辑启动配置文件<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
 <p>sudo vim /Library/LaunchDaemons/com.nginx.plist加入</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
-<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;string&gt;</span>com.nginx.plist<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;array&gt;</span>
-                <span class="nt">&lt;string&gt;</span>/usr/local/nginx/sbin/nginx<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;/array&gt;</span>
-        <span class="nt">&lt;key&gt;</span>KeepAlive<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;false/&gt;</span>
-        <span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;true/&gt;</span>
-        <span class="nt">&lt;key&gt;</span>StandardErrorPath<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;string&gt;</span>/usr/local/nginx/logs/error.log<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;key&gt;</span>StandardOutPath<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;string&gt;</span>/usr/local/nginx/logs/access.log<span class="nt">&lt;/string&gt;</span>
-<span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/plist&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="cp">&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">&lt;plist</span><span class="w"> </span><span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">&lt;dict&gt;</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">        </span><span class="nt">&lt;string&gt;</span>com.nginx.plist<span class="nt">&lt;/string&gt;</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="nt">&lt;array&gt;</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">                </span><span class="nt">&lt;string&gt;</span>/usr/local/nginx/sbin/nginx<span class="nt">&lt;/string&gt;</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="nt">&lt;/array&gt;</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>KeepAlive<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">        </span><span class="nt">&lt;false/&gt;</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>RunAtLoad<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">        </span><span class="nt">&lt;true/&gt;</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>StandardErrorPath<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">        </span><span class="nt">&lt;string&gt;</span>/usr/local/nginx/logs/error.log<span class="nt">&lt;/string&gt;</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">        </span><span class="nt">&lt;key&gt;</span>StandardOutPath<span class="nt">&lt;/key&gt;</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">        </span><span class="nt">&lt;string&gt;</span>/usr/local/nginx/logs/access.log<span class="nt">&lt;/string&gt;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="nt">&lt;/dict&gt;</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="nt">&lt;/plist&gt;</span>
 </code></pre></div>
-<h3 id="2">2.修改权限</h3>
+<h3 id="2">2.修改权限<a class="headerlink" href="#2" title="Permanent link">¶</a></h3>
 <p><code>sudo chmod 644 /Library/LaunchDaemons/com.nginx.plist</code></p>
-<h3 id="3">3.注册为系统服务</h3>
+<h3 id="3">3.注册为系统服务<a class="headerlink" href="#3" title="Permanent link">¶</a></h3>
 <p>sudo launchctl load -w /Library/LaunchDaemons/com.nginx.plist</p>
 <p>卸载为sudo launchctl unload -w /Library/LaunchDaemons/com.nginx.plist</p>
-<h2 id="_10">软件询问是否接入网络的解决办法</h2>
+<h2 id="_10">软件询问是否接入网络的解决办法<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
 <p>对于Mac下程序始终询问是否接入网络问题的解决办法</p>
 <ol>
 <li>关闭程序；</li>
@@ -1227,40 +1894,40 @@ macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新
 <li>删除~/Library/Preferences/com.该程序名.plist文件。
    到次即可，重启程序后会新建相关文件并自动修改防火墙中相关内容，该问题已解决。</li>
 </ol>
-<h2 id="homebrew">homebrew</h2>
-<div class="highlight"><pre><span></span><code># show a list of all your installed Homebrew packages
-brew list
-# It will pin the formula to the current version
-brew pin &lt;formula&gt;
+<h2 id="homebrew">homebrew<a class="headerlink" href="#homebrew" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># show a list of all your installed Homebrew packages
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>brew list
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a># It will pin the formula to the current version
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>brew pin &lt;formula&gt;
 </code></pre></div>
-<h3 id="_11">换源</h3>
-<div class="highlight"><pre><span></span><code>export HOMEBREW_BREW_GIT_REMOTE=&quot;https://mirrors.ustc.edu.cn/brew.git&quot;
-export HOMEBREW_CORE_GIT_REMOTE=&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;
-export HOMEBREW_BOTTLE_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles&quot;
-export HOMEBREW_API_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;
+<h3 id="_11">换源<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
 </code></pre></div>
-<h2 id="maven">maven报错</h2>
+<h2 id="maven">maven报错<a class="headerlink" href="#maven" title="Permanent link">¶</a></h2>
 <p><code>The JAVA_HOME environment variable is not defined correctly</code></p>
 <p>解决办法：</p>
-<div class="highlight"><pre><span></span><code># On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.
-export JAVA_HOME=$(/usr/libexec/java_home)
-# Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.
-export JAVA_HOME=$(/usr/libexec/java_home)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a># On macOS 10.15 Catalina and later, the default Terminal shell is zsh. For the zsh shell, we can put the environment variables at ~/.zshenv or ~/.zshrc.
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>export JAVA_HOME=$(/usr/libexec/java_home)
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a># Before macOS 10.15 Catalina, the default Termina shell is bash. For the bash shell, we can put the environment variables at ~/.bash_profile or ~/.bashrc.
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>export JAVA_HOME=$(/usr/libexec/java_home)
 </code></pre></div>
-<h2 id="vpn">飞塔vpn开源替代方案</h2>
+<h2 id="vpn">飞塔vpn开源替代方案<a class="headerlink" href="#vpn" title="Permanent link">¶</a></h2>
 <p>安装openfortivpn</p>
-<div class="highlight"><pre><span></span><code>brew install openfortivpn
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>brew install openfortivpn
 </code></pre></div>
 <p>编辑config文件<code>/usr/local/etc/openfortivpn/openfortivpn/config</code></p>
-<div class="highlight"><pre><span></span><code>host = xxx
-username = xxx
-password = xxx
-trusted-cert = xxx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>host = xxx
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>username = xxx
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>password = xxx
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>trusted-cert = xxx
 </code></pre></div>
 <p>登录vpn</p>
-<div class="highlight"><pre><span></span><code>sudo openfortivpn
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo openfortivpn
 </code></pre></div>
-<h2 id="charles">charles抓包配置</h2>
+<h2 id="charles">charles抓包配置<a class="headerlink" href="#charles" title="Permanent link">¶</a></h2>
 <ol>
 <li>安装charles</li>
 <li>电脑上安装证书<code>help&gt;SSL Proxying&gt;Install Charles root Certificate</code></li>
@@ -1270,121 +1937,118 @@ trusted-cert = xxx
 <blockquote>
 <p>ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—&gt;通用—&gt; 关于本机—&gt;证书信任设置，信任该证书后安装便可抓https请求了。</p>
 </blockquote>
-<h2 id="next-ai-drawio">next-ai-draw.io</h2>
-<h3 id="next-ai-drawio-ai">next-ai-draw.io ai配置</h3>
-<p><img alt="next-ai-draw.io" src="/assets/images/next-draw-io-ai.png" /></p>
-<h3 id="next-ai-drawio_1">next-ai-draw.io 代理配置</h3>
-<p><img alt="next-ai-draw.io" src="/assets/images/next-draw-io-proxy.png" /></p>
-                
-                  
-                
-              
-              
-                
+<h2 id="next-ai-drawio">next-ai-draw.io<a class="headerlink" href="#next-ai-drawio" title="Permanent link">¶</a></h2>
+<h3 id="next-ai-drawio-ai">next-ai-draw.io ai配置<a class="headerlink" href="#next-ai-drawio-ai" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../assets/images/next-draw-io-ai.png" data-desc-position="bottom"><img alt="next-ai-draw.io" src="../../assets/images/next-draw-io-ai.png"></a></p>
+<h3 id="next-ai-drawio_1">next-ai-draw.io 代理配置<a class="headerlink" href="#next-ai-drawio_1" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../assets/images/next-draw-io-proxy.png" data-desc-position="bottom"><img alt="next-ai-draw.io" src="../../assets/images/next-draw-io-proxy.png"></a></p>
 
 
-              
-            </article>
-          </div>
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2026</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 15, 2021</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到页面顶部
+</button>
+        
       </main>
       
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../mkdocs/" title="mkdocs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  后退
-                </span>
-                mkdocs
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../zsh/" title="zsh安装与调试" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  前进
-                </span>
-                zsh安装与调试
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright © 2021
-          </div>
-        
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
-      </div>
-      
-        
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2021 - 2026 chen
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
 </footer>
-
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="../../assets/javascripts/application.e72fd936.js"></script>
-      
-        
-        
-          
-          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
-          
-            
-              
-                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
-              
-              
-                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
-              
-            
-          
-          
-        
-      
-      <script>app.initialize({version:"1.2.3",url:{base:"../.."}})</script>
-      
-        <script src="../../js/raphael.min.js"></script>
-      
-        <script src="../../js/underscore-min.js"></script>
-      
-        <script src="../../js/sequence-diagram-min.js"></script>
-      
-        <script src="../../js/flowchart.min.js"></script>
-      
-        <script src="../../js/umlconvert.js"></script>
-      
     
     
       
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
-  </body>
-</html>
+    
+
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document$.subscribe(function() {
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    mermaid.run({ querySelector: '.mermaid' });
+  });
+</script>
+
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
