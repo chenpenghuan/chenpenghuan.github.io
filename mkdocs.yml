@@ -1,58 +1,100 @@
 site_name: chen
-site_description: "A Material Design theme for MkDocs"
+site_description: "chen's notes"
 site_author: "chen"
 site_url: "https://chenpenghuan.github.io"
-copyright: "Copyright © 2021"
+copyright: "Copyright &copy; 2021 - 2026 chen"
+
 nav:
+  - 首页: index.md
   - 工具:
-      [
-        tools/git.md,
-        tools/mkdocs.md,
-        tools/macos.md,
-        tools/zsh.md,
-        tools/港区appleId注册.md,
-        tools/ai.md,
-      ]
+      - tools/git.md
+      - tools/mkdocs.md
+      - tools/macos.md
+      - tools/zsh.md
+      - tools/港区appleId注册.md
+      - tools/ai.md
+      - "QQ ScreenCapture": "tools/QQ ScreenCapture Plugin 独立运行配置.md"
   - 开发:
-      [
-        develop/k8s.md,
-        develop/java.md,
-        develop/springboot.md,
-        develop/mybatis.md,
-      ]
-  - 其他: [other/aws压缩图片.md, other/使用gmail发送邮件验证码.md]
+      - develop/k8s.md
+      - develop/java.md
+      - develop/springboot.md
+      - develop/mybatis.md
+      - develop/面试题.md
+  - 其他:
+      - other/aws压缩图片.md
+      - other/使用gmail发送邮件验证码.md
+  - Tags: tags.md
   - 关于: about.md
+
 plugins:
-  - search
-  - git-revision-date-localized
+  - search:
+      lang:
+        - zh
+        - en
+  - tags:
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+
 theme:
-  name: "material"
-  custom_dir: "themes/material"
-  language: "zh"
+  name: material
+  custom_dir: themes/material
+  language: zh
   palette:
-    primary: "white"
-    accent: "Cyan"
+    - scheme: default
+      primary: white
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
   font:
-    text: "Ubuntu"
-    code: "Ubuntu Mono"
-  logo:
-    icon: "\uE80C"
-  feature:
-    tabs: false
-extra_javascript:
-  - js/raphael.min.js
-  - js/underscore-min.js
-  - js/sequence-diagram-min.js
-  - js/flowchart.min.js
-  - js/umlconvert.js
+    text: Ubuntu
+    code: Ubuntu Mono
+  icon:
+    logo: material/book-open-page-variant
+    tag:
+      default: material/tag
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+
 markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
-        - name: flow
-          class: uml-flowchart
-          format: !!python/name:pymdownx.superfences.fence_div_format
-        - name: sequence
-          class: uml-sequence-diagram
-          format: !!python/name:pymdownx.superfences.fence_div_format
-extra_css:
-  - css/mermaid.min.css
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
