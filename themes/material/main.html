@@ -1,1 +1,12 @@
 {% extends "base.html" %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document$.subscribe(function() {
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    mermaid.run({ querySelector: '.mermaid' });
+  });
+</script>
+{% endblock %}
