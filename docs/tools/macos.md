@@ -1,3 +1,8 @@
+---
+tags:
+  - macOS
+  - 工具
+---
 # macos
 
 ## app
@@ -42,7 +47,7 @@ zed
 ## 截图
 
 ### qq截图
-[QQ截图20260710_6.9.98-51102.dmg](/assets/files/QQ截图20260710_6.9.98-51102.dmg)
+[QQ截图20260710_6.9.98-51102.dmg](../assets/files/QQ截图20260710_6.9.98-51102.dmg)
 ```
 # 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
 xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
@@ -404,8 +409,8 @@ sudo openfortivpn
 
 ### next-ai-draw.io ai配置
 
-![next-ai-draw.io](/assets/images/next-draw-io-ai.png)
+![next-ai-draw.io](../assets/images/next-draw-io-ai.png)
 
 ### next-ai-draw.io 代理配置
 
-![next-ai-draw.io](/assets/images/next-draw-io-proxy.png)
+![next-ai-draw.io](../assets/images/next-draw-io-proxy.png)
