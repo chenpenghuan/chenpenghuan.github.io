@@ -1588,13 +1588,13 @@
 <p><a href="/assets/files/TerminalFinder.alfredworkflow">TerminalFinder.alfredworkflow</a></p>
 <h2 id="_1">截图<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <h3 id="qq">qq截图<a class="headerlink" href="#qq" title="Permanent link">¶</a></h3>
-<p><a href="../../assets/files/QQ%E6%88%AA%E5%9B%BE20260710_6.9.98-51102.dmg">QQ截图20260710_6.9.98-51102.dmg</a>
-</p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
+<p><a href="https://www.dropbox.com/scl/fi/d8i5vx1syxbdeifffc5ui/QQ-20260710_6.9.98-51102.dmg?rlkey=4d7dnldzwucq94t9j0wsdn5ir&amp;st=g50wdp5m&amp;dl=0">QQ截图20260710_6.9.98-51102.dmg</a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># 配置独立运行模式，否则检测不到 QQ 进程后 app 会自动退出
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>defaults write "$HOME/Library/Preferences/FN2V63AD2J.com.tencent.ScreenCapture3" settingkeyrunalone -bool YES
-</code></pre></div><p></p>
+</code></pre></div>
 <h3 id="flameshot">flameshot<a class="headerlink" href="#flameshot" title="Permanent link">¶</a></h3>
 <p>直接github下载或者homebrew安装</p>
 <h3 id="snowshot">snowshot<a class="headerlink" href="#snowshot" title="Permanent link">¶</a></h3>
@@ -1612,6 +1612,7 @@
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>codesign<span class="w"> </span>--force<span class="w"> </span>--deep<span class="w"> </span>--sign<span class="w"> </span>-<span class="w"> </span><span class="s2">"/Applications/Sublime Text.app"</span>
 </code></pre></div>
+<p><a href="https://www.dropbox.com/scl/fi/kdp6ykupr6cjcgt3ovwha/Sublime_Text_4200.dmg?rlkey=qjxqbsyv62143sl94diqkd8ku&amp;st=13dg0th8&amp;dl=0">Sublime_Text_4200.dmg</a></p>
 <h3 id="_3">插件<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>pretty json
 rest client</p>
@@ -1634,14 +1635,14 @@ rest client</p>
 </code></pre></div>
 <h2 id="_4">鼠须管配置<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
 <h3 id="_5">只保留鼠须管输入法<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 读取配置</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 读取配置</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cp<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist<span class="w"> </span>~/Desktop/HIToolbox_backup.plist
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 按索引删除配置项</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>sudo<span class="w"> </span>plutil<span class="w"> </span>-remove<span class="w"> </span>AppleEnabledInputSources.1<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 上锁</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>sudo<span class="w"> </span>chflags<span class="w"> </span>uchg<span class="w"> </span>~/Library/Preferences/com.apple.HIToolbox.plist
 </code></pre></div>
-最终配置文件内容
+<p>最终配置文件内容</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># defaults read com.apple.HIToolbox AppleEnabledInputSources</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">(</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="o">{</span>
@@ -1654,7 +1655,7 @@ rest client</p>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="nv">InputSourceKind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Non Keyboard Input Method"</span><span class="p">;</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="o">)</span>
-</code></pre></div><p></p>
+</code></pre></div>
 <h3 id="_6">雾凇拼音<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># squirrel.custom.yaml</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">patch</span><span class="p">:</span>
@@ -1959,7 +1960,7 @@ macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新
 <p>安装openfortivpn</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>brew install openfortivpn
 </code></pre></div>
-<p>编辑config文件<code>/usr/local/etc/openfortivpn/openfortivpn/config</code></p>
+<p>编辑config文件 <code>/usr/local/etc/openfortivpn/openfortivpn/config</code></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>host = xxx
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>username = xxx
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>password = xxx
@@ -1971,7 +1972,7 @@ macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新
 <h2 id="charles">charles抓包配置<a class="headerlink" href="#charles" title="Permanent link">¶</a></h2>
 <ol>
 <li>安装charles</li>
-<li>电脑上安装证书<code>help&gt;SSL Proxying&gt;Install Charles root Certificate</code></li>
+<li>电脑上安装证书 <code>help&gt;SSL Proxying&gt;Install Charles root Certificate</code></li>
 <li>手机上安装证书 <code>help&gt;SSL Proxying&gt;install charles ...................browser</code></li>
 <li>设置抓包域名点击proxy&gt;SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用*号代替</li>
 </ol>
