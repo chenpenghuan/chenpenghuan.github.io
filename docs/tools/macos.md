@@ -526,6 +526,19 @@ sudo openfortivpn
 
 > ios安装证书和安卓大致不差，只是比安卓多出了一步，在安装下载完证书时，需要认证：设置—>通用—> 关于本机—>证书信任设置，信任该证书后安装便可抓https请求了。
 
+## 打包app
+
+```shell
+
+create-dmg \
+  --volname "app名" \
+  --window-pos 200 120 \
+  --window-size 600 400 \
+  --app-drop-link 450 200 \
+  ~/Desktop/dmg名.dmg \
+  ~/Desktop/app名.app
+```
+
 ## next-ai-draw.io
 
 ### next-ai-draw.io ai配置
