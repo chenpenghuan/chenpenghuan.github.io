@@ -208,82 +208,188 @@ octagram:
 ```yaml
 # squirrel.custom.yaml
 patch:
-  # --- 1. 核心视觉逻辑 ---
-  "style/color_scheme": macos_light
-  "style/color_scheme_dark": macos_dark
-  "style/candidate_list_layout": linear
-  "style/font_face": "SF Pro, PingFang SC"
-  "style/font_point": 24
-  "style/label_font_point": 15
-  "style/translucency": true                 # 开启毛玻璃效果
+  # --- 1. 核心交互行为 ---
+  "style/inline_ascii": true                    # 输入框内直接预览英文，不弹状态栏
+  "menu/page_size": 5                           # 候选词个数固定为 5 个
 
-  # --- 2. 原生质感微调 ---
-  "style/corner_radius": 10
-  "style/hilited_corner_radius": 6
-  "style/hilited_padding": 4
-  "style/border_height": 6
-  "style/border_width": 10
-  "style/spacing": 12
 
-  # --- 3. 皮肤方案具体定义 ---
-  preset_color_schemes:
-    macos_light:
-      name: "原生浅色"
-      back_color: 0xF2F2F2
-      text_color: 0x424242
-      candidate_text_color: 0x000000
-      hilited_text_color: 0xFFFFFF
-      hilited_back_color: 0xD77800
-      border_color: 0xFFFFFF
 
-    macos_dark:
-      name: "原生深色"
-      back_color: 0x2D2D2D
-      text_color: 0x999999
-      candidate_text_color: 0xFFFFFF
-      hilited_text_color: 0xFFFFFF
-      hilited_back_color: 0xD77800
-      border_color: 0x000000
+
+  # --- 2. 皮肤指定与系统级深浅跟随 ---
+  "style/color_scheme": native                  # 浅色模式
+  "style/color_scheme_dark": native             # 深色模式
+  "style/app_color_schemes": { 暗黑模式: native, 默认: native }
+
+
+
+
+  # --- 3. 字体与大小（对 native 依然生效） ---
+  "style/font_face": ""                         # 留空以保持 Emoji 的彩色效果
+  "style/font_point": 24                        # 候选字大小
+  "style/label_font_face": "PingFang SC"        # 序号字体
+  "style/label_font_point": 18                  # 序号大小
+  "style/comment_font_face": "PingFang SC"      # 提示/注音字体
+  "style/comment_font_point": 16                # 提示/注音大小
+
+
+
+
+  # --- 4. 拼音显示位置调整 ---
+  "style/inline_preedit": false                 # 编码回落到候选框顶部
+  "style/inline_candidate": false               # 候选项不嵌入输入框
+  "style/spacing": 10                           # 拼音与候选词之间的间距
+  "style/line_spacing": 5                       # 行间距
+  "style/ascii_composer_delay": 300             # 优化中英切换键延迟
+
+
+
+
+  # --- 5. 应用特权过滤（进入以下 App 自动切纯英文） ---
+  app_options:
+    com.apple.Terminal:
+      ascii_mode: true
+    com.googlecode.iterm2:
+      ascii_mode: true
+    com.apple.dt.Xcode:
+      ascii_mode: true
+    com.runningwithcrayons.Alfred:
+      ascii_mode: true
+
+
 ```
 
 ```yaml
 # rime_mint.custom.yaml
+
+schema_list:
+  - schema: rime_mint            # 薄荷拼音
+# =============================================================================
+# Rime Squirrel Custom Configuration Patch
+# Profile: 薄荷拼音 (rime_mint) 生产环境全功能定制补丁
+# Features: Octagram 语义模型 / 动态造词网络 / 英文融合动态补全 / 误输词组清理
+# =============================================================================
+
+
+
+
 patch:
-  # --- 1. 语言模型 (Octagram) ---
-  # 请确保目录下有对应名称的 .gram 文件和 grammar.yaml
-  "grammar/language": wanxiang-lts-zh-hans
-  "grammar/collocation_max_length": 6
-  "grammar/collocation_min_length": 3
+  # ---------------------------------------------------------------------------
+  # 0. 基础交互与音节切分优化
+  # ---------------------------------------------------------------------------
+  "menu/page_size": 5                        # 限制每页候选词数量为 5，提升视线聚焦度
+  "speller/delimiter": " '"                  # 用 ' 作为隔音符号（如 xi'an → 西安）
+  "speller/algebra/+":
+    - derive/v/u/                            # 音节容错追加：允许全拼/双拼模式下通过 u 输入 ü
 
-  # --- 2. 语义权重微调 (参考雾凇权重) ---
-  "grammar/collocation_penalty": -10
-  "grammar/non_collocation_penalty": -20
-  "grammar/weak_collocation_penalty": -45
-  "grammar/rear_penalty": -12
 
-  # --- 3. 灵敏度与造词优化 (让你打 1-2 次就能记住) ---
-  "translator/initial_quality": 1000        # 提升用户词典基础分
-  "translator/user_dict_seed": 500          # 提高新词初始权重
-  "translator/user_dict_threshold": 1       # 降低记忆门槛
-  "translator/enable_encoder": true         # 开启自动造词
-  "translator/encode_commit_history": true  # 记录上屏历史以造词
-  "translator/max_phrase_length": 10        # 允许记住更长的词组
-  "translator/contextual_suggestions": true # 开启上下文建议
 
-  # --- 4. 辅助功能 ---
-  "translator/max_homophones": 7
-  "translator/max_homographs": 7
-  "engine/filters/@before 0": simplifier@octagram_grammar  # 强制加载插件
+
+  # ---------------------------------------------------------------------------
+  # 1. 语言模型引擎 (Octagram Language Model)
+  # 💡 启用前置条件：请确保 ~/Library/Rime/ 目录下存在二进制语料模型文件
+  # ---------------------------------------------------------------------------
+  "grammar/language": wanxiang-lts-zh-hans  # 挂载万象中文长期维护版语言模型
+  "grammar/collocation_max_length": 6        # 算力内最优短语搭配最大切分长度
+  "grammar/collocation_min_length": 3        # 短语搭配触发的最小字数阈值
+
+
+
+
+  # ---------------------------------------------------------------------------
+  # 2. 语义权重矩阵微调 (基于万象与雾凇语料库的最佳实践参数)
+  # ---------------------------------------------------------------------------
+  "grammar/collocation_penalty": -10         # 标准词语搭配惩罚系数
+  "grammar/non_collocation_penalty": -20     # 非标准词语搭配惩罚系数
+  "grammar/weak_collocation_penalty": -45    # 弱关联语义组合惩罚系数（防止弱特征长句霸屏）
+  "grammar/rear_penalty": -12                # 逆向语序关联判定惩罚系数
+
+
+
+
+  # ---------------------------------------------------------------------------
+  # 3. 中文用户词典灵敏度与自适应造词策略
+  # ---------------------------------------------------------------------------
+  "translator/enable_sentence": true         # 开启整句输入，允许连续拼音匹配长句子
+  "codeLengthLimit_processor": 50           # 最大输入码长度（默认 25 会在长句时卡住）
+  "translator/initial_quality": 1000        # 中文核心翻译器基础权重评分
+  "translator/user_dict_seed": 500          # 新录入用户词条的初始加权分值
+  "translator/user_dict_threshold": 1       # 用户词典最低触发门槛（降低新词记忆周期）
+  "translator/enable_encoder": true         # 开启 Rime 核心自适应造词记忆
+  "translator/encode_commit_history": true  # 联动上屏历史，提取并固化高频词组
+  "translator/max_phrase_length": 10        # 允许动态记忆并造出长词组的最大跨度
+  "translator/contextual_suggestions": true # 激活上下文语义联想建议
+
+
+
+
+  # ---------------------------------------------------------------------------
+  # 4. 中英混输融合与英文动态补全引擎
+  # ---------------------------------------------------------------------------
+  "reduce_english_filter/mode": none         # 停用薄荷底层的英文拦截滤镜，释放英文补全响应
+
+
+
+
+  # 调校说明：1.1 为中英平衡的极限甜点值。
+  # 既保障了中文高频单字（如 da->大）的首选顺位，又赋予长英文前缀极强的越级补全能力。
+  "melt_eng/initial_quality": 1.1           # 动态英文补全器权重（浮点倍率体系）
+  "melt_eng/enable_completion": true         # 开启前缀动态匹配补全机制（如打 spri 自动联想 spring）
+  "melt_eng/enable_sentence": false          # 禁用英文整句自动连缀，防止干扰中文语义长句
+  "melt_eng/max_homophones": 7               # 同音/同码英文候选词最大展出量
+
+
+
+
+  # ---------------------------------------------------------------------------
+  # 5. 辅助输出控制与冲突词清理
+  # ---------------------------------------------------------------------------
+  "translator/max_homophones": 7            # 中文同音词单页最大检索呈现数
+  "translator/max_homographs": 7            # 中文同形异义词最大容纳数
   
-  # 快捷键：Shift+Delete 手动处决错词
-  "key_binder/bindings/@before 0": { when: has_menu, accept: "Shift+Delete", toggle: deletion }
+  # 冲突词清理映射：使用标准 delete_candidate 动作
+  # 交互行为：在输入候选框激活状态下，通过 [Control + Delete] 组合键彻底销毁误输入的错词记录
+  "key_binder/bindings/@before 0": { when: has_menu, accept: "Control+Delete", functional: delete_candidate }
+
+
+  # 移除三个反查模块（五笔98、笔画、拆字），减少字典加载
+  "engine/segmentors":
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  "engine/translators":
+    - punct_translator
+    - script_translator
+    - lua_translator@*shijian
+    - lua_translator@*number_translator
+    - lua_translator@*chineseLunarCalendar_translator
+    - lua_translator@*mint_calculator_translator
+    - table_translator@melt_eng
+    - table_translator@cn_en
+    - lua_translator@*force_gc
+  "recognizer/patterns/wubi98_mint": ""
+  "recognizer/patterns/stroke": ""
+  "recognizer/patterns/radical_lookup": ""
+
+
 ```
 
 ```yaml
-# grammar.yaml
-grammar:
-  engine: viterbi
+# default.custom.yaml
+# 只保留薄荷全拼，其余方案全部关闭以节省资源
+patch:
+  schema_list:
+    - schema: rime_mint
+
+
+  # Control+k 删除到行尾（覆盖 default.yaml 中无效的 Shift+Delete send 目标）
+  "key_binder/bindings/@before 0": { when: composing, accept: Control+k, send: Delete }
 ```
+
+模型下载[wanxiang-lts-zh-hans.gram](https://www.dropbox.com/scl/fi/m69pd5m67g5g76mrx0135/wanxiang-lts-zh-hans.gram?rlkey=1lc1s7swivgc8cj0j4is1vikg&st=x4tmr6y0&dl=0)
+
+
 
 ## 开发工具
 
