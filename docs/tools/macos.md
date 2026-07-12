@@ -55,7 +55,9 @@ zed
 ## 截图
 
 ### qq截图
-[QQ截图20260710_6.9.98-51102.dmg](../assets/files/QQ截图20260710_6.9.98-51102.dmg)
+
+[QQ截图20260710_6.9.98-51102.dmg](https://www.dropbox.com/scl/fi/d8i5vx1syxbdeifffc5ui/QQ-20260710_6.9.98-51102.dmg?rlkey=4d7dnldzwucq94t9j0wsdn5ir&st=g50wdp5m&dl=0)
+
 ```
 # 去除 macOS 的隔离标记，否则 Gatekeeper 会拒绝启动 ad-hoc 签名的 app
 xattr -cr ~/Desktop/QQ\ ScreenCapture\ plugin.app
@@ -89,6 +91,8 @@ echo 00FE5780: C0 03 5F D6             | xxd -r - sublime_text
 codesign --force --deep --sign - "/Applications/Sublime Text.app"
 ```
 
+[Sublime_Text_4200.dmg](https://www.dropbox.com/scl/fi/kdp6ykupr6cjcgt3ovwha/Sublime_Text_4200.dmg?rlkey=qjxqbsyv62143sl94diqkd8ku&st=13dg0th8&dl=0)
+
 ### 插件
 
 pretty json
@@ -117,6 +121,7 @@ rest client
 ## 鼠须管配置
 
 ### 只保留鼠须管输入法
+
 ```bash
 # 读取配置
 cp ~/Library/Preferences/com.apple.HIToolbox.plist ~/Desktop/HIToolbox_backup.plist
@@ -125,7 +130,9 @@ sudo plutil -remove AppleEnabledInputSources.1 ~/Library/Preferences/com.apple.H
 # 上锁
 sudo chflags uchg ~/Library/Preferences/com.apple.HIToolbox.plist
 ```
+
 最终配置文件内容
+
 ```bash
 # defaults read com.apple.HIToolbox AppleEnabledInputSources
 (
@@ -142,6 +149,7 @@ sudo chflags uchg ~/Library/Preferences/com.apple.HIToolbox.plist
 ```
 
 ### 雾凇拼音
+
 ```yaml
 # squirrel.custom.yaml
 patch:
@@ -205,6 +213,7 @@ octagram:
 ```
 
 ### 薄荷拼音
+
 ```yaml
 # squirrel.custom.yaml
 patch:
@@ -389,8 +398,6 @@ patch:
 
 模型下载[wanxiang-lts-zh-hans.gram](https://www.dropbox.com/scl/fi/m69pd5m67g5g76mrx0135/wanxiang-lts-zh-hans.gram?rlkey=1lc1s7swivgc8cj0j4is1vikg&st=x4tmr6y0&dl=0)
 
-
-
 ## 开发工具
 
 操作系统,最稳定版本推荐,选择逻辑
@@ -495,7 +502,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 brew install openfortivpn
 ```
 
-编辑config文件`/usr/local/etc/openfortivpn/openfortivpn/config`
+编辑config文件 `/usr/local/etc/openfortivpn/openfortivpn/config`
 
 ```
 host = xxx
@@ -513,7 +520,7 @@ sudo openfortivpn
 ## charles抓包配置
 
 1. 安装charles
-2. 电脑上安装证书`help>SSL Proxying>Install Charles root Certificate`
+2. 电脑上安装证书 `help>SSL Proxying>Install Charles root Certificate`
 3. 手机上安装证书 `help>SSL Proxying>install charles ...................browser`
 4. 设置抓包域名点击proxy>SSL Proxying Settings打开如下弹框，勾选ssl代理开关，左侧inclide为需要抓取的代理，填写需要抓取https的host，port里填写443即可，也可以用\*号代替
 
