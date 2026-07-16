@@ -398,8 +398,8 @@ patch:
 
 模型下载[wanxiang-lts-zh-hans.gram](https://www.dropbox.com/scl/fi/m69pd5m67g5g76mrx0135/wanxiang-lts-zh-hans.gram?rlkey=1lc1s7swivgc8cj0j4is1vikg&st=x4tmr6y0&dl=0)
 
-## 微信输入法精简
-
+## 微信输入法
+### 精简包&隐私屏蔽
 ```shell
 #!/bin/bash
 # WeType 输入法精简脚本
@@ -592,6 +592,19 @@ if [ "$ARCH" = "arm64" ]; then
     done < <(find "$APP" -type f \( -perm +0111 -o -name '*.dylib' \))
 fi
 
+# ── 删除不需要的功能模型 ──────────────────────────────
+# stt.bin  语音识别模型（语音输入用，单机模式无意义）
+# tts.bin  语音合成模型（朗读功能用）
+# bwcjpmac_jianpin.bin  日文简拼模型（非日文用户不需要）
+IMEDATA="$APP/Contents/Resources/imeData.bundle"
+echo "==> 删除语音/日文模型..."
+for f in stt.bin tts.bin bwcjpmac_jianpin.bin; do
+    if [ -f "$IMEDATA/$f" ]; then
+        rm -f "$IMEDATA/$f"
+        echo "  删除: $f"
+    fi
+done
+
 # ── 删除独立二进制 ────────────────────────────────────
 echo "==> 删除 WeTypeUpdater、WeTypeFeedback.app..."
 rm -f  "$APP/Contents/MacOS/WeTypeUpdater"
@@ -613,6 +626,182 @@ else
 fi
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
 
+```
+
+### 词库/模型更新脚本
+
+```shell
+#!/bin/bash
+# WeType 词库/模型更新脚本
+# 从指定版本的 app 包中提取 imeData 组件，替换到当前安装版本
+# 只替换 support_update=true 且版本号更新的文件，主程序二进制不动
+#
+# 用法：
+#   bash ~/Desktop/wetype_update_models.sh /path/to/NewWeType.app
+#
+# 注意：替换后不需要重新跑 wetype_trim.sh，主程序未改动无需重新 patch
+
+set -e
+
+DST_APP="$HOME/Library/Input Methods/WeType.app"
+SRC_APP="$1"
+
+# ── 检查参数 ──────────────────────────────────────────
+if [ -z "$SRC_APP" ]; then
+    echo "用法: bash $0 /path/to/NewWeType.app" >&2
+    exit 1
+fi
+if [ ! -d "$SRC_APP" ]; then
+    echo "错误：找不到 $SRC_APP" >&2
+    exit 1
+fi
+if [ ! -d "$DST_APP" ]; then
+    echo "错误：找不到已安装的 $DST_APP" >&2
+    exit 1
+fi
+
+SRC_BUNDLE=$(find "$SRC_APP" -name 'index.json' -path '*/imeData.bundle/*' | head -1 | xargs dirname)
+DST_BUNDLE="$DST_APP/Contents/Resources/imeData.bundle"
+
+if [ -z "$SRC_BUNDLE" ]; then
+    echo "错误：在 $SRC_APP 中找不到 imeData.bundle" >&2
+    exit 1
+fi
+
+echo "==> 来源: $SRC_BUNDLE"
+echo "==> 目标: $DST_BUNDLE"
+
+# ── 不替换的文件（和主程序版本强绑定，或用不到）────────
+# stt.bin   语音识别（已删除）
+# tts.bin   语音合成（已删除）
+# bwcjpmac_jianpin.bin  日文模型（已删除）
+# prism_v2.bin  拼音方案内部格式，版本绑定风险高
+# cell_dict.*.zh  格式可能版本相关
+SKIP_FILES="stt.bin tts.bin bwcjpmac_jianpin.bin prism_v2.bin cell_dict.hf.zh cell_dict.sc.zh cell_dict.ssrc.zh"
+
+# ── 解析两个版本的 index.json ─────────────────────────
+echo "==> 对比版本..."
+UPDATED=0
+SKIPPED=0
+NEWER=0
+
+python3 - "$SRC_BUNDLE/index.json" "$DST_BUNDLE/index.json" "$SKIP_FILES" << 'PYEOF'
+import json, sys
+
+src_path, dst_path, skip_str = sys.argv[1], sys.argv[2], sys.argv[3]
+skip = set(skip_str.split())
+
+with open(src_path) as f:
+    src = {x['name']: x for x in json.load(f)}
+with open(dst_path) as f:
+    dst = {x['name']: x for x in json.load(f)}
+
+to_update = []
+for name, sitem in src.items():
+    if name in skip:
+        print(f"  跳过（黑名单）: {name}")
+        continue
+    if not sitem.get('support_update', False):
+        print(f"  跳过（不支持更新）: {name}")
+        continue
+    ditem = dst.get(name)
+    if ditem is None:
+        print(f"  跳过（当前版本无此文件）: {name}")
+        continue
+    sv, dv = sitem.get('version', 0), ditem.get('version', 0)
+    if sv > dv:
+        print(f"  待更新: {name}  {dv} -> {sv}")
+        to_update.append(name)
+    elif sv < dv:
+        print(f"  当前更新（跳过）: {name}  cur={dv} src={sv}")
+    else:
+        print(f"  已是最新: {name}  v{dv}")
+
+print("__TO_UPDATE__:" + ",".join(to_update))
+PYEOF
+
+# 捕获待更新列表
+TO_UPDATE=$(python3 - "$SRC_BUNDLE/index.json" "$DST_BUNDLE/index.json" "$SKIP_FILES" 2>/dev/null << 'PYEOF'
+import json, sys
+src_path, dst_path, skip_str = sys.argv[1], sys.argv[2], sys.argv[3]
+skip = set(skip_str.split())
+with open(src_path) as f:
+    src = {x['name']: x for x in json.load(f)}
+with open(dst_path) as f:
+    dst = {x['name']: x for x in json.load(f)}
+result = []
+for name, sitem in src.items():
+    if name in skip or not sitem.get('support_update', False):
+        continue
+    ditem = dst.get(name)
+    if ditem and sitem.get('version', 0) > ditem.get('version', 0):
+        result.append(name)
+print(",".join(result))
+PYEOF
+)
+
+if [ -z "$TO_UPDATE" ]; then
+    echo ""
+    echo "没有需要更新的文件，已是最新。"
+    exit 0
+fi
+
+# ── 终止输入法进程 ────────────────────────────────────
+echo ""
+echo "==> 终止 WeType 进程..."
+killall WeType WeTypeSettings 2>/dev/null || true
+sleep 1
+
+# ── 备份当前 imeData.bundle ───────────────────────────
+BACKUP_DIR="$HOME/Desktop/WeType_imeData_backup_$(date +%Y%m%d_%H%M%S)"
+echo "==> 备份当前词库到 $BACKUP_DIR ..."
+mkdir -p "$BACKUP_DIR"
+cp "$DST_BUNDLE/index.json" "$BACKUP_DIR/index.json"
+IFS=',' read -ra FILES <<< "$TO_UPDATE"
+for f in "${FILES[@]}"; do
+    [ -f "$DST_BUNDLE/$f" ] && cp "$DST_BUNDLE/$f" "$BACKUP_DIR/$f"
+done
+
+# ── 复制新版文件 ──────────────────────────────────────
+echo "==> 替换模型文件..."
+for f in "${FILES[@]}"; do
+    if [ -f "$SRC_BUNDLE/$f" ]; then
+        cp "$SRC_BUNDLE/$f" "$DST_BUNDLE/$f"
+        echo "  更新: $f"
+    fi
+done
+
+# ── 更新 index.json ───────────────────────────────────
+echo "==> 更新 index.json..."
+python3 - "$SRC_BUNDLE/index.json" "$DST_BUNDLE/index.json" "$TO_UPDATE" << 'PYEOF'
+import json, sys
+src_path, dst_path, update_str = sys.argv[1], sys.argv[2], sys.argv[3]
+to_update = set(update_str.split(","))
+
+with open(src_path) as f:
+    src = {x['name']: x for x in json.load(f)}
+with open(dst_path) as f:
+    dst_list = json.load(f)
+
+for item in dst_list:
+    if item['name'] in to_update and item['name'] in src:
+        item['version'] = src[item['name']]['version']
+        item['md5'] = src[item['name']]['md5']
+        item['timestamp'] = src[item['name']].get('timestamp', item.get('timestamp'))
+
+with open(dst_path, 'w') as f:
+    json.dump(dst_list, f, separators=(',', ':'))
+print("  index.json 已更新")
+PYEOF
+
+# ── 重新签名 ──────────────────────────────────────────
+echo "==> 重新签名..."
+codesign --force --deep --sign - "$DST_APP"
+codesign --verify --deep --strict "$DST_APP" && echo "  签名验证通过"
+
+echo ""
+echo "完成。共更新 ${#FILES[@]} 个文件，备份位于: $BACKUP_DIR"
+echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
 
 ```
 
