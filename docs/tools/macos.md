@@ -412,6 +412,7 @@ patch:
 #   1. 从官网下载安装微信输入法，安装后确认 ~/Library/Input\ Methods/WeType.app 存在
 #   2. bash ~/Desktop/wetype_trim.sh
 #   3. 系统设置 → 键盘 → 输入法，关闭再开启微信输入法
+# 无语音输入法，1.4.3版本下载地址
 
 set -e
 
