@@ -412,7 +412,7 @@ patch:
 #   1. 从官网下载安装微信输入法，安装后确认 ~/Library/Input\ Methods/WeType.app 存在
 #   2. bash ~/Desktop/wetype_trim.sh
 #   3. 系统设置 → 键盘 → 输入法，关闭再开启微信输入法
-# 无语音输入法，1.4.3版本下载地址
+# 1.4.3版本（无ai）下载地址https://download.weread.qq.com/app/wxkb/mac/1.4.3/WeType_1.4.3_544.zip
 
 set -e
 
@@ -431,14 +431,26 @@ if ! command -v clang &>/dev/null; then
     exit 1
 fi
 
-# ── 备份 ──────────────────────────────────────────────
-echo "==> 备份到 $BACKUP_DIR ..."
-mkdir -p "$BACKUP_DIR"
-cp -R "$APP/Contents/Frameworks" "$BACKUP_DIR/Frameworks"
-[ -f "$APP/Contents/MacOS/WeTypeUpdater" ] && \
-    cp "$APP/Contents/MacOS/WeTypeUpdater" "$BACKUP_DIR/WeTypeUpdater"
-[ -d "$APP/Contents/MacOS/WeTypeFeedback.app" ] && \
-    cp -R "$APP/Contents/MacOS/WeTypeFeedback.app" "$BACKUP_DIR/WeTypeFeedback.app"
+# ── 检测是否已处理过 ─────────────────────────────────
+# 用主程序大小判断：原始 fat binary >100MB，瘦身后约一半
+ALREADY_DONE=false
+MAIN_BIN="$APP/Contents/MacOS/WeType"
+if [ -f "$MAIN_BIN" ] && [ "$(du -m "$MAIN_BIN" | cut -f1)" -lt 80 ]; then
+    ALREADY_DONE=true
+fi
+
+# ── 备份（仅首次）────────────────────────────────────
+if [ "$ALREADY_DONE" = false ]; then
+    echo "==> 备份到 $BACKUP_DIR ..."
+    mkdir -p "$BACKUP_DIR"
+    cp -R "$APP/Contents/Frameworks" "$BACKUP_DIR/Frameworks"
+    [ -f "$APP/Contents/MacOS/WeTypeUpdater" ] && \
+        cp "$APP/Contents/MacOS/WeTypeUpdater" "$BACKUP_DIR/WeTypeUpdater"
+    [ -d "$APP/Contents/MacOS/WeTypeFeedback.app" ] && \
+        cp -R "$APP/Contents/MacOS/WeTypeFeedback.app" "$BACKUP_DIR/WeTypeFeedback.app"
+else
+    echo "==> 检测到已处理过，跳过备份"
+fi
 
 # ── 终止输入法进程 ────────────────────────────────────
 echo "==> 终止 WeType 进程..."
@@ -476,7 +488,7 @@ thin_binary() {
     if [ ! -f "$target" ]; then
         return
     fi
-    if file "$target" | grep -q 'universal binary'; then
+    if lipo -info "$target" 2>/dev/null | grep -q 'x86_64'; then
         lipo -remove x86_64 "$target" -output "$target"
         codesign --force --sign - "$target"
         echo "  去除 x86_64: ${target#$APP/}"
@@ -486,8 +498,91 @@ thin_binary() {
 # ── 空壳替换 framework 二进制 ─────────────────────────
 echo "==> 替换 framework 二进制..."
 stub_replace "$APP/Contents/Frameworks/flurry.framework/Versions/A/flurry"
-stub_replace "$APP/Contents/Frameworks/wcwss.framework/Versions/A/wcwss"
-# Sparkle 保留：主程序直接引用 ObjC 类 SPUUpdater，空壳会导致 dyld 崩溃
+stub_replace "$APP/Contents/Frameworks/WXP2PTransferDyn.framework/Versions/A/WXP2PTransferDyn"
+# wcwss：不能空壳（主程序对返回值无 null 检查会 SIGSEGV），改用 binary patch
+# 只 patch 6 个 wcwss 网络函数入口为 ret，OpenSSL 部分原封不动
+# 判断依据：wcwss 原始 >1MB 且 _wcwss_connect_socket 入口不是 ret 指令
+patch_wcwss() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local size_kb
+    size_kb=$(du -k "$target" | cut -f1)
+    [ "$size_kb" -lt 500 ] && echo "  wcwss 跳过（已是空壳或已 patch）" && return
+
+    # 检查 _wcwss_connect_socket 入口是否已是 ret（0xC0035FD6）
+    local slice_offset
+    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
+    [ -z "$slice_offset" ] && echo "  wcwss 跳过（非 arm64）" && return
+
+    local vaddr
+    vaddr=$(nm -gU "$target" 2>/dev/null | awk '/_wcwss_connect_socket/{print $1; exit}')
+    [ -z "$vaddr" ] && echo "  wcwss 跳过（未找到符号）" && return
+
+    local file_offset=$(( slice_offset + 16#$vaddr ))
+    local first4
+    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
+    if [ "$first4" = "c0035fd6" ]; then
+        echo "  wcwss 跳过（已 patch）"
+        return
+    fi
+
+    # patch 所有 _wcwss_ 开头的函数入口为 ret
+    while IFS=' ' read -r vaddr_hex sym; do
+        local offset=$(( slice_offset + 16#$vaddr_hex ))
+        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
+        echo "  wcwss patched: $sym"
+    done < <(nm -gU "$target" 2>/dev/null | awk '/_wcwss_/{print $1, $3}')
+    codesign --force --sign - "$target"
+}
+
+patch_wcwss "$APP/Contents/Frameworks/wcwss.framework/Versions/A/wcwss"
+# Sparkle：不能空壳（主程序引用 ObjC 类符号），patch 所有网络请求入口为 ret
+patch_sparkle() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local slice_offset
+    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
+    [ -z "$slice_offset" ] && echo "  Sparkle 跳过（非 arm64）" && return
+
+    # 用 checkForUpdatesInBackground 入口检测是否已 patch
+    local vaddr
+    vaddr=$(nm "$target" 2>/dev/null | awk '/SPUUpdater.*checkForUpdatesInBackground\]/{print $1; exit}')
+    [ -z "$vaddr" ] && echo "  Sparkle 跳过（未找到符号）" && return
+
+    local file_offset=$(( slice_offset + 16#$vaddr ))
+    local first4
+    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
+    if [ "$first4" = "c0035fd6" ]; then
+        echo "  Sparkle 跳过（已 patch）"
+        return
+    fi
+
+    # patch 所有更新检查入口
+    local SYMS=(
+        "SPUUpdater.*checkForUpdatesInBackground\]"
+        "SPUUpdater.*scheduleNextUpdateCheckFiringImmediately"
+        "SPUAutomaticUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUBasicUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUCoreBasedUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUProbingUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUScheduledUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUUIBasedUpdateDriver.*checkForUpdatesAtAppcastURL"
+        "SPUUserInitiatedUpdateDriver.*checkForUpdatesAtAppcastURL"
+    )
+    for pattern in "${SYMS[@]}"; do
+        local addr sym
+        while IFS=' ' read -r addr sym; do
+            local offset=$(( slice_offset + 16#$addr ))
+            printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
+            echo "  Sparkle patched: $sym"
+        done < <(nm "$target" 2>/dev/null | awk "/$pattern/{print \$1, \$3}")
+    done
+    codesign --force --sign - "$target"
+}
+
+patch_sparkle "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
 
 # ── 剥除 fat binary 中的 x86_64（仅 Apple Silicon）──────
 if [ "$ARCH" = "arm64" ]; then
@@ -511,8 +606,13 @@ codesign --verify --deep --strict "$APP" && echo "  签名验证通过"
 rm -rf "$TMPDIR"
 
 echo ""
-echo "完成。备份位于: $BACKUP_DIR"
+if [ "$ALREADY_DONE" = false ]; then
+    echo "完成。备份位于: $BACKUP_DIR"
+else
+    echo "完成。"
+fi
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
+
 ```
 
 ## 开发工具
