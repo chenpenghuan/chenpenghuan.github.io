@@ -415,7 +415,7 @@ patch:
 
 set -e
 
-APP="/Users/chris.c/Library/Input Methods/WeType.app"
+APP="$HOME/Library/Input Methods/WeType.app"
 ARCH=$(uname -m)
 BACKUP_DIR="$HOME/Desktop/WeType_backup_$(date +%Y%m%d_%H%M%S)"
 
@@ -446,11 +446,12 @@ sleep 1
 
 # ── 编译空壳 dylib ────────────────────────────────────
 echo "==> 编译空壳 dylib..."
-cat > /tmp/_wetype_stub.c << 'EOF'
+TMPDIR=$(mktemp -d)
+cat > "$TMPDIR/_stub.c" << 'EOF'
 void stub_init(void) {}
 EOF
-clang -arch arm64  -dynamiclib -o /tmp/_stub_arm64.dylib  /tmp/_wetype_stub.c
-clang -arch x86_64 -dynamiclib -o /tmp/_stub_x86_64.dylib /tmp/_wetype_stub.c
+clang -arch arm64  -dynamiclib -o "$TMPDIR/_stub_arm64.dylib"  "$TMPDIR/_stub.c"
+clang -arch x86_64 -dynamiclib -o "$TMPDIR/_stub_x86_64.dylib" "$TMPDIR/_stub.c"
 
 stub_replace() {
     local target="$1"
@@ -460,9 +461,9 @@ stub_replace() {
     fi
     # 空壳只需匹配当前架构，Intel 机器仍保留 fat 以防万一
     if [ "$ARCH" = "arm64" ]; then
-        cp /tmp/_stub_arm64.dylib "$target"
+        cp "$TMPDIR/_stub_arm64.dylib" "$target"
     else
-        lipo -create /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib -output "$target"
+        lipo -create "$TMPDIR/_stub_arm64.dylib" "$TMPDIR/_stub_x86_64.dylib" -output "$target"
     fi
     codesign --force --sign - "$target"
     echo "  空壳替换: $(basename "$target")"
@@ -506,12 +507,11 @@ codesign --force --deep --sign - "$APP"
 codesign --verify --deep --strict "$APP" && echo "  签名验证通过"
 
 # ── 清理临时文件 ──────────────────────────────────────
-rm -f /tmp/_wetype_stub.c /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib
+rm -rf "$TMPDIR"
 
 echo ""
 echo "完成。备份位于: $BACKUP_DIR"
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
-
 ```
 
 ## 开发工具
