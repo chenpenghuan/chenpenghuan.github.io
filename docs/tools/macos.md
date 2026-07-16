@@ -398,6 +398,93 @@ patch:
 
 模型下载[wanxiang-lts-zh-hans.gram](https://www.dropbox.com/scl/fi/m69pd5m67g5g76mrx0135/wanxiang-lts-zh-hans.gram?rlkey=1lc1s7swivgc8cj0j4is1vikg&st=x4tmr6y0&dl=0)
 
+## 微信输入法精简
+
+```shell
+#!/bin/bash
+# WeType 输入法精简脚本
+# 效果：移除联网上报(flurry/wcwss空壳)、自动更新(WeTypeUpdater)、反馈工具(WeTypeFeedback)
+# Sparkle 保留原始版本（主程序强依赖 ObjC 类符号，空壳会崩）
+# WeTypeRelaunch 保留（崩溃自动重启）
+#
+# 使用方法（每台新电脑都需单独执行，不要跨机器复制裁剪后的 app）：
+#   1. 从官网下载安装微信输入法，安装后确认 ~/Library/Input\ Methods/WeType.app 存在
+#   2. bash ~/Desktop/wetype_trim.sh
+#   3. 系统设置 → 键盘 → 输入法，关闭再开启微信输入法
+
+set -e
+
+APP="/Users/chris.c/Library/Input Methods/WeType.app"
+BACKUP_DIR="$HOME/Desktop/WeType_backup_$(date +%Y%m%d_%H%M%S)"
+
+# ── 检查 ──────────────────────────────────────────────
+if [ ! -d "$APP" ]; then
+    echo "错误：找不到 $APP" >&2
+    exit 1
+fi
+
+if ! command -v clang &>/dev/null; then
+    echo "错误：需要 Xcode Command Line Tools，运行 xcode-select --install" >&2
+    exit 1
+fi
+
+# ── 备份 ──────────────────────────────────────────────
+echo "==> 备份到 $BACKUP_DIR ..."
+mkdir -p "$BACKUP_DIR"
+cp -R "$APP/Contents/Frameworks" "$BACKUP_DIR/Frameworks"
+[ -f "$APP/Contents/MacOS/WeTypeUpdater" ] && \
+    cp "$APP/Contents/MacOS/WeTypeUpdater" "$BACKUP_DIR/WeTypeUpdater"
+[ -d "$APP/Contents/MacOS/WeTypeFeedback.app" ] && \
+    cp -R "$APP/Contents/MacOS/WeTypeFeedback.app" "$BACKUP_DIR/WeTypeFeedback.app"
+
+# ── 终止输入法进程 ────────────────────────────────────
+echo "==> 终止 WeType 进程..."
+killall WeType WeTypeSettings 2>/dev/null || true
+sleep 1
+
+# ── 编译空壳 fat dylib ────────────────────────────────
+echo "==> 编译空壳 dylib..."
+cat > /tmp/_wetype_stub.c << 'EOF'
+void stub_init(void) {}
+EOF
+clang -arch arm64  -dynamiclib -o /tmp/_stub_arm64.dylib  /tmp/_wetype_stub.c
+clang -arch x86_64 -dynamiclib -o /tmp/_stub_x86_64.dylib /tmp/_wetype_stub.c
+
+stub_replace() {
+    local target="$1"
+    if [ ! -f "$target" ]; then
+        echo "  跳过（不存在）: $target"
+        return
+    fi
+    lipo -create /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib -output "$target"
+    codesign --force --sign - "$target"
+    echo "  空壳替换: $(basename "$target")"
+}
+
+# ── 空壳替换 framework 二进制 ─────────────────────────
+echo "==> 替换 framework 二进制..."
+stub_replace "$APP/Contents/Frameworks/flurry.framework/Versions/A/flurry"
+stub_replace "$APP/Contents/Frameworks/wcwss.framework/Versions/A/wcwss"
+# Sparkle 保留：主程序直接引用 ObjC 类 SPUUpdater，空壳会导致 dyld 崩溃
+
+# ── 删除独立二进制 ────────────────────────────────────
+echo "==> 删除 WeTypeUpdater、WeTypeFeedback.app..."
+rm -f  "$APP/Contents/MacOS/WeTypeUpdater"
+rm -rf "$APP/Contents/MacOS/WeTypeFeedback.app"
+
+# ── 重新签名 ──────────────────────────────────────────
+echo "==> 重新签名..."
+codesign --force --deep --sign - "$APP"
+codesign --verify --deep --strict "$APP" && echo "  签名验证通过"
+
+# ── 清理临时文件 ──────────────────────────────────────
+rm -f /tmp/_wetype_stub.c /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib
+
+echo ""
+echo "完成。备份位于: $BACKUP_DIR"
+echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
+```
+
 ## 开发工具
 
 操作系统,最稳定版本推荐,选择逻辑
