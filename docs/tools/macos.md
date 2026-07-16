@@ -404,6 +404,7 @@ patch:
 #!/bin/bash
 # WeType 输入法精简脚本
 # 效果：移除联网上报(flurry/wcwss空壳)、自动更新(WeTypeUpdater)、反馈工具(WeTypeFeedback)
+#       Apple Silicon 机器额外剥除所有 fat binary 中的 x86_64 架构（约节省 100MB）
 # Sparkle 保留原始版本（主程序强依赖 ObjC 类符号，空壳会崩）
 # WeTypeRelaunch 保留（崩溃自动重启）
 #
@@ -415,6 +416,7 @@ patch:
 set -e
 
 APP="/Users/chris.c/Library/Input Methods/WeType.app"
+ARCH=$(uname -m)
 BACKUP_DIR="$HOME/Desktop/WeType_backup_$(date +%Y%m%d_%H%M%S)"
 
 # ── 检查 ──────────────────────────────────────────────
@@ -442,7 +444,7 @@ echo "==> 终止 WeType 进程..."
 killall WeType WeTypeSettings 2>/dev/null || true
 sleep 1
 
-# ── 编译空壳 fat dylib ────────────────────────────────
+# ── 编译空壳 dylib ────────────────────────────────────
 echo "==> 编译空壳 dylib..."
 cat > /tmp/_wetype_stub.c << 'EOF'
 void stub_init(void) {}
@@ -456,9 +458,27 @@ stub_replace() {
         echo "  跳过（不存在）: $target"
         return
     fi
-    lipo -create /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib -output "$target"
+    # 空壳只需匹配当前架构，Intel 机器仍保留 fat 以防万一
+    if [ "$ARCH" = "arm64" ]; then
+        cp /tmp/_stub_arm64.dylib "$target"
+    else
+        lipo -create /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib -output "$target"
+    fi
     codesign --force --sign - "$target"
     echo "  空壳替换: $(basename "$target")"
+}
+
+# ── 剥除 x86_64（仅 Apple Silicon）─────────────────────
+thin_binary() {
+    local target="$1"
+    if [ ! -f "$target" ]; then
+        return
+    fi
+    if file "$target" | grep -q 'universal binary'; then
+        lipo -remove x86_64 "$target" -output "$target"
+        codesign --force --sign - "$target"
+        echo "  去除 x86_64: ${target#$APP/}"
+    fi
 }
 
 # ── 空壳替换 framework 二进制 ─────────────────────────
@@ -466,6 +486,14 @@ echo "==> 替换 framework 二进制..."
 stub_replace "$APP/Contents/Frameworks/flurry.framework/Versions/A/flurry"
 stub_replace "$APP/Contents/Frameworks/wcwss.framework/Versions/A/wcwss"
 # Sparkle 保留：主程序直接引用 ObjC 类 SPUUpdater，空壳会导致 dyld 崩溃
+
+# ── 剥除 fat binary 中的 x86_64（仅 Apple Silicon）──────
+if [ "$ARCH" = "arm64" ]; then
+    echo "==> 剥除 x86_64 架构..."
+    while IFS= read -r f; do
+        thin_binary "$f"
+    done < <(find "$APP" -type f \( -perm +0111 -o -name '*.dylib' \))
+fi
 
 # ── 删除独立二进制 ────────────────────────────────────
 echo "==> 删除 WeTypeUpdater、WeTypeFeedback.app..."
@@ -483,6 +511,7 @@ rm -f /tmp/_wetype_stub.c /tmp/_stub_arm64.dylib /tmp/_stub_x86_64.dylib
 echo ""
 echo "完成。备份位于: $BACKUP_DIR"
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
+
 ```
 
 ## 开发工具
