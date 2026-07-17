@@ -404,37 +404,59 @@ patch:
 #!/bin/bash
 # WeType 输入法隐私加固 + 精简脚本
 #
-# ── 封堵的隐私通道 ────────────────────────────────────────
-#   wcwss           instant_report 上报传输层         → 6个网络函数 ret patch
-#   flurry          统计 SDK                          → 空壳替换
-#   WXP2PTransferDyn P2P 文件传输                     → 空壳替换
-#   Sparkle         自动更新（含 appcast 轮询）        → 18个更新函数 ret patch
-#                   （不能空壳：主程序强依赖 ObjC 类符号，空壳会崩）
-#   SentrySDKWrapper 主程序崩溃上报（腾讯自建实例）   → +load ret patch
-#   WeTypeSettings Sentry 设置面板崩溃上报            → DSN 字符串清零
+# ── 隐私风险对比：开不开单机模式 ─────────────────────────
 #
-# ── 审查后确认无风险的组件 ───────────────────────────────
+#   不开单机模式（默认，本脚本处理后的状态）：
+#     ✓ 无后台行为上报（ReportApi 全部 patch）
+#     ✓ 无自动更新检查（Sparkle patch）
+#     ✓ 无崩溃上报（Sentry patch）
+#     ✓ 无统计 SDK / P2P 传输（flurry / WXP2PTransferDyn 空壳）
+#     ~ 打字时输入的拼音会发到腾讯服务器换取云端候选词
+#       （140.207.55.20，中国联通上海，腾讯机房）
+#     ~ AI 助手、翻译、语音输入等功能可用，使用时发送对应内容
+#     结论：无偷偷上报，但打字内容会经过腾讯服务器
+#
+#   开单机模式（设置 → 单机模式）：
+#     ✓ 打字零流量，输入内容完全本地处理
+#     ✗ 云端候选词不可用（候选词质量略降）
+#     ✗ AI 助手、翻译、语音输入不可用
+#     结论：完全离线，候选词仅靠本地模型
+#
+# ── 封堵的后台上报通道 ───────────────────────────────────
+#   ReportApi       instant_report 上报模块（C++）
+#                   → 7个发送函数 ret patch
+#                   注：Init 不 patch，否则对象未初始化网络回调时 SIGSEGV
+#   flurry          统计 SDK                → 空壳替换
+#   WXP2PTransferDyn P2P 文件传输           → 空壳替换
+#   Sparkle         自动更新 + appcast 轮询 → 18个更新函数 ret patch
+#                   注：不能空壳，主程序强引用 ObjC 类符号，空壳会崩
+#   SentrySDKWrapper 主程序崩溃上报         → +load ret patch
+#   WeTypeSettings Sentry 设置面板崩溃上报  → DSN 字符串首字节清零
+#
+# ── 审查确认无后台上报风险的组件 ────────────────────────
+#   wcwss              长连接保留，是云端候选词/AI/翻译/语音的传输通道
+#                      上报已由 ReportApi patch 在应用层切断
 #   BIZWrapper/DeviceSync/DictsUpdateChecker/COSHandler
-#     全部以 wcwss 为传输层或需要 wcwss push 触发，wcwss patch 后通道已死
-#   Alamofire       只被 COSHandler（词典下载）调用，依赖 wcwss push 下发 URL
-#   Kingfisher      图片缓存库，用于本地表情包渲染，无主动上报
-#   MarsReachability 只检测网络状态，不发数据
-#   WeTypeAccessibilityChecker 只检查麦克风权限，无网络代码，无 Sentry DSN
-#   WeTypeSettings CMS 内容 打开设置面板才加载（主动行为，非后台上报）
+#                      均走 wcwss，属于用户主动触发的功能性请求
+#   Alamofire          只被词典下载调用，依赖服务端 push 触发，不主动发起
+#   Kingfisher         图片缓存库，本地表情包渲染，无上报
+#   MarsReachability   只检测网络连通状态，不发送数据
+#   WeTypeAccessibilityChecker  只检查麦克风权限，无网络代码
+#   WeTypeSettings CMS 打开设置面板时加载公告/文章，属主动操作
 #
 # ── 其他精简 ─────────────────────────────────────────────
 #   删除 WeTypeUpdater（自动更新程序）、WeTypeFeedback.app（反馈工具）
-#   删除 stt.bin（语音识别）、tts.bin（语音合成）、bwcjpmac_jianpin.bin（日文模型）
-#   Apple Silicon：剥除所有 fat binary 中的 x86_64 架构（节省约 100MB）
-#   WeTypeRelaunch 保留（崩溃自动重启，正常功能）
+#   删除 bwcjpmac_jianpin.bin（日文模型）
+#   保留 stt.bin / tts.bin（语音识别/合成模型，语音输入可用）
+#   Apple Silicon：剥除所有 fat binary 的 x86_64 架构（节省约 100MB）
+#   WeTypeRelaunch 保留（崩溃自动重启）
 #
 # ── 使用方法 ─────────────────────────────────────────────
 #   每台新电脑都需单独执行，不要跨机器复制裁剪后的 app（codesign 与机器绑定）
 #   1. 从官网下载安装微信输入法，确认 ~/Library/Input Methods/WeType.app 存在
 #   2. bash ~/Desktop/wetype_trim.sh
 #   3. 系统设置 → 键盘 → 输入法，关闭再开启微信输入法
-#
-# 1.4.3版本（无语音输入）：https://download.weread.qq.com/app/wxkb/mac/1.4.3/WeType_1.4.3_544.zip
+#   可重复执行，已处理的步骤自动跳过（幂等）
 
 set -e
 
@@ -521,45 +543,8 @@ thin_binary() {
 echo "==> 替换 framework 二进制..."
 stub_replace "$APP/Contents/Frameworks/flurry.framework/Versions/A/flurry"
 stub_replace "$APP/Contents/Frameworks/WXP2PTransferDyn.framework/Versions/A/WXP2PTransferDyn"
-# wcwss：不能空壳（主程序对返回值无 null 检查会 SIGSEGV），改用 binary patch
-# 只 patch 6 个 wcwss 网络函数入口为 ret，OpenSSL 部分原封不动
-# 判断依据：wcwss 原始 >1MB 且 _wcwss_connect_socket 入口不是 ret 指令
-patch_wcwss() {
-    local target="$1"
-    [ -f "$target" ] || return
-
-    local size_kb
-    size_kb=$(du -k "$target" | cut -f1)
-    [ "$size_kb" -lt 500 ] && echo "  wcwss 跳过（已是空壳或已 patch）" && return
-
-    # 检查 _wcwss_connect_socket 入口是否已是 ret（0xC0035FD6）
-    local slice_offset
-    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
-    [ -z "$slice_offset" ] && echo "  wcwss 跳过（非 arm64）" && return
-
-    local vaddr
-    vaddr=$(nm -gU "$target" 2>/dev/null | awk '/_wcwss_connect_socket/{print $1; exit}')
-    [ -z "$vaddr" ] && echo "  wcwss 跳过（未找到符号）" && return
-
-    local file_offset=$(( slice_offset + 16#$vaddr ))
-    local first4
-    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
-    if [ "$first4" = "c0035fd6" ]; then
-        echo "  wcwss 跳过（已 patch）"
-        return
-    fi
-
-    # patch 所有 _wcwss_ 开头的函数入口为 ret
-    while IFS=' ' read -r vaddr_hex sym; do
-        local offset=$(( slice_offset + 16#$vaddr_hex ))
-        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
-        echo "  wcwss patched: $sym"
-    done < <(nm -gU "$target" 2>/dev/null | awk '/_wcwss_/{print $1, $3}')
-    codesign --force --sign - "$target"
-}
-
-patch_wcwss "$APP/Contents/Frameworks/wcwss.framework/Versions/A/wcwss"
-# Sparkle：不能空壳（主程序引用 ObjC 类符号），patch 所有网络请求入口为 ret
+echo "  wcwss 保留（云端候选词/AI/翻译/语音通道，上报由 ReportApi patch 切断）"
+# Sparkle：不能空壳（主程序引用 ObjC 类符号），patch 所有更新检查入口为 ret
 patch_sparkle() {
     local target="$1"
     [ -f "$target" ] || return
@@ -606,8 +591,53 @@ patch_sparkle() {
 
 patch_sparkle "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
 
+# ── instant_report 上报：patch 主程序 ReportApi C++ 类 ────
+# 架构：ReportApi → wetap::net → wcwss_send_socket_message
+# nm 地址含 0x100000000 base，需减去 base 再加 slice_offset
+patch_report_api() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local slice_offset base=4294967296
+    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
+    [ -z "$slice_offset" ] && echo "  ReportApi 跳过（非 arm64）" && return
+
+    # 用 Report 入口检测是否已 patch
+    local report_hex
+    report_hex=$(nm "$target" 2>/dev/null | awk '/__ZN9ReportApi6Report /{print $1; exit}')
+    [ -z "$report_hex" ] && echo "  ReportApi 跳过（未找到符号，版本不符）" && return
+
+    local report_off=$(( slice_offset + 16#$report_hex - base ))
+    local first4
+    first4=$(dd if="$target" bs=1 skip=$report_off count=4 2>/dev/null | xxd -p)
+    if [ "$first4" = "c0035fd6" ]; then
+        echo "  ReportApi 跳过（已 patch）"
+        return
+    fi
+
+    local SYMS=(
+        '__ZN9ReportApi6Report'
+        '__ZN9ReportApi13InstantReport'
+        '__ZN9ReportApi20StartAutoReportCache'
+        '__ZN9ReportApi19ReportLocalCacheLog'
+        '__ZN9ReportApi26ReportLocalCacheLogInQueue'
+        '__ZN9ReportApi24ReportTaskFailLog'
+        '__ZN9ReportApi5Flush'
+    )
+    for sym in "${SYMS[@]}"; do
+        local vaddr_hex
+        vaddr_hex=$(nm "$target" 2>/dev/null | awk "/$sym/{print \$1; exit}")
+        [ -z "$vaddr_hex" ] && continue
+        local offset=$(( slice_offset + 16#$vaddr_hex - base ))
+        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
+        echo "  ReportApi patched: $sym"
+    done
+    codesign --force --sign - "$target"
+}
+
+patch_report_api "$APP/Contents/MacOS/WeType"
+
 # ── Sentry 崩溃上报：patch 主程序初始化入口 ──────────────
-# SentrySDKWrapper +load 是 ObjC +load 方法，app 启动时自动调用，是 Sentry 初始化唯一入口
 patch_sentry_main() {
     local target="$1"
     [ -f "$target" ] || return
@@ -620,7 +650,6 @@ patch_sentry_main() {
     vaddr_hex=$(nm "$target" 2>/dev/null | awk '/\+\[SentrySDKWrapper load\]/{print $1; exit}')
     [ -z "$vaddr_hex" ] && echo "  Sentry(主程序) 跳过（未找到符号）" && return
 
-    # nm 地址含 0x100000000 base，减去 base 得文件内偏移
     local base=4294967296
     local vaddr_dec=$(( 16#$vaddr_hex ))
     local file_offset=$(( slice_offset + vaddr_dec - base ))
@@ -638,8 +667,8 @@ patch_sentry_main() {
 }
 
 # ── Sentry 崩溃上报：破坏 WeTypeSettings 中的 DSN 字符串 ──
-# WeTypeSettings 是 Flutter/Dart AOT，symbol 全 strip，无法用 nm 定位函数
-# 将 DSN 字符串首字节置 0，Sentry SDK 解析到空 DSN 后跳过初始化
+# WeTypeSettings 是 Flutter/Dart AOT，symbol 全 strip
+# 将 DSN 首字节置 0，Sentry 解析到空字符串后跳过初始化
 patch_sentry_settings() {
     local target="$1"
     [ -f "$target" ] || return
@@ -672,13 +701,10 @@ if [ "$ARCH" = "arm64" ]; then
     done < <(find "$APP" -type f \( -perm +0111 -o -name '*.dylib' \))
 fi
 
-# ── 删除不需要的功能模型 ──────────────────────────────
-# stt.bin  语音识别模型（语音输入用，单机模式无意义）
-# tts.bin  语音合成模型（朗读功能用）
-# bwcjpmac_jianpin.bin  日文简拼模型（非日文用户不需要）
+# ── 删除不需要的模型 ──────────────────────────────────
 IMEDATA="$APP/Contents/Resources/imeData.bundle"
-echo "==> 删除语音/日文模型..."
-for f in stt.bin tts.bin bwcjpmac_jianpin.bin; do
+echo "==> 删除日文模型..."
+for f in bwcjpmac_jianpin.bin; do
     if [ -f "$IMEDATA/$f" ]; then
         rm -f "$IMEDATA/$f"
         echo "  删除: $f"
