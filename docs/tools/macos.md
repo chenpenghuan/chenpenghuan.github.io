@@ -424,7 +424,12 @@ patch:
 #
 # ── 封堵的后台上报通道 ───────────────────────────────────
 #   ReportApi       instant_report 上报模块（C++）
-#                   → 7个发送函数 ret patch
+#                   → ret patch：Report、InstantReport、StartAutoReportCache、
+#                     ReportTaskFailLog、Flush（普通调用链，入口直接返回安全）
+#                   → tbnz→b patch：ReportLocalCacheLogInQueue、
+#                     ReportTaskFailLogInQueue、ReportLocalCacheLog
+#                     （注册为网络回调函数指针，入口 ret 会破坏调用约定
+#                      导致 SIGSEGV；改为把 guard check 变成无条件跳到 ret 序列）
 #                   注：Init 不 patch，否则对象未初始化网络回调时 SIGSEGV
 #   flurry          统计 SDK                → 空壳替换
 #   WXP2PTransferDyn P2P 文件传输           → 空壳替换
@@ -594,6 +599,18 @@ patch_sparkle "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
 # ── instant_report 上报：patch 主程序 ReportApi C++ 类 ────
 # 架构：ReportApi → wetap::net → wcwss_send_socket_message
 # nm 地址含 0x100000000 base，需减去 base 再加 slice_offset
+#
+# patch 策略分两类：
+#   ret patch（入口第一条指令改为 ret）：
+#     适用于普通调用链函数（Report、InstantReport、StartAutoReportCache、
+#     ReportTaskFailLog、Flush）——这些不作为函数指针被注册，直接 ret 安全。
+#
+#   tbnz→b patch（把入口 guard check 的条件跳转改为无条件跳转到 ret 序列）：
+#     适用于被注册为网络回调函数指针的函数（ReportLocalCacheLogInQueue、
+#     ReportTaskFailLogInQueue、ReportLocalCacheLog）——这些由网络层直接 call，
+#     调用约定要求函数正常建帧/拆帧，直接 ret 会破坏调用约定导致 SIGSEGV。
+#     guard check 原本是"auto_report_cache_ 为 0 时提前返回"，我们把它变成
+#     "永远走提前返回分支"，函数正常进入、正常退出，只是永远走空路径。
 patch_report_api() {
     local target="$1"
     [ -f "$target" ] || return
@@ -602,9 +619,9 @@ patch_report_api() {
     slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
     [ -z "$slice_offset" ] && echo "  ReportApi 跳过（非 arm64）" && return
 
-    # 用 Report 入口检测是否已 patch
+    # 幂等检测：用 Report 入口字节判断（grep 精确匹配符号前缀，避免 awk 空格问题）
     local report_hex
-    report_hex=$(nm "$target" 2>/dev/null | awk '/__ZN9ReportApi6Report /{print $1; exit}')
+    report_hex=$(nm "$target" 2>/dev/null | grep "__ZN9ReportApi6Report" | awk '{print $1; exit}')
     [ -z "$report_hex" ] && echo "  ReportApi 跳过（未找到符号，版本不符）" && return
 
     local report_off=$(( slice_offset + 16#$report_hex - base ))
@@ -615,23 +632,58 @@ patch_report_api() {
         return
     fi
 
-    local SYMS=(
+    # --- ret patch：入口直接返回 ---
+    local RET_SYMS=(
         '__ZN9ReportApi6Report'
         '__ZN9ReportApi13InstantReport'
         '__ZN9ReportApi20StartAutoReportCache'
-        '__ZN9ReportApi19ReportLocalCacheLog'
-        '__ZN9ReportApi26ReportLocalCacheLogInQueue'
-        '__ZN9ReportApi24ReportTaskFailLog'
+        '__ZN9ReportApi17ReportTaskFailLog'
         '__ZN9ReportApi5Flush'
     )
-    for sym in "${SYMS[@]}"; do
+    for sym in "${RET_SYMS[@]}"; do
         local vaddr_hex
-        vaddr_hex=$(nm "$target" 2>/dev/null | awk "/$sym/{print \$1; exit}")
+        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | awk '{print $1; exit}')
         [ -z "$vaddr_hex" ] && continue
         local offset=$(( slice_offset + 16#$vaddr_hex - base ))
         printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
-        echo "  ReportApi patched: $sym"
+        echo "  ReportApi ret patch: $sym"
     done
+
+    # --- tbnz→b patch：把 guard check 变成无条件跳到 ret 序列 ---
+    # 每项：符号名, guard_check 相对函数起点的字节偏移, 跳转目标相对函数起点的字节偏移
+    # 偏移值来自对 2.2.0 build 617 的反汇编，升级版本后如符号地址变化会自动重算，
+    # 但偏移量若有变化需重新确认。
+    # 格式：符号名|tbnz相对偏移(十进制)|ret序列相对偏移(十进制)
+    local TBNZ_SYMS=(
+        '__ZN9ReportApi26ReportLocalCacheLogInQueue|104|108'
+        '__ZN9ReportApi24ReportTaskFailLogInQueue|104|108'
+        '__ZN9ReportApi19ReportLocalCacheLog|32|172'
+    )
+    for entry in "${TBNZ_SYMS[@]}"; do
+        local sym tbnz_rel ret_rel
+        sym=${entry%%|*}
+        tbnz_rel=${entry#*|}; tbnz_rel=${tbnz_rel%|*}
+        ret_rel=${entry##*|}
+
+        local vaddr_hex
+        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | awk '{print $1; exit}')
+        [ -z "$vaddr_hex" ] && continue
+
+        local fn_offset=$(( slice_offset + 16#$vaddr_hex - base ))
+        local tbnz_offset=$(( fn_offset + tbnz_rel ))
+        local tgt_offset=$(( fn_offset + ret_rel ))  # ret_rel 是十进制字节数
+
+        # 计算 ARM64 b 指令：b <tgt>  encoding = 0x14000000 | ((tgt-pc)/4 & 0x3FFFFFF)
+        local delta=$(( (tgt_offset - tbnz_offset) / 4 ))
+        local enc=$(( 0x14000000 | (delta & 0x3FFFFFF) ))
+        # 写入小端 4 字节
+        printf "$(printf '\\x%02x\\x%02x\\x%02x\\x%02x' \
+            $(( enc & 0xFF )) $(( (enc >> 8) & 0xFF )) \
+            $(( (enc >> 16) & 0xFF )) $(( (enc >> 24) & 0xFF )))" \
+            | dd of="$target" bs=1 seek=$tbnz_offset conv=notrunc 2>/dev/null
+        echo "  ReportApi tbnz→b patch: $sym"
+    done
+
     codesign --force --sign - "$target"
 }
 
@@ -691,15 +743,18 @@ patch_sentry_settings() {
 }
 
 patch_sentry_main "$APP/Contents/MacOS/WeType"
-patch_sentry_settings "$APP/Contents/MacOS/WeTypeSettings.app/Contents/Frameworks/App.framework/Versions/A/App"
 
 # ── 剥除 fat binary 中的 x86_64（仅 Apple Silicon）──────
+# 注意：lipo -remove 会重写文件，必须在此之后再 patch Sentry Settings DSN
 if [ "$ARCH" = "arm64" ]; then
     echo "==> 剥除 x86_64 架构..."
     while IFS= read -r f; do
         thin_binary "$f"
     done < <(find "$APP" -type f \( -perm +0111 -o -name '*.dylib' \))
 fi
+
+# Sentry Settings DSN patch 必须在 thin 之后，否则 lipo -remove 会覆盖 patch 字节
+patch_sentry_settings "$APP/Contents/MacOS/WeTypeSettings.app/Contents/Frameworks/App.framework/Versions/A/App"
 
 # ── 删除不需要的模型 ──────────────────────────────────
 IMEDATA="$APP/Contents/Resources/imeData.bundle"
@@ -731,7 +786,6 @@ else
     echo "完成。"
 fi
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
-
 ```
 
 ### 词库/模型更新脚本
