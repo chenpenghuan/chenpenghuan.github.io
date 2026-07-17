@@ -402,17 +402,39 @@ patch:
 ### 精简包&隐私屏蔽
 ```shell
 #!/bin/bash
-# WeType 输入法精简脚本
-# 效果：移除联网上报(flurry/wcwss空壳)、自动更新(WeTypeUpdater)、反馈工具(WeTypeFeedback)
-#       Apple Silicon 机器额外剥除所有 fat binary 中的 x86_64 架构（约节省 100MB）
-# Sparkle 保留原始版本（主程序强依赖 ObjC 类符号，空壳会崩）
-# WeTypeRelaunch 保留（崩溃自动重启）
+# WeType 输入法隐私加固 + 精简脚本
 #
-# 使用方法（每台新电脑都需单独执行，不要跨机器复制裁剪后的 app）：
-#   1. 从官网下载安装微信输入法，安装后确认 ~/Library/Input\ Methods/WeType.app 存在
+# ── 封堵的隐私通道 ────────────────────────────────────────
+#   wcwss           instant_report 上报传输层         → 6个网络函数 ret patch
+#   flurry          统计 SDK                          → 空壳替换
+#   WXP2PTransferDyn P2P 文件传输                     → 空壳替换
+#   Sparkle         自动更新（含 appcast 轮询）        → 18个更新函数 ret patch
+#                   （不能空壳：主程序强依赖 ObjC 类符号，空壳会崩）
+#   SentrySDKWrapper 主程序崩溃上报（腾讯自建实例）   → +load ret patch
+#   WeTypeSettings Sentry 设置面板崩溃上报            → DSN 字符串清零
+#
+# ── 审查后确认无风险的组件 ───────────────────────────────
+#   BIZWrapper/DeviceSync/DictsUpdateChecker/COSHandler
+#     全部以 wcwss 为传输层或需要 wcwss push 触发，wcwss patch 后通道已死
+#   Alamofire       只被 COSHandler（词典下载）调用，依赖 wcwss push 下发 URL
+#   Kingfisher      图片缓存库，用于本地表情包渲染，无主动上报
+#   MarsReachability 只检测网络状态，不发数据
+#   WeTypeAccessibilityChecker 只检查麦克风权限，无网络代码，无 Sentry DSN
+#   WeTypeSettings CMS 内容 打开设置面板才加载（主动行为，非后台上报）
+#
+# ── 其他精简 ─────────────────────────────────────────────
+#   删除 WeTypeUpdater（自动更新程序）、WeTypeFeedback.app（反馈工具）
+#   删除 stt.bin（语音识别）、tts.bin（语音合成）、bwcjpmac_jianpin.bin（日文模型）
+#   Apple Silicon：剥除所有 fat binary 中的 x86_64 架构（节省约 100MB）
+#   WeTypeRelaunch 保留（崩溃自动重启，正常功能）
+#
+# ── 使用方法 ─────────────────────────────────────────────
+#   每台新电脑都需单独执行，不要跨机器复制裁剪后的 app（codesign 与机器绑定）
+#   1. 从官网下载安装微信输入法，确认 ~/Library/Input Methods/WeType.app 存在
 #   2. bash ~/Desktop/wetype_trim.sh
 #   3. 系统设置 → 键盘 → 输入法，关闭再开启微信输入法
-# 1.4.3版本（无语音输入）下载地址https://download.weread.qq.com/app/wxkb/mac/1.4.3/WeType_1.4.3_544.zip
+#
+# 1.4.3版本（无语音输入）：https://download.weread.qq.com/app/wxkb/mac/1.4.3/WeType_1.4.3_544.zip
 
 set -e
 
@@ -583,6 +605,64 @@ patch_sparkle() {
 }
 
 patch_sparkle "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
+
+# ── Sentry 崩溃上报：patch 主程序初始化入口 ──────────────
+# SentrySDKWrapper +load 是 ObjC +load 方法，app 启动时自动调用，是 Sentry 初始化唯一入口
+patch_sentry_main() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local slice_offset
+    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
+    [ -z "$slice_offset" ] && return
+
+    local vaddr_hex
+    vaddr_hex=$(nm "$target" 2>/dev/null | awk '/\+\[SentrySDKWrapper load\]/{print $1; exit}')
+    [ -z "$vaddr_hex" ] && echo "  Sentry(主程序) 跳过（未找到符号）" && return
+
+    # nm 地址含 0x100000000 base，减去 base 得文件内偏移
+    local base=4294967296
+    local vaddr_dec=$(( 16#$vaddr_hex ))
+    local file_offset=$(( slice_offset + vaddr_dec - base ))
+
+    local first4
+    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
+    if [ "$first4" = "c0035fd6" ]; then
+        echo "  Sentry(主程序) 跳过（已 patch）"
+        return
+    fi
+
+    printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$file_offset conv=notrunc 2>/dev/null
+    codesign --force --sign - "$target"
+    echo "  Sentry(主程序) patched: +[SentrySDKWrapper load]"
+}
+
+# ── Sentry 崩溃上报：破坏 WeTypeSettings 中的 DSN 字符串 ──
+# WeTypeSettings 是 Flutter/Dart AOT，symbol 全 strip，无法用 nm 定位函数
+# 将 DSN 字符串首字节置 0，Sentry SDK 解析到空 DSN 后跳过初始化
+patch_sentry_settings() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local dsn_offset
+    dsn_offset=$(grep -boa 'https://7134d7bc361044e0a3b1a1a71382418d@wetype' "$target" 2>/dev/null | awk -F: '{print $1; exit}')
+    [ -z "$dsn_offset" ] && echo "  Sentry(Settings) 跳过（未找到 DSN 或已 patch）" && return
+
+    # 验证首字节是否已为 0
+    local first1
+    first1=$(dd if="$target" bs=1 skip=$dsn_offset count=1 2>/dev/null | xxd -p)
+    if [ "$first1" = "00" ]; then
+        echo "  Sentry(Settings) 跳过（已 patch）"
+        return
+    fi
+
+    printf '\x00' | dd of="$target" bs=1 seek=$dsn_offset conv=notrunc 2>/dev/null
+    codesign --force --sign - "$target"
+    echo "  Sentry(Settings) patched: DSN 字符串已清零"
+}
+
+patch_sentry_main "$APP/Contents/MacOS/WeType"
+patch_sentry_settings "$APP/Contents/MacOS/WeTypeSettings.app/Contents/Frameworks/App.framework/Versions/A/App"
 
 # ── 剥除 fat binary 中的 x86_64（仅 Apple Silicon）──────
 if [ "$ARCH" = "arm64" ]; then
