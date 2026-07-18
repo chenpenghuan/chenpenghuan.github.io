@@ -971,7 +971,7 @@ echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法
 macOS 15 (Sequoia),2024.2.6,属于该系统生命周期内的“完全体”，Bug 最少，插件最稳。
 macOS 26 (Tahoe),2024.3.7,属于针对新系统的“救火版”，修复了新系统特有的黑屏和卡顿。
 
-## 屏蔽更新
+## 屏蔽macOS更新
 
 锁定最大系统版本
 
@@ -1115,3 +1115,38 @@ create-dmg \
 ### next-ai-draw.io 代理配置
 
 ![next-ai-draw.io](../assets/images/next-draw-io-proxy.png)
+
+
+## 新建文件
+
+```applescript
+on run {input, parameters}
+	tell application "Finder"
+		try
+			-- 强制获取当前访达最前端窗口的文件夹路径（完美支持空白处右键）
+			set currentPath to (folder of the front window) as alias
+		on error
+			-- 如果没有打开任何访达窗口（比如在纯桌面上），则定位到桌面
+			set currentPath to (path to desktop folder) as alias
+		end try
+		
+		-- 设置默认文件名
+		set newFileName to "未命名.txt"
+		set newFile to currentPath & newFileName as string
+		
+		-- 如果文件已存在，自动递增数字命名（如：未命名 1.txt）
+		set i to 1
+		repeat while (POSIX file newFile as string) exists
+			set newFileName to "未命名 " & i & ".txt"
+			set newFile to currentPath & newFileName as string
+			set i to i + 1
+		end repeat
+		
+		-- 在当前路径下创建新文件
+		make new file at currentPath with properties {name:newFileName}
+	end tell
+	return input
+end run
+```
+![新建文本文件.png](../assets/images/新建文件-快速操作.png)
+[新建文本文件.workflow.zip](../assets/files/新建文本文件.workflow.zip)
