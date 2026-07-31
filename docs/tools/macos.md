@@ -222,18 +222,14 @@ patch:
   "menu/page_size": 5                           # 候选词个数固定为 5 个
 
 
-
-
   # --- 2. 皮肤指定与系统级深浅跟随 ---
   "style/color_scheme": native                  # 浅色模式
   "style/color_scheme_dark": native             # 深色模式
   "style/app_color_schemes": { 暗黑模式: native, 默认: native }
 
 
-
-
   # --- 3. 字体与大小（对 native 依然生效） ---
-  "style/font_face": ""                         # 留空以保持 Emoji 的彩色效果
+  "style/font_face": "PingFang SC"              # native 主题下系统自动处理彩色 Emoji，无需留空
   "style/font_point": 24                        # 候选字大小
   "style/label_font_face": "PingFang SC"        # 序号字体
   "style/label_font_point": 18                  # 序号大小
@@ -241,16 +237,10 @@ patch:
   "style/comment_font_point": 16                # 提示/注音大小
 
 
-
-
   # --- 4. 拼音显示位置调整 ---
   "style/inline_preedit": false                 # 编码回落到候选框顶部
   "style/inline_candidate": false               # 候选项不嵌入输入框
-  "style/spacing": 10                           # 拼音与候选词之间的间距
-  "style/line_spacing": 5                       # 行间距
   "style/ascii_composer_delay": 300             # 优化中英切换键延迟
-
-
 
 
   # --- 5. 应用特权过滤（进入以下 App 自动切纯英文） ---
@@ -263,7 +253,6 @@ patch:
       ascii_mode: true
     com.runningwithcrayons.Alfred:
       ascii_mode: true
-
 
 ```
 
@@ -279,8 +268,6 @@ schema_list:
 # =============================================================================
 
 
-
-
 patch:
   # ---------------------------------------------------------------------------
   # 0. 基础交互与音节切分优化
@@ -289,8 +276,6 @@ patch:
   "speller/delimiter": " '"                  # 用 ' 作为隔音符号（如 xi'an → 西安）
   "speller/algebra/+":
     - derive/v/u/                            # 音节容错追加：允许全拼/双拼模式下通过 u 输入 ü
-
-
 
 
   # ---------------------------------------------------------------------------
@@ -302,8 +287,6 @@ patch:
   "grammar/collocation_min_length": 3        # 短语搭配触发的最小字数阈值
 
 
-
-
   # ---------------------------------------------------------------------------
   # 2. 语义权重矩阵微调 (基于万象与雾凇语料库的最佳实践参数)
   # ---------------------------------------------------------------------------
@@ -313,15 +296,13 @@ patch:
   "grammar/rear_penalty": -12                # 逆向语序关联判定惩罚系数
 
 
-
-
   # ---------------------------------------------------------------------------
   # 3. 中文用户词典灵敏度与自适应造词策略
   # ---------------------------------------------------------------------------
   "translator/enable_sentence": true         # 开启整句输入，允许连续拼音匹配长句子
   "codeLengthLimit_processor": 50           # 最大输入码长度（默认 25 会在长句时卡住）
   "translator/initial_quality": 1000        # 中文核心翻译器基础权重评分
-  "translator/user_dict_seed": 500          # 新录入用户词条的初始加权分值
+  "translator/user_dict_seed": 150          # 新录入用户词条的初始加权分值
   "translator/user_dict_threshold": 1       # 用户词典最低触发门槛（降低新词记忆周期）
   "translator/enable_encoder": true         # 开启 Rime 核心自适应造词记忆
   "translator/encode_commit_history": true  # 联动上屏历史，提取并固化高频词组
@@ -329,14 +310,10 @@ patch:
   "translator/contextual_suggestions": true # 激活上下文语义联想建议
 
 
-
-
   # ---------------------------------------------------------------------------
   # 4. 中英混输融合与英文动态补全引擎
   # ---------------------------------------------------------------------------
-  "reduce_english_filter/mode": none         # 停用薄荷底层的英文拦截滤镜，释放英文补全响应
-
-
+  "reduce_english_filter/mode": all          # 降频所有内置短英文干扰词，保留中文优先顺位
 
 
   # 调校说明：1.1 为中英平衡的极限甜点值。
@@ -345,8 +322,6 @@ patch:
   "melt_eng/enable_completion": true         # 开启前缀动态匹配补全机制（如打 spri 自动联想 spring）
   "melt_eng/enable_sentence": false          # 禁用英文整句自动连缀，防止干扰中文语义长句
   "melt_eng/max_homophones": 7               # 同音/同码英文候选词最大展出量
-
-
 
 
   # ---------------------------------------------------------------------------
@@ -358,7 +333,6 @@ patch:
   # 冲突词清理映射：使用标准 delete_candidate 动作
   # 交互行为：在输入候选框激活状态下，通过 [Control + Delete] 组合键彻底销毁误输入的错词记录
   "key_binder/bindings/@before 0": { when: has_menu, accept: "Control+Delete", functional: delete_candidate }
-
 
   # 移除三个反查模块（五笔98、笔画、拆字），减少字典加载
   "engine/segmentors":
@@ -377,10 +351,10 @@ patch:
     - table_translator@melt_eng
     - table_translator@cn_en
     - lua_translator@*force_gc
+  "force_gc/interval": 32
   "recognizer/patterns/wubi98_mint": ""
   "recognizer/patterns/stroke": ""
   "recognizer/patterns/radical_lookup": ""
-
 
 ```
 
