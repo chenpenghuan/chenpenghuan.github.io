@@ -1110,11 +1110,11 @@ create-dmg \
 
 ### next-ai-draw.io ai配置
 
-![next-ai-draw.io](../assets/images/next-draw-io-ai.png)
+![next-ai-draw.io](/assets/images/next-draw-io-ai.png)
 
 ### next-ai-draw.io 代理配置
 
-![next-ai-draw.io](../assets/images/next-draw-io-proxy.png)
+![next-ai-draw.io](/assets/images/next-draw-io-proxy.png)
 
 
 ## 新建文件
@@ -1148,5 +1148,5 @@ on run {input, parameters}
 	return input
 end run
 ```
-![新建文本文件.png](../assets/images/新建文件-快速操作.png)
-[新建文本文件.workflow.zip](../assets/files/新建文本文件.workflow.zip)
+![新建文本文件.png](/assets/images/新建文件-快速操作.png)
+[新建文本文件.workflow.zip](/assets/files/新建文本文件.workflow.zip)
