@@ -397,6 +397,13 @@ patch:
 #     结论：完全离线，候选词仅靠本地模型
 #
 # ── 封堵的后台上报通道 ───────────────────────────────────
+#   CronetNetworkApi 统计上报通道（C++，走 wcwss→wetype.weixin.qq.com）
+#                    → ret patch：DoReportNetWorkRequest、ReportClipboardPush、
+#                      DoReportDeivceCodeDisMatch、ReportRecordRequestStart、
+#                      ReportRecordRequestEnd、ReportCleanRequest
+#                      覆盖 585 个 WtStat*Report 统计类 + 按键记录
+#                      SessionKeystrokeReporter + 剪贴板上报 + 设备码校验
+#                      + 网络请求记录 + 异常事件 protobuf 上报
 #   ReportApi       instant_report 上报模块（C++）
 #                   → ret patch：Report、InstantReport、StartAutoReportCache、
 #                     ReportTaskFailLog、Flush（普通调用链，入口直接返回安全）
@@ -412,9 +419,21 @@ patch:
 #   SentrySDKWrapper 主程序崩溃上报         → +load ret patch
 #   WeTypeSettings Sentry 设置面板崩溃上报  → DSN 字符串首字节清零
 #
+#   CronetNetworkApi  统计上报通道（585 个 WtStat*Report 类 + 按键记录
+#                      SessionKeystrokeReporter + 剪贴板上报 + 设备码校验
+#                      + 网络请求记录 + 异常事件 protobuf 上报）
+#                      → ret patch：DoReportNetWorkRequest、ReportClipboardPush、
+#                        DoReportDeivceCodeDisMatch、ReportRecordRequestStart、
+#                        ReportRecordRequestEnd、ReportCleanRequest
+#                        注：这些是普通调用链函数（text 段 t/T 符号），
+#                        未作为网络回调函数指针注册，入口 ret 安全。
+#                        上报数据走 wcwss→wetype.weixin.qq.com，
+#                        patch 上游入口即可，无需 patch 下游 wcwss
+#                        （wcwss 保留供云端候选词使用）
+#
 # ── 审查确认无后台上报风险的组件 ────────────────────────
 #   wcwss              长连接保留，是云端候选词/AI/翻译/语音的传输通道
-#                      上报已由 ReportApi patch 在应用层切断
+#                      上报已由 ReportApi + CronetNetworkApi patch 在应用层切断
 #   BIZWrapper/DeviceSync/DictsUpdateChecker/COSHandler
 #                      均走 wcwss，属于用户主动触发的功能性请求
 #   Alamofire          只被词典下载调用，依赖服务端 push 触发，不主动发起
@@ -662,6 +681,58 @@ patch_report_api() {
 }
 
 patch_report_api "$APP/Contents/MacOS/WeType"
+
+# ── CronetNetworkApi 统计上报：patch 主程序 6 个上报入口 ──
+# 架构：WtStat*Report（585个统计类）→ CronetNetworkApi::DoReportNetWorkRequest
+#       → WcwssAPI::SendMessage → wcwss → wetype.weixin.qq.com
+# 按键记录 SessionKeystrokeReporter::Flush 也走此通道
+#
+# 这 6 个函数都是普通调用链（text 段 t/T 符号），未作为网络回调函数指针注册，
+# 入口直接 ret 安全（不像 ReportApi 的 InQueue 系列需要 tbnz→b）。
+# 上报数据走 wcwss 通道，patch 上游入口即可，wcwss 保留供云端候选词使用。
+patch_cronet_report() {
+    local target="$1"
+    [ -f "$target" ] || return
+
+    local slice_offset base=4294967296
+    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
+    [ -z "$slice_offset" ] && echo "  CronetNetworkApi 跳过（非 arm64）" && return
+
+    # 幂等检测：用 DoReportNetWorkRequest 入口字节判断
+    local check_hex
+    check_hex=$(nm "$target" 2>/dev/null | grep 'CronetNetworkApi22DoReportNetWorkRequest' | grep -E ' [tT] ' | awk '{print $1; exit}')
+    [ -z "$check_hex" ] && echo "  CronetNetworkApi 跳过（未找到符号，版本不符）" && return
+
+    local check_off=$(( slice_offset + 16#$check_hex - base ))
+    local first4
+    first4=$(dd if="$target" bs=1 skip=$check_off count=4 2>/dev/null | xxd -p)
+    if [ "$first4" = "c0035fd6" ]; then
+        echo "  CronetNetworkApi 跳过（已 patch）"
+        return
+    fi
+
+    local RET_SYMS=(
+        'CronetNetworkApi22DoReportNetWorkRequest'
+        'CronetNetworkApi19ReportClipboardPush'
+        'CronetNetworkApi26DoReportDeivceCodeDisMatch'
+        'CronetNetworkApi24ReportRecordRequestStart'
+        'CronetNetworkApi22ReportRecordRequestEnd'
+        'CronetNetworkApi18ReportCleanRequest'
+    )
+    for sym in "${RET_SYMS[@]}"; do
+        local vaddr_hex
+        # grep 匹配 mangled 符号，过滤 text 段符号，取第一个地址
+        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | grep -E ' [tT] ' | awk '{print $1; exit}')
+        [ -z "$vaddr_hex" ] && continue
+        local offset=$(( slice_offset + 16#$vaddr_hex - base ))
+        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
+        echo "  CronetNetworkApi ret patch: $sym"
+    done
+
+    codesign --force --sign - "$target"
+}
+
+patch_cronet_report "$APP/Contents/MacOS/WeType"
 
 # ── Sentry 崩溃上报：patch 主程序初始化入口 ──────────────
 patch_sentry_main() {
