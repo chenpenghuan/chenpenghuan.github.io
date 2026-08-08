@@ -8,7 +8,8 @@ nav:
   - 首页: index.md
   - 工具:
       - tools/mkdocs.md
-      - tools/macos.md
+      - tools/macos应用.md
+      - tools/macos输入法.md
       - tools/zsh.md
       - tools/港区appleId注册.md
   - 其他:
