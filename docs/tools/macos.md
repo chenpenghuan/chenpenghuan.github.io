@@ -381,7 +381,7 @@ patch:
 # ── 隐私风险对比：开不开单机模式 ─────────────────────────
 #
 #   不开单机模式（默认，本脚本处理后的状态）：
-#     ✓ 无后台行为上报（ReportApi 全部 patch）
+#     ✓ 无后台行为上报（六路上报通道全部 patch）
 #     ✓ 无自动更新检查（Sparkle patch）
 #     ✓ 无崩溃上报（Sentry patch）
 #     ✓ 无统计 SDK / P2P 传输（flurry / WXP2PTransferDyn 空壳）
@@ -397,43 +397,47 @@ patch:
 #     结论：完全离线，候选词仅靠本地模型
 #
 # ── 封堵的后台上报通道 ───────────────────────────────────
-#   CronetNetworkApi 统计上报通道（C++，走 wcwss→wetype.weixin.qq.com）
-#                    → ret patch：DoReportNetWorkRequest、ReportClipboardPush、
-#                      DoReportDeivceCodeDisMatch、ReportRecordRequestStart、
-#                      ReportRecordRequestEnd、ReportCleanRequest
-#                      覆盖 585 个 WtStat*Report 统计类 + 按键记录
-#                      SessionKeystrokeReporter + 剪贴板上报 + 设备码校验
-#                      + 网络请求记录 + 异常事件 protobuf 上报
-#   ReportApi       instant_report 上报模块（C++）
-#                   → ret patch：Report、InstantReport、StartAutoReportCache、
-#                     ReportTaskFailLog、Flush（普通调用链，入口直接返回安全）
-#                   → tbnz→b patch：ReportLocalCacheLogInQueue、
-#                     ReportTaskFailLogInQueue、ReportLocalCacheLog
-#                     （注册为网络回调函数指针，入口 ret 会破坏调用约定
-#                      导致 SIGSEGV；改为把 guard check 变成无条件跳到 ret 序列）
-#                   注：Init 不 patch，否则对象未初始化网络回调时 SIGSEGV
-#   flurry          统计 SDK                → 空壳替换
-#   WXP2PTransferDyn P2P 文件传输           → 空壳替换
-#   Sparkle         自动更新 + appcast 轮询 → 18个更新函数 ret patch
-#                   注：不能空壳，主程序强引用 ObjC 类符号，空壳会崩
-#   SentrySDKWrapper 主程序崩溃上报         → +load ret patch
-#   WeTypeSettings Sentry 设置面板崩溃上报  → DSN 字符串首字节清零
-#
-#   CronetNetworkApi  统计上报通道（585 个 WtStat*Report 类 + 按键记录
+#   ReportApi          instant_report 上报模块（C++）
+#                      → ret patch：Report、InstantReport、StartAutoReportCache、
+#                        ReportTaskFailLog、Flush（普通调用链，入口直接返回安全）
+#                      → tbnz→b patch：ReportLocalCacheLogInQueue、
+#                        ReportTaskFailLogInQueue、ReportLocalCacheLog
+#                        （注册为网络回调函数指针，入口 ret 会破坏调用约定
+#                         导致 SIGSEGV；改为把 guard check 变成无条件跳到 ret 序列）
+#                      注：Init 不 patch，否则对象未初始化网络回调时 SIGSEGV
+#   CronetNetworkApi   C++ 统计上报（585 个 WtStat*Report 统计类 + 按键记录
 #                      SessionKeystrokeReporter + 剪贴板上报 + 设备码校验
 #                      + 网络请求记录 + 异常事件 protobuf 上报）
 #                      → ret patch：DoReportNetWorkRequest、ReportClipboardPush、
 #                        DoReportDeivceCodeDisMatch、ReportRecordRequestStart、
 #                        ReportRecordRequestEnd、ReportCleanRequest
-#                        注：这些是普通调用链函数（text 段 t/T 符号），
-#                        未作为网络回调函数指针注册，入口 ret 安全。
-#                        上报数据走 wcwss→wetype.weixin.qq.com，
-#                        patch 上游入口即可，无需 patch 下游 wcwss
-#                        （wcwss 保留供云端候选词使用）
+#                      走 wcwss→wetype.weixin.qq.com，wcwss 保留供云端候选词使用
+#   BIZ.reportBaseMsg  Swift 统计上报通道（67 个 BIZ.report* 方法 + 36 个调用点
+#                      + emoji/kaomoji/AIQuest/voice input 等行为上报）
+#                      → mov x0,#0; ret（调用者用 cbz x0 检查返回值，
+#                        返回 nil 安全走"不处理"分支）
+#                      走 Business.requestWithCmd→net_start_task→StartTask
+#                      （StartTask 是统一入口，承载功能请求，不能 patch）
+#   CloudReportEmitInput C++ 云端输入内容上报（每次选词触发）
+#                      → ret patch：OnEmitInput、FlushToCloudEx
+#                      走 wxime::network::Network::DoRequest（独立第三通道）
+#                      CloudSearchByInput（云端候选词）也走 DoRequest，
+#                      但独立类，patch 不影响搜词功能
+#   NetworkAppender    C++ 网络日志上报 → Network::DoRequest(LogReportReq)
+#                      → ret patch：Append、Flush
+#   InfluxDbAppender   C++ InfluxDB 时序数据上报 → cpp-httplib HTTP
+#                      → ret patch：Append、Flush
+#                      覆盖 CAPILoggerAppender（同一 InfluxDBClient 通道）
+#   flurry             统计 SDK                → 空壳替换
+#   WXP2PTransferDyn   P2P 文件传输           → 空壳替换
+#   Sparkle            自动更新 + appcast 轮询 → 8个更新函数 ret patch
+#                      注：不能空壳，主程序强引用 ObjC 类符号，空壳会崩
+#   SentrySDKWrapper   主程序崩溃上报         → +load ret patch
+#   WeTypeSettings      Sentry 设置面板崩溃上报 → DSN 字符串首字节清零
 #
 # ── 审查确认无后台上报风险的组件 ────────────────────────
 #   wcwss              长连接保留，是云端候选词/AI/翻译/语音的传输通道
-#                      上报已由 ReportApi + CronetNetworkApi patch 在应用层切断
+#                      上报已由六路 patch 切断
 #   BIZWrapper/DeviceSync/DictsUpdateChecker/COSHandler
 #                      均走 wcwss，属于用户主动触发的功能性请求
 #   Alamofire          只被词典下载调用，依赖服务端 push 触发，不主动发起
@@ -460,7 +464,8 @@ set -e
 
 APP="$HOME/Library/Input Methods/WeType.app"
 ARCH=$(uname -m)
-BACKUP_DIR="$HOME/Desktop/WeType_backup_$(date +%Y%m%d_%H%M%S)"
+MAIN_BIN="$APP/Contents/MacOS/WeType"
+BASE=4294967296  # 0x100000000，arm64 mach-o image base
 
 # ── 检查 ──────────────────────────────────────────────
 if [ ! -d "$APP" ]; then
@@ -476,13 +481,13 @@ fi
 # ── 检测是否已处理过 ─────────────────────────────────
 # 用主程序大小判断：原始 fat binary >100MB，瘦身后约一半
 ALREADY_DONE=false
-MAIN_BIN="$APP/Contents/MacOS/WeType"
 if [ -f "$MAIN_BIN" ] && [ "$(du -m "$MAIN_BIN" | cut -f1)" -lt 80 ]; then
     ALREADY_DONE=true
 fi
 
 # ── 备份（仅首次）────────────────────────────────────
 if [ "$ALREADY_DONE" = false ]; then
+    BACKUP_DIR="$HOME/Desktop/WeType_backup_$(date +%Y%m%d_%H%M%S)"
     echo "==> 备份到 $BACKUP_DIR ..."
     mkdir -p "$BACKUP_DIR"
     cp -R "$APP/Contents/Frameworks" "$BACKUP_DIR/Frameworks"
@@ -499,22 +504,174 @@ echo "==> 终止 WeType 进程..."
 killall WeType WeTypeSettings 2>/dev/null || true
 sleep 1
 
-# ── 编译空壳 dylib ────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
+# 通用工具函数
+# ══════════════════════════════════════════════════════════════
+
+# 获取 arm64 slice 在 fat binary 中的文件偏移
+# 无 fat binary 时返回 0（整个文件即 arm64 slice）
+get_slice_offset() {
+    lipo -detailed_info "$1" 2>/dev/null | \
+        awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}'
+}
+
+# 查找符号的虚拟地址（hex，不含 0x 前缀）
+# $1=binary, $2=grep pattern, $3=可选：过滤符号类型（如 [tT]）
+sym_addr() {
+    local bin="$1" pat="$2" ftype="${3:-}"
+    if [ -n "$ftype" ]; then
+        nm "$bin" 2>/dev/null | grep "$pat" | grep -E " $ftype " | awk '{print $1; exit}'
+    else
+        nm "$bin" 2>/dev/null | grep "$pat" | awk '{print $1; exit}'
+    fi
+}
+
+# 读取指定文件偏移处的字节（hex）
+# $1=file, $2=offset, $3=count
+read_bytes() {
+    dd if="$1" bs=1 skip="$2" count="$3" 2>/dev/null | xxd -p
+}
+
+# 在指定文件偏移写入字节序列（不截断文件）
+# $1=file, $2=offset, $3=bytes(hex, 如 c0035fd6)
+write_bytes() {
+    # 把 hex 字符串转成 \xNN 转义序列写
+    local hex="$3"
+    local escaped=$(printf '%s' "$hex" | sed 's/../\\x&/g')
+    printf "$escaped" | dd of="$1" bs=1 seek="$2" conv=notrunc 2>/dev/null
+}
+
+# 符号虚拟地址 → 文件偏移
+# $1=slice_offset, $2=vaddr_hex
+vaddr_to_offset() {
+    echo $(( $1 + 16#$2 - BASE ))
+}
+
+# ARM64 ret 指令 = c0035fd6（小端）
+RET_HEX='c0035fd6'
+# ARM64 mov x0,#0; ret = 000080d2 c0035fd6（8 字节）
+NIL_RET_HEX='000080d2c0035fd6'
+
+# ══════════════════════════════════════════════════════════════
+# patch 框架：ret patch（入口直接返回）
+#
+# 对普通调用链函数（text 段 t/T 符号），把入口第一条指令改为 ret
+# 对 Swift 返回 Optional 的函数，用 mov x0,#0; ret 返回 nil
+#
+# 参数以全局数组形式声明，patch_ret 遍历处理
+# ══════════════════════════════════════════════════════════════
+#
+# 每个 patch 组声明格式：
+#   patch_name        — 显示名（用于日志）
+#   check_sym         — 幂等检测符号（grep pattern）
+#   check_ftype       — 检测符号类型过滤（可空）
+#   ret_syms[]        — 要 ret patch 的符号列表（grep pattern）
+#   ret_ftype         — ret 符号类型过滤（可空，默认不过滤）
+#   use_nil_ret       — true=用 mov x0,#0; ret，false=用 ret
+#   idem_bytes        — 幂等检测字节数（4 或 8）
+
+patch_ret() {
+    local bin="$1"
+    [ -f "$bin" ] || return
+
+    local label="$PATCH_NAME"
+    local slice_off
+    slice_off=$(get_slice_offset "$bin")
+    [ -z "$slice_off" ] && { echo "  $label 跳过（非 arm64）"; return; }
+
+    # 幂等检测
+    local check_addr
+    check_addr=$(sym_addr "$bin" "$CHECK_SYM" "$CHECK_FTYPE")
+    [ -z "$check_addr" ] && { echo "  $label 跳过（未找到符号，版本不符）"; return; }
+
+    local check_off
+    check_off=$(vaddr_to_offset "$slice_off" "$check_addr")
+    local idem_n="${IDEM_BYTES:-4}"
+    local cur
+    cur=$(read_bytes "$bin" "$check_off" "$idem_n")
+
+    local expect="$IDEM_EXPECT"
+    if [ -n "$expect" ] && [ "$cur" = "$expect" ]; then
+        echo "  $label 跳过（已 patch）"
+        return
+    fi
+
+    # 确定写入字节
+    local wbytes
+    if [ "$USE_NIL_RET" = "true" ]; then
+        wbytes="$NIL_RET_HEX"
+    else
+        wbytes="$RET_HEX"
+    fi
+
+    # 遍历所有目标符号
+    local sym addr off
+    for sym in "${RET_SYMS[@]}"; do
+        addr=$(sym_addr "$bin" "$sym" "$RET_FTYPE")
+        [ -z "$addr" ] && continue
+        off=$(vaddr_to_offset "$slice_off" "$addr")
+        write_bytes "$bin" "$off" "$wbytes"
+        echo "  $label ret patch: $sym"
+    done
+
+    codesign --force --sign - "$bin"
+}
+
+# ══════════════════════════════════════════════════════════════
+# patch 框架：tbnz→b patch（网络回调函数指针专用）
+#
+# 被注册为网络回调的函数不能直接 ret（破坏调用约定 → SIGSEGV）
+# 把入口 guard check 的条件跳转（tbnz）改为无条件跳转（b）到 ret 序列
+# 函数正常建帧/拆帧，只是永远走空路径
+#
+# 全局数组 TBNZ_SYMS[]，每项格式：符号|tbnz相对偏移(十进制)|ret序列相对偏移(十进制)
+# ══════════════════════════════════════════════════════════════
+patch_tbnz() {
+    local bin="$1" label="$PATCH_NAME"
+    local slice_off
+    slice_off=$(get_slice_offset "$bin")
+    [ -z "$slice_off" ] && return
+
+    local entry sym tbnz_rel ret_rel addr fn_off tbnz_off tgt_off delta enc
+    for entry in "${TBNZ_SYMS[@]}"; do
+        sym=${entry%%|*}
+        tbnz_rel=${entry#*|}; tbnz_rel=${tbnz_rel%|*}
+        ret_rel=${entry##*|}
+
+        addr=$(sym_addr "$bin" "$sym" "")
+        [ -z "$addr" ] && continue
+
+        fn_off=$(vaddr_to_offset "$slice_off" "$addr")
+        tbnz_off=$(( fn_off + tbnz_rel ))
+        tgt_off=$(( fn_off + ret_rel ))
+
+        # ARM64 b 指令 encoding = 0x14000000 | ((tgt-pc)/4 & 0x3FFFFFF)
+        delta=$(( (tgt_off - tbnz_off) / 4 ))
+        enc=$(( 0x14000000 | (delta & 0x3FFFFFF) ))
+
+        # 转小端 4 字节 hex
+        local h
+        h=$(printf '%02x%02x%02x%02x' \
+            $(( enc & 0xFF )) $(( (enc >> 8) & 0xFF )) \
+            $(( (enc >> 16) & 0xFF )) $(( (enc >> 24) & 0xFF )))
+
+        write_bytes "$bin" "$tbnz_off" "$h"
+        echo "  $label tbnz→b patch: $sym"
+    done
+}
+
+# ══════════════════════════════════════════════════════════════
+# 空壳替换 + 架构精简
+# ══════════════════════════════════════════════════════════════
 echo "==> 编译空壳 dylib..."
 TMPDIR=$(mktemp -d)
-cat > "$TMPDIR/_stub.c" << 'EOF'
-void stub_init(void) {}
-EOF
+echo 'void stub_init(void) {}' > "$TMPDIR/_stub.c"
 clang -arch arm64  -dynamiclib -o "$TMPDIR/_stub_arm64.dylib"  "$TMPDIR/_stub.c"
 clang -arch x86_64 -dynamiclib -o "$TMPDIR/_stub_x86_64.dylib" "$TMPDIR/_stub.c"
 
 stub_replace() {
     local target="$1"
-    if [ ! -f "$target" ]; then
-        echo "  跳过（不存在）: $target"
-        return
-    fi
-    # 空壳只需匹配当前架构，Intel 机器仍保留 fat 以防万一
+    [ -f "$target" ] || { echo "  跳过（不存在）: $target"; return; }
     if [ "$ARCH" = "arm64" ]; then
         cp "$TMPDIR/_stub_arm64.dylib" "$target"
     else
@@ -524,12 +681,9 @@ stub_replace() {
     echo "  空壳替换: $(basename "$target")"
 }
 
-# ── 剥除 x86_64（仅 Apple Silicon）─────────────────────
 thin_binary() {
     local target="$1"
-    if [ ! -f "$target" ]; then
-        return
-    fi
+    [ -f "$target" ] || return
     if lipo -info "$target" 2>/dev/null | grep -q 'x86_64'; then
         lipo -remove x86_64 "$target" -output "$target"
         codesign --force --sign - "$target"
@@ -537,260 +691,143 @@ thin_binary() {
     fi
 }
 
-# ── 空壳替换 framework 二进制 ─────────────────────────
 echo "==> 替换 framework 二进制..."
 stub_replace "$APP/Contents/Frameworks/flurry.framework/Versions/A/flurry"
 stub_replace "$APP/Contents/Frameworks/WXP2PTransferDyn.framework/Versions/A/WXP2PTransferDyn"
-echo "  wcwss 保留（云端候选词/AI/翻译/语音通道，上报由 ReportApi patch 切断）"
-# Sparkle：不能空壳（主程序引用 ObjC 类符号），patch 所有更新检查入口为 ret
-patch_sparkle() {
-    local target="$1"
-    [ -f "$target" ] || return
+echo "  wcwss 保留（云端候选词/AI/翻译/语音通道，上报由 patch 切断）"
 
-    local slice_offset
-    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
-    [ -z "$slice_offset" ] && echo "  Sparkle 跳过（非 arm64）" && return
+# ══════════════════════════════════════════════════════════════
+# Sparkle：8 个更新检查入口 ret patch
+# 不能空壳（主程序引用 ObjC 类符号），patch 入口为 ret
+# ══════════════════════════════════════════════════════════════
+echo "==> patch Sparkle（自动更新）..."
+SPARKLE_BIN="$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
+PATCH_NAME="Sparkle"
+CHECK_SYM='SPUUpdater.*checkForUpdatesInBackground\]'
+CHECK_FTYPE=''
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=(
+    'SPUUpdater.*checkForUpdatesInBackground\]'
+    'SPUUpdater.*scheduleNextUpdateCheckFiringImmediately'
+    'SPUAutomaticUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUBasicUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUCoreBasedUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUProbingUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUScheduledUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUUIBasedUpdateDriver.*checkForUpdatesAtAppcastURL'
+    'SPUUserInitiatedUpdateDriver.*checkForUpdatesAtAppcastURL'
+)
+RET_FTYPE=''
+patch_ret "$SPARKLE_BIN"
 
-    # 用 checkForUpdatesInBackground 入口检测是否已 patch
-    local vaddr
-    vaddr=$(nm "$target" 2>/dev/null | awk '/SPUUpdater.*checkForUpdatesInBackground\]/{print $1; exit}')
-    [ -z "$vaddr" ] && echo "  Sparkle 跳过（未找到符号）" && return
+# ══════════════════════════════════════════════════════════════
+# 主程序上报通道 patch（全部针对 $MAIN_BIN）
+# ══════════════════════════════════════════════════════════════
+echo "==> patch 主程序上报通道..."
 
-    local file_offset=$(( slice_offset + 16#$vaddr ))
-    local first4
-    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
-    if [ "$first4" = "c0035fd6" ]; then
-        echo "  Sparkle 跳过（已 patch）"
-        return
-    fi
+# ── ReportApi：ret patch（5 个普通函数）+ tbnz→b patch（3 个回调函数）──
+PATCH_NAME="ReportApi"
+CHECK_SYM='__ZN9ReportApi6Report'
+CHECK_FTYPE=''
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=(
+    '__ZN9ReportApi6Report'
+    '__ZN9ReportApi13InstantReport'
+    '__ZN9ReportApi20StartAutoReportCache'
+    '__ZN9ReportApi17ReportTaskFailLog'
+    '__ZN9ReportApi5Flush'
+)
+RET_FTYPE=''
+patch_ret "$MAIN_BIN"
 
-    # patch 所有更新检查入口
-    local SYMS=(
-        "SPUUpdater.*checkForUpdatesInBackground\]"
-        "SPUUpdater.*scheduleNextUpdateCheckFiringImmediately"
-        "SPUAutomaticUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUBasicUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUCoreBasedUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUProbingUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUScheduledUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUUIBasedUpdateDriver.*checkForUpdatesAtAppcastURL"
-        "SPUUserInitiatedUpdateDriver.*checkForUpdatesAtAppcastURL"
-    )
-    for pattern in "${SYMS[@]}"; do
-        local addr sym
-        while IFS=' ' read -r addr sym; do
-            local offset=$(( slice_offset + 16#$addr ))
-            printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
-            echo "  Sparkle patched: $sym"
-        done < <(nm "$target" 2>/dev/null | awk "/$pattern/{print \$1, \$3}")
-    done
-    codesign --force --sign - "$target"
-}
+TBNZ_SYMS=(
+    '__ZN9ReportApi26ReportLocalCacheLogInQueue|104|108'
+    '__ZN9ReportApi24ReportTaskFailLogInQueue|104|108'
+    '__ZN9ReportApi19ReportLocalCacheLog|32|172'
+)
+patch_tbnz "$MAIN_BIN"
+codesign --force --sign - "$MAIN_BIN"
 
-patch_sparkle "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle"
+# ── CronetNetworkApi：6 个统计上报入口 ret patch ──
+PATCH_NAME="CronetNetworkApi"
+CHECK_SYM='CronetNetworkApi22DoReportNetWorkRequest'
+CHECK_FTYPE='[tT]'
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=(
+    'CronetNetworkApi22DoReportNetWorkRequest'
+    'CronetNetworkApi19ReportClipboardPush'
+    'CronetNetworkApi26DoReportDeivceCodeDisMatch'
+    'CronetNetworkApi24ReportRecordRequestStart'
+    'CronetNetworkApi22ReportRecordRequestEnd'
+    'CronetNetworkApi18ReportCleanRequest'
+)
+RET_FTYPE='[tT]'
+patch_ret "$MAIN_BIN"
 
-# ── instant_report 上报：patch 主程序 ReportApi C++ 类 ────
-# 架构：ReportApi → wetap::net → wcwss_send_socket_message
-# nm 地址含 0x100000000 base，需减去 base 再加 slice_offset
-#
-# patch 策略分两类：
-#   ret patch（入口第一条指令改为 ret）：
-#     适用于普通调用链函数（Report、InstantReport、StartAutoReportCache、
-#     ReportTaskFailLog、Flush）——这些不作为函数指针被注册，直接 ret 安全。
-#
-#   tbnz→b patch（把入口 guard check 的条件跳转改为无条件跳转到 ret 序列）：
-#     适用于被注册为网络回调函数指针的函数（ReportLocalCacheLogInQueue、
-#     ReportTaskFailLogInQueue、ReportLocalCacheLog）——这些由网络层直接 call，
-#     调用约定要求函数正常建帧/拆帧，直接 ret 会破坏调用约定导致 SIGSEGV。
-#     guard check 原本是"auto_report_cache_ 为 0 时提前返回"，我们把它变成
-#     "永远走提前返回分支"，函数正常进入、正常退出，只是永远走空路径。
-patch_report_api() {
-    local target="$1"
-    [ -f "$target" ] || return
+# ── BIZ.reportBaseMsg：Swift 统计上报，mov x0,#0; ret 返回 nil ──
+PATCH_NAME="BIZ.reportBaseMsg"
+CHECK_SYM='BIZC13reportBaseMsg'
+CHECK_FTYPE='[tT]'
+IDEM_BYTES=8
+IDEM_EXPECT="$NIL_RET_HEX"
+USE_NIL_RET=true
+RET_SYMS=('BIZC13reportBaseMsg')
+RET_FTYPE='[tT]'
+patch_ret "$MAIN_BIN"
 
-    local slice_offset base=4294967296
-    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
-    [ -z "$slice_offset" ] && echo "  ReportApi 跳过（非 arm64）" && return
+# ── CloudReportEmitInput：选词内容上报 ──
+# pattern 加 __ZN5wxime6engine7session 前缀，排除 async/asio 模板实例化符号
+PATCH_NAME="CloudReportEmitInput"
+CHECK_SYM='__ZN5wxime6engine7session20CloudReportEmitInput4Impl11OnEmitInputE'
+CHECK_FTYPE='[tT]'
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=(
+    '__ZN5wxime6engine7session20CloudReportEmitInput4Impl11OnEmitInputE'
+    '__ZN5wxime6engine7session20CloudReportEmitInput4Impl12FlushToCloudEx'
+)
+RET_FTYPE='[tT]'
+patch_ret "$MAIN_BIN"
 
-    # 幂等检测：用 Report 入口字节判断（grep 精确匹配符号前缀，避免 awk 空格问题）
-    local report_hex
-    report_hex=$(nm "$target" 2>/dev/null | grep "__ZN9ReportApi6Report" | awk '{print $1; exit}')
-    [ -z "$report_hex" ] && echo "  ReportApi 跳过（未找到符号，版本不符）" && return
+# ── NetworkAppender + InfluxDbAppender：日志上报 ──
+PATCH_NAME="LogAppenders"
+CHECK_SYM='logging15NetworkAppender6Append'
+CHECK_FTYPE='[tT]'
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=(
+    'logging15NetworkAppender6Append'
+    'logging15NetworkAppender5Flush'
+    'logging16InfluxDbAppender6Append'
+    'logging16InfluxDbAppender5Flush'
+)
+RET_FTYPE='[tT]'
+patch_ret "$MAIN_BIN"
 
-    local report_off=$(( slice_offset + 16#$report_hex - base ))
-    local first4
-    first4=$(dd if="$target" bs=1 skip=$report_off count=4 2>/dev/null | xxd -p)
-    if [ "$first4" = "c0035fd6" ]; then
-        echo "  ReportApi 跳过（已 patch）"
-        return
-    fi
+# ── Sentry 主程序：+[SentrySDKWrapper load] ret patch ──
+PATCH_NAME="Sentry(主程序)"
+CHECK_SYM='SentrySDKWrapper load\]'
+CHECK_FTYPE=''
+IDEM_BYTES=4
+IDEM_EXPECT="$RET_HEX"
+USE_NIL_RET=false
+RET_SYMS=('SentrySDKWrapper load\]')
+RET_FTYPE=''
+patch_ret "$MAIN_BIN"
 
-    # --- ret patch：入口直接返回 ---
-    local RET_SYMS=(
-        '__ZN9ReportApi6Report'
-        '__ZN9ReportApi13InstantReport'
-        '__ZN9ReportApi20StartAutoReportCache'
-        '__ZN9ReportApi17ReportTaskFailLog'
-        '__ZN9ReportApi5Flush'
-    )
-    for sym in "${RET_SYMS[@]}"; do
-        local vaddr_hex
-        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | awk '{print $1; exit}')
-        [ -z "$vaddr_hex" ] && continue
-        local offset=$(( slice_offset + 16#$vaddr_hex - base ))
-        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
-        echo "  ReportApi ret patch: $sym"
-    done
-
-    # --- tbnz→b patch：把 guard check 变成无条件跳到 ret 序列 ---
-    # 每项：符号名, guard_check 相对函数起点的字节偏移, 跳转目标相对函数起点的字节偏移
-    # 偏移值来自对 2.2.0 build 617 的反汇编，升级版本后如符号地址变化会自动重算，
-    # 但偏移量若有变化需重新确认。
-    # 格式：符号名|tbnz相对偏移(十进制)|ret序列相对偏移(十进制)
-    local TBNZ_SYMS=(
-        '__ZN9ReportApi26ReportLocalCacheLogInQueue|104|108'
-        '__ZN9ReportApi24ReportTaskFailLogInQueue|104|108'
-        '__ZN9ReportApi19ReportLocalCacheLog|32|172'
-    )
-    for entry in "${TBNZ_SYMS[@]}"; do
-        local sym tbnz_rel ret_rel
-        sym=${entry%%|*}
-        tbnz_rel=${entry#*|}; tbnz_rel=${tbnz_rel%|*}
-        ret_rel=${entry##*|}
-
-        local vaddr_hex
-        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | awk '{print $1; exit}')
-        [ -z "$vaddr_hex" ] && continue
-
-        local fn_offset=$(( slice_offset + 16#$vaddr_hex - base ))
-        local tbnz_offset=$(( fn_offset + tbnz_rel ))
-        local tgt_offset=$(( fn_offset + ret_rel ))  # ret_rel 是十进制字节数
-
-        # 计算 ARM64 b 指令：b <tgt>  encoding = 0x14000000 | ((tgt-pc)/4 & 0x3FFFFFF)
-        local delta=$(( (tgt_offset - tbnz_offset) / 4 ))
-        local enc=$(( 0x14000000 | (delta & 0x3FFFFFF) ))
-        # 写入小端 4 字节
-        printf "$(printf '\\x%02x\\x%02x\\x%02x\\x%02x' \
-            $(( enc & 0xFF )) $(( (enc >> 8) & 0xFF )) \
-            $(( (enc >> 16) & 0xFF )) $(( (enc >> 24) & 0xFF )))" \
-            | dd of="$target" bs=1 seek=$tbnz_offset conv=notrunc 2>/dev/null
-        echo "  ReportApi tbnz→b patch: $sym"
-    done
-
-    codesign --force --sign - "$target"
-}
-
-patch_report_api "$APP/Contents/MacOS/WeType"
-
-# ── CronetNetworkApi 统计上报：patch 主程序 6 个上报入口 ──
-# 架构：WtStat*Report（585个统计类）→ CronetNetworkApi::DoReportNetWorkRequest
-#       → WcwssAPI::SendMessage → wcwss → wetype.weixin.qq.com
-# 按键记录 SessionKeystrokeReporter::Flush 也走此通道
-#
-# 这 6 个函数都是普通调用链（text 段 t/T 符号），未作为网络回调函数指针注册，
-# 入口直接 ret 安全（不像 ReportApi 的 InQueue 系列需要 tbnz→b）。
-# 上报数据走 wcwss 通道，patch 上游入口即可，wcwss 保留供云端候选词使用。
-patch_cronet_report() {
-    local target="$1"
-    [ -f "$target" ] || return
-
-    local slice_offset base=4294967296
-    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
-    [ -z "$slice_offset" ] && echo "  CronetNetworkApi 跳过（非 arm64）" && return
-
-    # 幂等检测：用 DoReportNetWorkRequest 入口字节判断
-    local check_hex
-    check_hex=$(nm "$target" 2>/dev/null | grep 'CronetNetworkApi22DoReportNetWorkRequest' | grep -E ' [tT] ' | awk '{print $1; exit}')
-    [ -z "$check_hex" ] && echo "  CronetNetworkApi 跳过（未找到符号，版本不符）" && return
-
-    local check_off=$(( slice_offset + 16#$check_hex - base ))
-    local first4
-    first4=$(dd if="$target" bs=1 skip=$check_off count=4 2>/dev/null | xxd -p)
-    if [ "$first4" = "c0035fd6" ]; then
-        echo "  CronetNetworkApi 跳过（已 patch）"
-        return
-    fi
-
-    local RET_SYMS=(
-        'CronetNetworkApi22DoReportNetWorkRequest'
-        'CronetNetworkApi19ReportClipboardPush'
-        'CronetNetworkApi26DoReportDeivceCodeDisMatch'
-        'CronetNetworkApi24ReportRecordRequestStart'
-        'CronetNetworkApi22ReportRecordRequestEnd'
-        'CronetNetworkApi18ReportCleanRequest'
-    )
-    for sym in "${RET_SYMS[@]}"; do
-        local vaddr_hex
-        # grep 匹配 mangled 符号，过滤 text 段符号，取第一个地址
-        vaddr_hex=$(nm "$target" 2>/dev/null | grep "$sym" | grep -E ' [tT] ' | awk '{print $1; exit}')
-        [ -z "$vaddr_hex" ] && continue
-        local offset=$(( slice_offset + 16#$vaddr_hex - base ))
-        printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$offset conv=notrunc 2>/dev/null
-        echo "  CronetNetworkApi ret patch: $sym"
-    done
-
-    codesign --force --sign - "$target"
-}
-
-patch_cronet_report "$APP/Contents/MacOS/WeType"
-
-# ── Sentry 崩溃上报：patch 主程序初始化入口 ──────────────
-patch_sentry_main() {
-    local target="$1"
-    [ -f "$target" ] || return
-
-    local slice_offset
-    slice_offset=$(lipo -detailed_info "$target" 2>/dev/null | awk '/architecture arm64/{found=1} found && /offset/{print $2; exit}')
-    [ -z "$slice_offset" ] && return
-
-    local vaddr_hex
-    vaddr_hex=$(nm "$target" 2>/dev/null | awk '/\+\[SentrySDKWrapper load\]/{print $1; exit}')
-    [ -z "$vaddr_hex" ] && echo "  Sentry(主程序) 跳过（未找到符号）" && return
-
-    local base=4294967296
-    local vaddr_dec=$(( 16#$vaddr_hex ))
-    local file_offset=$(( slice_offset + vaddr_dec - base ))
-
-    local first4
-    first4=$(dd if="$target" bs=1 skip=$file_offset count=4 2>/dev/null | xxd -p)
-    if [ "$first4" = "c0035fd6" ]; then
-        echo "  Sentry(主程序) 跳过（已 patch）"
-        return
-    fi
-
-    printf '\xc0\x03\x5f\xd6' | dd of="$target" bs=1 seek=$file_offset conv=notrunc 2>/dev/null
-    codesign --force --sign - "$target"
-    echo "  Sentry(主程序) patched: +[SentrySDKWrapper load]"
-}
-
-# ── Sentry 崩溃上报：破坏 WeTypeSettings 中的 DSN 字符串 ──
-# WeTypeSettings 是 Flutter/Dart AOT，symbol 全 strip
-# 将 DSN 首字节置 0，Sentry 解析到空字符串后跳过初始化
-patch_sentry_settings() {
-    local target="$1"
-    [ -f "$target" ] || return
-
-    local dsn_offset
-    dsn_offset=$(grep -boa 'https://7134d7bc361044e0a3b1a1a71382418d@wetype' "$target" 2>/dev/null | awk -F: '{print $1; exit}')
-    [ -z "$dsn_offset" ] && echo "  Sentry(Settings) 跳过（未找到 DSN 或已 patch）" && return
-
-    # 验证首字节是否已为 0
-    local first1
-    first1=$(dd if="$target" bs=1 skip=$dsn_offset count=1 2>/dev/null | xxd -p)
-    if [ "$first1" = "00" ]; then
-        echo "  Sentry(Settings) 跳过（已 patch）"
-        return
-    fi
-
-    printf '\x00' | dd of="$target" bs=1 seek=$dsn_offset conv=notrunc 2>/dev/null
-    codesign --force --sign - "$target"
-    echo "  Sentry(Settings) patched: DSN 字符串已清零"
-}
-
-patch_sentry_main "$APP/Contents/MacOS/WeType"
-
-# ── 剥除 fat binary 中的 x86_64（仅 Apple Silicon）──────
-# 注意：lipo -remove 会重写文件，必须在此之后再 patch Sentry Settings DSN
+# ══════════════════════════════════════════════════════════════
+# 剥除 fat binary 中的 x86_64（仅 Apple Silicon）
+# 注意：lipo -remove 会重写文件，必须在所有字节 patch 之后执行
+# Sentry Settings DSN patch 在 thin 之后单独处理
+# ══════════════════════════════════════════════════════════════
 if [ "$ARCH" = "arm64" ]; then
     echo "==> 剥除 x86_64 架构..."
     while IFS= read -r f; do
@@ -798,10 +835,33 @@ if [ "$ARCH" = "arm64" ]; then
     done < <(find "$APP" -type f \( -perm +0111 -o -name '*.dylib' \))
 fi
 
-# Sentry Settings DSN patch 必须在 thin 之后，否则 lipo -remove 会覆盖 patch 字节
-patch_sentry_settings "$APP/Contents/MacOS/WeTypeSettings.app/Contents/Frameworks/App.framework/Versions/A/App"
+# ══════════════════════════════════════════════════════════════
+# Sentry Settings DSN patch
+# WeTypeSettings 是 Flutter/Dart AOT，symbol 全 strip
+# 将 DSN 首字节置 0，Sentry 解析到空字符串后跳过初始化
+# 必须在 thin 之后（lipo -remove 会覆盖 patch 字节）
+# ══════════════════════════════════════════════════════════════
+echo "==> patch Sentry(Settings) DSN..."
+SETTINGS_APP="$APP/Contents/MacOS/WeTypeSettings.app/Contents/Frameworks/App.framework/Versions/A/App"
+if [ -f "$SETTINGS_APP" ]; then
+    dsn_offset=$(grep -boa 'https://7134d7bc361044e0a3b1a1a71382418d@wetype' "$SETTINGS_APP" 2>/dev/null | awk -F: '{print $1; exit}')
+    if [ -n "$dsn_offset" ]; then
+        first1=$(read_bytes "$SETTINGS_APP" "$dsn_offset" 1)
+        if [ "$first1" = "00" ]; then
+            echo "  Sentry(Settings) 跳过（已 patch）"
+        else
+            write_bytes "$SETTINGS_APP" "$dsn_offset" "00"
+            codesign --force --sign - "$SETTINGS_APP"
+            echo "  Sentry(Settings) patched: DSN 字符串已清零"
+        fi
+    else
+        echo "  Sentry(Settings) 跳过（未找到 DSN 或已 patch）"
+    fi
+fi
 
-# ── 删除不需要的模型 ──────────────────────────────────
+# ══════════════════════════════════════════════════════════════
+# 删除不需要的组件
+# ══════════════════════════════════════════════════════════════
 IMEDATA="$APP/Contents/Resources/imeData.bundle"
 echo "==> 删除日文模型..."
 for f in bwcjpmac_jianpin.bin; do
@@ -811,17 +871,17 @@ for f in bwcjpmac_jianpin.bin; do
     fi
 done
 
-# ── 删除独立二进制 ────────────────────────────────────
 echo "==> 删除 WeTypeUpdater、WeTypeFeedback.app..."
 rm -f  "$APP/Contents/MacOS/WeTypeUpdater"
 rm -rf "$APP/Contents/MacOS/WeTypeFeedback.app"
 
-# ── 重新签名 ──────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════
+# 重新签名 + 清理
+# ══════════════════════════════════════════════════════════════
 echo "==> 重新签名..."
 codesign --force --deep --sign - "$APP"
 codesign --verify --deep --strict "$APP" && echo "  签名验证通过"
 
-# ── 清理临时文件 ──────────────────────────────────────
 rm -rf "$TMPDIR"
 
 echo ""
@@ -831,6 +891,7 @@ else
     echo "完成。"
 fi
 echo "在系统设置 → 键盘 → 输入法 中关闭再开启微信输入法使其重新加载。"
+
 ```
 
 ### 词库&模型更新脚本
