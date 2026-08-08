@@ -28,10 +28,8 @@ com.intellij.LineProfiler
 com.intellij.cdi
 com.intellij.code-provenance
 com.intellij.code.provenance
-com.intellij.completion.ml.ranking
 com.intellij.completionMlRanking
 com.intellij.compose
-com.intellij.configurationScript
 com.intellij.copyright
 com.intellij.cron
 com.intellij.cwm
@@ -109,7 +107,6 @@ com.qoder.cn.jetbrains
 dev
 freemarker
 intellij.git.commit.modal
-intellij.indexing.shared.core
 intellij.jupyter
 intellij.ktor
 intellij.nextjs
@@ -126,6 +123,7 @@ org.intellij.qodana
 org.jetbrains.completion.full.line
 org.jetbrains.idea.eclipse
 org.jetbrains.idea.gradle.dsl
+org.jetbrains.idea.gradle.ext
 org.jetbrains.junie
 org.jetbrains.kotlin
 org.jetbrains.plugins.docker.gateway
