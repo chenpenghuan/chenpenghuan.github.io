@@ -4,6 +4,8 @@
 
 终端输入法配置默认ABC
 
+macism `https://github.com/LuSrackhall/ims-mac`
+
 ```shell
 # 命令执行完回到提示符时自动切到 ABC 输入法
 autoload -Uz add-zsh-hook
