@@ -424,8 +424,15 @@ write_bytes() {
 
 # 符号虚拟地址 → 文件偏移
 # $1=slice_offset, $2=vaddr_hex
+# 主程序符号地址 >= 0x100000000（带 image base），需减去 BASE
+# framework 符号地址 < 0x100000000（文件内偏移），不减
 vaddr_to_offset() {
-    echo $(( $1 + 16#$2 - BASE ))
+    local vaddr=$(( 16#$2 ))
+    if [ "$vaddr" -ge "$BASE" ]; then
+        echo $(( $1 + vaddr - BASE ))
+    else
+        echo $(( $1 + vaddr ))
+    fi
 }
 
 # ARM64 ret 指令 = c0035fd6（小端）
