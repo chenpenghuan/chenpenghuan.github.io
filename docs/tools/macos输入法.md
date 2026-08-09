@@ -1,4 +1,15 @@
 # macos输入法
+
+## 原生输入法
+
+终端输入法配置默认ABC
+
+```shell
+# 命令执行完回到提示符时自动切到 ABC 输入法
+autoload -Uz add-zsh-hook
+_switch_to_abc() { macism com.apple.keylayout.ABC }
+add-zsh-hook precmd _switch_to_abc
+```
 ## 鼠须管配置
 
 ### 只保留鼠须管输入法
