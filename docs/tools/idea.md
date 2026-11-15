@@ -1,7 +1,7 @@
 # IntelliJ IDEA 插件精简指南（Spring Boot 后端开发）
 
 > 适用：IntelliJ IDEA 2026.1 Ultimate，Spring Boot 3 + Java 17 + MyBatis + Maven 项目
-> 维护：2026-08-09
+> 维护：2026-11-15（新增第七节：隐藏「Unlock Ultimate」按钮）
 
 ## 背景
 
@@ -345,6 +345,75 @@ Ultimate 版众多功能 ──→ JetBrains Ultimate
 
 ### 验证
 重启 IDEA 后，如果某功能不可用，查看启动日志的 `depends on X which failed to load`，恢复对应插件。
+
+---
+
+## 七、隐藏「Unlock Ultimate」按钮（本地插件 Trial Widget Remover）
+
+> 适用：未订阅、以免费模式运行的 IDEA（2026.3 验证）。官方没有隐藏开关，用本地插件实现；只动插件目录，不改 IDEA 安装包。
+
+### 背景：为什么删不掉
+
+| 事实 | 说明 |
+|---|---|
+| 来源 | 平台内部模块 `intellij.platform.trialPromotion.idesWithFreeTier` 的 `TrialStateWidget`，硬编码注册到主工具栏右侧（`MainToolbarRight`） |
+| 不可自定义 | 实现了 `com.intellij.ide.ui.customization.NonCustomizableAction`，「Customize Toolbar」里不显示/删不掉（`customization.xml` 里即使写了删除记录也会被忽略） |
+| 无开关 | 没有 Registry / Settings 项，`TrialStateService.isEnabled()` 恒为 true |
+| 官方诉求 | YouTrack `IDEA-384401`、`IJPL-222323`，尚未提供隐藏方式 |
+
+### 方案：启动时反注册 Action
+
+插件注册 `AppLifecycleListener`，在 IDE 启动时执行（IDE 内部禁用该组件用的也是同一 API）：
+
+```java
+ActionManager.getInstance().unregisterAction("TrialStateWidget");
+```
+
+
+### 安装
+
+1. `Settings → Plugins → ⚙️ → Install Plugin from Disk…` → 选择 `TrialWidgetRemover-1.0.zip`
+2. Apply / OK 后重启 IDE
+
+手动方式：把 zip 解压出的 `TrialWidgetRemover` 目录放到 `~/Library/Application Support/JetBrains/<产品及版本>/plugins/`（如 `IntelliJIdea2026.3`），重启生效。
+
+### 验证
+
+重启后右上角按钮消失；`Help → Show Log in Finder` 查看 `idea.log` 确认加载：
+
+```
+Loaded custom plugins: ... Trial Widget Remover (local.trial.widget.remover, 1.0), ...
+```
+
+2026-11-15 已在 IntelliJ IDEA Ultimate 2026.3（macOS）验证加载成功。
+
+### 卸载
+
+`Settings → Plugins → Installed → Trial Widget Remover → Uninstall`，或直接删除 `plugins/TrialWidgetRemover/`，重启后按钮恢复显示。
+
+### 源码与重新构建
+
+源码在插件目录 `src/`（`Remover.java` + `plugin.xml`）。重建（macOS）：
+
+```bash
+cd TrialWidgetRemover
+JBR="/Applications/IntelliJ IDEA.app/Contents/jbr/Contents/Home"
+mkdir -p build/classes build/stage/META-INF
+"$JBR/bin/javac" -cp "/Applications/IntelliJ IDEA.app/Contents/lib/*" \
+  -d build/classes src/local/trialwidget/Remover.java
+cp -R build/classes/. build/stage/
+cp src/plugin.xml build/stage/META-INF/plugin.xml
+jar --create --file build/trial-widget-remover.jar -C build/stage .
+```
+
+生成的 `build/trial-widget-remover.jar` 覆盖到 `lib/` 即可。
+
+### 注意事项
+
+- 只隐藏推广按钮，不改变授权状态，Ultimate 功能仍然不可用；
+- 其它带免费模式的 JetBrains IDE（WebStorm、Rider 等）理论上同样适用，未逐一验证；
+- IDE 大版本升级后插件一般随配置目录迁移；若按钮重新出现，通常是内部 Action ID 变更，按上文重建适配；
+- 在 `Settings → Plugins` 中禁用本插件后，按钮会恢复显示。
 
 ---
 
